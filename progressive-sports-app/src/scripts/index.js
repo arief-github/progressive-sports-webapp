@@ -1,18 +1,16 @@
-import '../style/style.css'
+import App from './views/app';
+import '../styles/main.css';
 
-const hello = document.createElement('h1');
-const wrapper = document.createElement('div');
+const app = new App({
+  header: document.querySelector('header'),
+  main: document.querySelector('main'),
+  footer: document.querySelector('footer'),
+});
 
-hello.textContent = 'Tailwind Time 😎 ';
-hello.classList.add(
-  'bg-gradient-to-r', 'from-green-400', 'to-blue-500',
-  'text-transparent', 'text-9xl', 'bg-clip-text', 'font-extrabold'
-  );
+window.addEventListener('hashchange', () => {
+  app.renderPage();
+});
 
-wrapper.classList.add(
-  'flex', 'w-full', 'h-screen',
-  'justify-center', 'items-center'
-  )
-
-wrapper.appendChild(hello);
-document.body.appendChild(wrapper);
+window.addEventListener('load', () => {
+  app.renderPage();
+});
