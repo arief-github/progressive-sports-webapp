@@ -4,8 +4,8 @@ import HomePage from '../views/pages/homePage';
 
 const routes = {
   '/': HomePage,
-  '/favoritePage': FavoritePage,
-  '/detailLeaguePage': detailLeaguePage,
+  '/favorite': FavoritePage,
+  '/detail-league': detailLeaguePage,
 
 };
 
