@@ -6,6 +6,8 @@ const routes = {
   '/': HomePage,
   '/favoritePage': FavoritePage,
   '/detailLeaguePage': detailLeaguePage,
+  '/gamePage': GamePage,
+
 };
 
 export default routes;
