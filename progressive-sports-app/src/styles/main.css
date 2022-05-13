@@ -3,3 +3,48 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+@layer base {
+    body {
+        @apply bg-white text-gray-800;
+    }
+}
+
+@layer components {
+
+    /* navbar */
+    header {
+        @apply bg-white py-5 px-6;
+        min-width: 767px;
+    }
+
+    header ul li {
+        @apply inline-block mx-5;
+    }
+
+    /* main content in home page */
+ 
+
+    /* card-item */
+    .card-league {
+        @apply max-w-xs mx-5 px-8 py-10 bg-white rounded-lg shadow-md text-center;
+    }
+
+    .card-league h2 {
+        @apply mt-4 font-bold text-2xl;
+    }
+
+    .card-league p {
+        @apply mt-4;
+    }
+
+    /* end card-item */
+    
+
+
+    /* footer */
+    footer {
+        @apply py-6 px-8 bg-blue-100;
+    }
+
+}

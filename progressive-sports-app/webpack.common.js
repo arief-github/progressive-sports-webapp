@@ -9,9 +9,17 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader', 'postcss-loader'],
-        }, ]
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: 'image/[name].[ext]',
+                }
+            }
+        ]
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -1,11 +1,27 @@
 const header = {
-	async init(){
-		return `<div class="w-full h-20 bg-blue-300 px-8 text-center text-white flex">
-					<a href="#/" class="w-40 h-auto m-auto p-6 bg-red-200">Home</a>
-					<a href="#/favorite" class="w-40 h-auto m-auto p-6 bg-red-200">Favorite</a>
-					<a href="#/detail-league" class="w-40 h-auto m-auto p-6 bg-red-200">Detail League</a>
-				</div>`;
-	}
+    async init() {
+        return ` 
+		<header class="flex justify-between items-center">
+			  <a href="#" class="flex-1">
+			    <img class="inline h-7" src="" alt="sports logo" src="../../../assets/img/Progressive-Sport-Logo-Dark.png"/>
+			  </a>
+			  <ul>
+			    <li>
+			      <a href="#">Home</a>
+			    </li>
+			    <li>
+			      <a href="#/favoritePage">Favorite Teams</a>
+			    </li>
+			    <li>
+			      <a href="#">Game</a>
+			    </li>
+			    <li>
+			      <a href="#">Contact Us</a>
+			    </li>
+			  </ul>
+		</header>
+		`;
+    }
 }
 
 export default header;
