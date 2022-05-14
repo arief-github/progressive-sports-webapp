@@ -10,7 +10,7 @@ const header = {
 			      <a href="#/">Home</a>
 			    </li>
 			    <li class="m-auto">
-			      <a href="#/favoritePage">Favorite Teams</a>
+			      <a href="#/favorite-page">Favorite Teams</a>
 			    </li>
 			    <li class="m-auto">
 			      <a href="#/game-page">Game</a>
