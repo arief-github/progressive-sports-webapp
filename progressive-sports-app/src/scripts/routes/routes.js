@@ -3,7 +3,8 @@ import HomePage from '../views/pages/homePage';
 
 const routes = {
   '/': HomePage,
-  '/favoritePage': FavoritePage,
+  '/favoritePae': FavoritePage,
+  '/page' : Page,
 };
 
 export default routes;
