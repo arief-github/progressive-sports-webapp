@@ -3,7 +3,7 @@ const header = {
         return ` 
 		<header class="flex ">
 			  <a href="#" class="flex w-3/4">
-			    <img class="inline h-7" src="" alt="sports logo" src="../../../assets/img/Progressive-Sport-Logo-Dark.png"/>
+			    <img class="inline h-7"  alt="sports logo" src="./images/Progressive-Sport-Logo-Dark.png"/>
 			  </a>
 			  <ul class="flex w-1/4">
 			    <li class="m-auto">

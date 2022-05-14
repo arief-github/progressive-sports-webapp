@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require("webpack");
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/scripts/index.js'),
@@ -10,15 +12,24 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                use: [
+                  {
+                    loader: 'style-loader',
+                  },
+                  {
+                    loader: 'css-loader',
+                  },
+                  {
+                    loader: 'postcss-loader',
+                  }
+                ],
             },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: 'image/[name].[ext]',
-                }
-            }
+              test: /\.(png|svg|jpg|jpeg|gif)$/,
+              use: [
+                  'file-loader',
+              ],
+            },
         ]
     },
     plugins: [
@@ -26,5 +37,17 @@ module.exports = {
             template: path.resolve(__dirname, "src/templates/index.html"),
             filename: "index.html",
         }),
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: path.resolve(__dirname, 'src/public/'),
+              to: path.resolve(__dirname, 'dist/')
+            },
+          ],
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
 };
