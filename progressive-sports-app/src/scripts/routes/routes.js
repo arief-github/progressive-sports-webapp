@@ -4,8 +4,8 @@ import gamePage from '../views/pages/gamePage';
 
 const routes = {
   '/': HomePage,
-  '/favoritepage': FavoritePage,
-  '/game' : gamePage,
+  '/favorite-page': FavoritePage,
+  '/game-page' : gamePage,
 };
 
 export default routes;

@@ -7,13 +7,13 @@ const header = {
 			  </a>
 			  <ul>
 			    <li>
-			      <a href="#">Home</a>
+			      <a href="#/">Home</a>
 			    </li>
 			    <li>
 			      <a href="#/favoritePage">Favorite Teams</a>
 			    </li>
 			    <li>
-			      <a href="#">Game</a>
+			      <a href="#/game-page">Game</a>
 			    </li>
 			    <li>
 			      <a href="#">Contact Us</a>

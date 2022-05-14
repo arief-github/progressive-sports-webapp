@@ -1,10 +1,4 @@
-class HeroImage extends HTMLElement {
-	connectedCallback(){
-		this.render();
-	}
-
-	render() {
-		this.innerHTML = ` 
+const heroImage =  ` 
 			<header class="mb-6">
 			 <div class="w-full bg-center bg-cover"
 				    style="background-image: url(https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
@@ -27,7 +21,6 @@ class HeroImage extends HTMLElement {
 				  </div>
 			</header>
 		`;
-	}
-}
 
-customElements.define('hero-image', HeroImage);
+
+export default heroImage;
