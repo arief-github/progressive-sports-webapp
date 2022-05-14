@@ -1,27 +1,28 @@
 const header = {
     async init() {
         return ` 
-		<header class="flex justify-between items-center">
-			  <a href="#" class="flex-1">
+		<header class="flex ">
+			  <a href="#" class="flex w-3/4">
 			    <img class="inline h-7" src="" alt="sports logo" src="../../../assets/img/Progressive-Sport-Logo-Dark.png"/>
 			  </a>
-			  <ul>
-			    <li>
+			  <ul class="flex w-1/4">
+			    <li class="m-auto">
 			      <a href="#/">Home</a>
 			    </li>
-			    <li>
+			    <li class="m-auto">
 			      <a href="#/favoritePage">Favorite Teams</a>
 			    </li>
-			    <li>
+			    <li class="m-auto">
 			      <a href="#/game-page">Game</a>
 			    </li>
-			    <li>
+			    <li class="m-auto">
 			      <a href="#">Contact Us</a>
 			    </li>
 			  </ul>
 		</header>
 		`;
-    }
+    },
+	
 }
 
 export default header;
