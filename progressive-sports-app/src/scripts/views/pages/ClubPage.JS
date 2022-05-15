@@ -1,7 +1,7 @@
 
 const ClubPage = {
 	async init(){
-		return `<div class="bg-red">favorite page </div>`;
+		return `<div class="bg-red">Club page </div>`;
 	}
 }
 
