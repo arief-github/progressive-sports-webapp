@@ -458,8 +458,6 @@ const favoritePage = {
 		}`);
 		return data.teams;
 	},
-
-
 	async domSearchTeam(){
 		$('#search-team').on('keyup',()=>{
 			let value = $('#search-team').val();
@@ -477,7 +475,7 @@ const favoritePage = {
 		});
 	},
 
-	async domShowFormSeach(){
+	async domShowFormSearch(){
 		$('#btn-search-teams').on('click',()=>{
 			$('#search-team').toggleClass('hidden');
 
