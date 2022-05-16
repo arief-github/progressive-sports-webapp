@@ -20,6 +20,9 @@
     .card-league p {
         @apply mt-4;
     }
+    .card-game {
+        @apply mx-20 rounded-lg bg-white px-14 py-10 text-center shadow-md;
+      }
     /* end card-item */
     /* footer */
     footer {
