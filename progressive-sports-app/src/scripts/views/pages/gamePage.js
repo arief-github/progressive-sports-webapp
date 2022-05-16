@@ -32,9 +32,9 @@ const gamePage = {
     </div>
   </div>
   <div class="grid grid-cols-2">
-    <div class="card-game mb-6 justify-between flex">
+    <div class="card-game mb-6 ml-20 justify-between flex">
       <img class="h-12 w-12" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/LaLiga_Santander_logo_%28stacked%29.svg/175px-LaLiga_Santander_logo_%28stacked%29.svg.png" alt="laliga" />
-        <div>
+        <div class="ml-10">
           <h2>Espanyol</h2>
           <h2>Villareal</h2>
         </div>
@@ -45,7 +45,7 @@ const gamePage = {
     </div>
     <div class="card-game mb-6 justify-between flex">
       <img class="h-12 w-12" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/LaLiga_Santander_logo_%28stacked%29.svg/175px-LaLiga_Santander_logo_%28stacked%29.svg.png" alt="laliga" />
-        <div>
+        <div class="ml-10">
           <h2>Espanyol</h2>
           <h2>Villareal</h2>
         </div>
