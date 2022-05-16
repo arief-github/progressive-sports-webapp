@@ -2,8 +2,8 @@ import heroImage from '../components/hero-image'
 import cardItemFavorite from '../components/card-item-favorite'
 
 const favoritePage = {
-	async init(){
-		return `
+    async init() {
+        return `
 			<div class="favorite-page w-full h-auto ">
 				<div id="hero-image"></div>
 				<div class="title flex sm:flex-row font-semibold ml-6 text-2xl sm:items-center">
@@ -29,30 +29,30 @@ const favoritePage = {
 				<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 				</div>
 			</div>`;
-	},
+    },
 
-	async afterRender(){
-		document.querySelector('#hero-image').innerHTML += heroImage;
-		await this.createDataDummy().then((e)=>{
-			e.forEach((e)=>{
-				let spitClubColors = e.clubColors.split(" / ");
-				document.querySelector('.list-teams').innerHTML += cardItemFavorite({
-					nameTeam : e.shortName,
-					location : e.address,
-					stadion : e.venue,
-					pathImage : e.crestUrl,
-					clubColor : spitClubColors,
-				});
+    async afterRender() {
+        document.querySelector('#hero-image').innerHTML += heroImage;
+        await this.createDataDummy().then((e) => {
+            e.forEach((e) => {
+                let spitClubColors = e.clubColors.split(" / ");
+                document.querySelector('.list-teams').innerHTML += cardItemFavorite({
+                    nameTeam: e.shortName,
+                    location: e.address,
+                    stadion: e.venue,
+                    pathImage: e.crestUrl,
+                    clubColor: spitClubColors,
+                });
 
-			})
-		});
+            })
+        });
 
-		await this.domSearchTeam();
-		await this.domShowFormSeach();
-	},
+        await this.domSearchTeam();
+        await this.domShowFormSeach();
+    },
 
-	async createDataDummy(){
-		const data = await JSON.parse(`{
+    async createDataDummy() {
+        const data = await JSON.parse(`{
 		    "count": 20,
 		    "filters": {},
 		    "competition": {
@@ -456,33 +456,32 @@ const favoritePage = {
 		        }
 		    ]
 		}`);
-		return data.teams;
-	},
-	async domSearchTeam(){
-		$('#search-team').on('keyup',()=>{
-			let value = $('#search-team').val();
-			let cardTeams = [...$('#list-teams .item-card')];
-			cardTeams.filter((e)=>{
-			let listTeams = e.querySelector('.side-mid .description h1');
-				if(listTeams.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1){
-					e.classList.add("inline");
-					e.classList.remove("hidden");
-				}else{
-					e.classList.add("hidden");
-					e.classList.remove("inline");
-				}
-			})
-		});
-	},
+        return data.teams;
+    },
+    async domSearchTeam() {
+        $('#search-team').on('keyup', () => {
+            let value = $('#search-team').val();
+            let cardTeams = [...$('#list-teams .item-card')];
+            cardTeams.filter((e) => {
+                let listTeams = e.querySelector('.side-mid .description h1');
+                if (listTeams.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                    e.classList.add("inline");
+                    e.classList.remove("hidden");
+                } else {
+                    e.classList.add("hidden");
+                    e.classList.remove("inline");
+                }
+            })
+        });
+    },
 
-	async domShowFormSearch(){
-		$('#btn-search-teams').on('click',()=>{
-			$('#search-team').toggleClass('hidden');
+    async domShowFormSeach() {
+        $('#btn-search-teams').on('click', () => {
+            $('#search-team').toggleClass('hidden');
 
-		})
-	}
+        })
+    }
 }
 
 
 export default favoritePage;
-

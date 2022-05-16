@@ -4,11 +4,10 @@
 @layer base {
     body {
         @apply bg-white text-gray-800;
-        font-family: poppins;
     }
 }
+
 @layer components {
-    
     /* main content in home page */
     /* card-item */
     .card-league {
@@ -26,7 +25,7 @@
     /* end card-item */
     /* footer */
     footer {
-        @apply bg-sky-50 p-4;
+        @apply bg-black p-4;
     }
     .footer-col:not(:last-child) {
         @apply mr-20;
