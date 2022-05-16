@@ -44,18 +44,13 @@ const header = {
 					<li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
 				</ul>
 			</div>
-			<script>
-				    const btn = document.querySelector("button.mobile-menu-button");
-			        const menu = document.querySelector(".mobile-menu");
-
-			        btn.addEventListener("click", () => {
-			            menu.classList.toggle("hidden");
-			        });
-			</script>
 		</nav>
 		`;
     },
     async afterRender() {
+        await this.clickingButton();
+    },
+    async clickingButton() {
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");
 

@@ -1,8 +1,8 @@
 const footer = {
     async init() {
         return `  
-		<footer class="flex justify-between flex-wrap md:w-full">
-  			<div class="footer-col sm:mb-4">
+		<footer class="flex justify-around flex-wrap md:w-full bg-full bg-cover" style="background-image:url('./images/footer.jpg');">
+  			<div class="footer-col mt-3 sm:mb-4">
         		<ul class="list-none">
 					<li>
 						<h3>Progressive Sport</h3>
@@ -18,7 +18,7 @@ const footer = {
 					</li>
 		    	</ul>
 			</div>
-			<div class="footer-col">
+			<div class="footer-col mt-3">
 				<h3>Contact Us</h3>
 		 		<form>
 				  <div class="mb-6">

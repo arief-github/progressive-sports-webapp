@@ -8,8 +8,8 @@
 }
 
 @layer components {
-    /* main content in home page */
-    /* card-item */
+    /* be careful what selector you write for */
+    /* these styles are applyng just for card item card-item */
     .card-league {
         @apply max-w-xs mx-5 px-8 py-10 bg-white rounded-lg shadow-md text-center;
     }
@@ -23,14 +23,11 @@
         @apply mx-20 rounded-lg bg-white px-14 py-10 text-center shadow-md;
     }
     /* end card-item */
-    /* footer */
-    footer {
-        @apply bg-black p-4;
-    }
+    /* these styles are applying just for footer */
     .footer-col:not(:last-child) {
         @apply mr-20;
     }
-    img {
+    nav img {
         @apply h-8;
     }
     footer p {
@@ -39,17 +36,17 @@
     footer h3 {
         @apply font-bold text-2xl text-sky-800 mb-4;
     }
-    form {
-        @apply max-w-2xl my-8 mx-auto p-4 border border-gray-300;
+    footer form {
+        @apply max-w-2xl my-8 mx-auto p-4;
     }
-    label {
+    footer label {
         @apply block;
     }
-    input,
-    textarea {
+    footer input,
+    footer textarea {
         @apply mt-1 py-2 px-3 border border-gray-300 rounded-md w-full resize-none;
     }
-    button {
+    footer button {
         @apply inline-block px-1 py-1 text-white font-bold rounded-full;
     }
     /* end footer */
