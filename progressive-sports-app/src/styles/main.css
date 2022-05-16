@@ -21,7 +21,7 @@
     }
     .card-game {
         @apply mx-20 rounded-lg bg-white px-14 py-10 text-center shadow-md;
-      }
+    }
     /* end card-item */
     /* footer */
     footer {
@@ -33,10 +33,10 @@
     img {
         @apply h-8;
     }
-    p {
+    footer p {
         @apply mt-2 text-gray-500 text-sm;
     }
-    h3 {
+    footer h3 {
         @apply font-bold text-2xl text-sky-800 mb-4;
     }
     form {
