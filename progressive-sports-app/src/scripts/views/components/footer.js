@@ -33,7 +33,7 @@ const footer = {
 				<label> Message </label>
 				<textarea name="message" placeholder="Your Message" rows="5"></textarea>
 			</div>
-			<button class="col-span-full">Send a Message</button>
+			<button class="col-span-full bg-dark-200">Send a Message</button>
 			</form>
 			</div>
 			</footer>
