@@ -4,17 +4,11 @@
 @layer base {
     body {
         @apply bg-white text-gray-800;
+        font-family: poppins;
     }
 }
 @layer components {
-    /* navbar */
-    header {
-        @apply bg-white py-4 px-2;
-        min-width: 767px;
-    }
-    header ul li {
-        @apply inline-block mx-5;
-    }
+    
     /* main content in home page */
     /* card-item */
     .card-league {
