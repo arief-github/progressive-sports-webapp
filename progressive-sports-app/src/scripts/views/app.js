@@ -7,7 +7,6 @@ class App {
     this.header = header;
     this.main = main;
     this.footer = footer;
-
   }
 
   async initialAppShell() {

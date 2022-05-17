@@ -10,6 +10,7 @@
 @layer components {
     /* be careful what selector you write for */
     /* these styles are applyng just for card item card-item */
+    
     .card-league {
         @apply max-w-xs mx-5 px-8 py-10 bg-white rounded-lg shadow-md text-center;
     }
