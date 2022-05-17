@@ -21,8 +21,11 @@
         @apply mt-4;
     }
     .card-game {
-        @apply mx-20 rounded-lg bg-white px-14 py-10 text-center shadow-md;
+        @apply mx-20 rounded-lg bg-white px-14 py-10 text-center shadow-xl mt-20;
     }
+    .card-comment {
+        @apply mx-5 rounded-lg h-32 w-64 bg-white px-10 pt-2 mt-20 text-center shadow-md;
+      }
     /* end card-item */
     /* these styles are applying just for footer */
     .footer-col:not(:last-child) {
