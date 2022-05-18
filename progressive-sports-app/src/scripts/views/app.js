@@ -3,21 +3,21 @@ import routes from '../routes/routes';
 import footer from './components/footer'
 import header from './components/header'
 class App {
-  constructor({ header, main, footer }) {
+  constructor({ header, main, footer }){
     this.header = header;
     this.main = main;
     this.footer = footer;
+    this.initialAppShell();
   }
 
-  async initialAppShell() {
-    this.header.innerHTML = await header.init();
-    this.footer.innerHTML = await footer.init();
-    await header.afterRender();
-    await footer.afterRender();
+  initialAppShell() {
+    this.header.innerHTML = header.init();
+    this.footer.innerHTML = footer.init();
+    header.afterRender();
+    footer.afterRender();
   }
 
   async renderPage() {
-    await this.initialAppShell();
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
     this.main.innerHTML = await page.init();
