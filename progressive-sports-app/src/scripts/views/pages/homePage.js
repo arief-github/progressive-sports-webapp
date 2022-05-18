@@ -68,6 +68,7 @@ const homePage = {
 
         await header.clickingButton();
         await footer.formSubmitting();
+        await footer.closeAlert();
     }
 }
 

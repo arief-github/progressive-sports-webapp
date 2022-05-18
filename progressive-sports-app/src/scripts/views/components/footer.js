@@ -1,7 +1,7 @@
 const footer = {
     async init() {
         return `
-     	<div id="alert-3" class=" hidden alert-success flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200" role="alert">
+        <div id="alert-3" class="hidden w-128 alert-success flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200" role="alert">
 		  <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
 		  <div class="ml-3 text-sm font-medium text-green-700 dark:text-green-800">
 		    Thank You! 👍 Your message has been accepted.
@@ -11,36 +11,39 @@ const footer = {
 		    <svg class=" w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		  </button>
 		</div>
-		<footer class="flex justify-around flex-wrap md:w-full bg-full bg-cover" style="background-image:url('./images/footer.jpg');">
+       	<footer class="flex justify-around flex-wrap md:w-full bg-full bg-cover" style="background-image:url('./images/footer.jpg');"  	
   			<div class="footer-col mt-3 sm:mb-4">
         		<ul class="list-none">
 					<li>
 						<h3>Progressive Sport</h3>
 					</li>
 					<li>
+						<svg class="mr-4 h-8 w-8 text-blue-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />  <circle cx="12" cy="10" r="3" /></svg>
 						Jalan Pahlawan
 					</li>
 					<li>
+            			<svg class="mr-4 h-8 w-8 text-green-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />  <polyline points="22,6 12,13 2,6" /></svg>
 						progressive-sport@gmail.com
 					</li>
 					<li>
+						<svg class="mr-4 h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />  <circle cx="12" cy="7" r="4" /></svg>
 						CPNG-81
 					</li>
 		    	</ul>
 			</div>
-			<div class="footer-col mt-3">
+			<div class="footer-col mt-3 w-auto">
 				<h3>Contact Us</h3>
 		 		<form name="kotak-informasi">
 				  <div class="mb-6">
 				    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-				    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+				    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required>
 				  </div>
 				  <div class="mb-6">
 				    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
-				<textarea id="message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+				<textarea id="message" name="message" rows="4" class="block p-2.5 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
 				  </div>
 				  <button type="submit" class="btn-send text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-			</form>
+				</form>
 			</div>
 		</footer>
 		`;
@@ -49,7 +52,6 @@ const footer = {
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzj4aHimj0V43dxno8mmTvb-0lMgb7C58GNlpt65BBFusAmt0iT6zPjm-mTvM5TIqV7tA/exec';
         const form = document.forms['kotak-informasi'];
         const btnSend = document.querySelector('.btn-send');
-        const closeAlert = document.querySelector('.alert-del');
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -66,6 +68,15 @@ const footer = {
                 .catch((error) => console.log('Error!', error.message))
         });
     },
+    async closeAlert() {
+        const alert_del = document.querySelector('.alert-del');
+        const myAlert = document.querySelector('.alert-success');
+
+        alert_del.addEventListener('click', function() {
+            myAlert.classList.add('hidden');
+        })
+
+    }
 }
 
 export default footer;
