@@ -53,29 +53,19 @@ const footer = {
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            $(form).find('button.btn-send').prop('disabled',true);
+
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
                     console.log('Success!', response);
 
                     // success alert
-                    $('.alert-success').toggleClass('hidden');
-                    $('.alert-success')
-                    	.find('button.alert-del')
-                    		.on('click',()=>{
-                    			$('.alert-success').addClass('hidden')
-                    		}
-                    	);
+                    $('.alert-success').toggle('hidden');
 
                     form.reset();
-		            $(form).find('button.btn-send').prop('disabled',false);
                 })
                 .catch((error) => console.log('Error!', error.message))
         });
     },
-    async afterRender(){
-		await this.formSubmitting();
-	},    
 }
 
 export default footer;

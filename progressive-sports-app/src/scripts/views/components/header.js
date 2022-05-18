@@ -36,30 +36,26 @@ const header = {
 					</div>
 			</div>
 			<!-- mobile menu -->
-			<div class="hidden relative mobile-menu z-10">
+			<div class="hidden relative mobile-menu">
 				<ul class="absolute bg-white w-full">
 					<li class="active"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
 					<li><a href="#/favorite-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Favorite Teams</a></li>
-					<li><a href="#/game-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">About</a></li>
-					<li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+					<li><a href="#about" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">About</a></li>
+					<li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
 				</ul>
 			</div>
 		</nav>
 		`;
     },
-	
-
     async clickingButton() {
         const button = document.querySelector('button.mobile-menu-button');
         const menu = document.querySelector('.mobile-menu');
+
+
         button.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
-    },
-
-	async afterRender(){
-		await this.clickingButton();
-	},    
+    }
 };
 
 export default header;

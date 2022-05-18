@@ -12,8 +12,6 @@ class App {
   async initialAppShell() {
     this.header.innerHTML = await header.init();
     this.footer.innerHTML = await footer.init();
-    await header.afterRender();
-    await footer.afterRender();
   }
 
   async renderPage() {
