@@ -2,11 +2,12 @@ import heroImage from '../components/hero-image'
 import cardItemFavorite from '../components/card-item-favorite'
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
+import '../components/custom-loading'
 
 const favoritePage = {
     async init() {
         return `
-			<div class="favorite-page w-full h-auto ">
+			<div class="favorite-page w-full h-auto flex-row ">
 				<div id="hero-image"></div>
 				<div class="title flex sm:flex-row font-semibold ml-6 text-2xl sm:items-center">
 					<div class="title-favorite-teams my-auto flex items-center w-2/4 ">
@@ -28,6 +29,7 @@ const favoritePage = {
 						</div>
 					</div>
 				</div>
+				<custom-loading></custom-loading>
 				<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 				</div>
 			</div>`;
@@ -41,8 +43,9 @@ const favoritePage = {
     },
     async updateTeams(){
         const footballDataApi = new FootballDataApi();
-        await footballDataApi.getAllTeamsByIdCompetitions(idCompetitions[6])
+        await footballDataApi.getAllTeamsByIdCompetitions(idCompetitions[4])
         	.then((value)=>{
+		    	$("custom-loading").remove()
 	    		value.teams.forEach((e)=>{
 	    			let spitClubColors = e.clubColors.split(" / ");
 	                document.querySelector('.list-teams').innerHTML += cardItemFavorite({
