@@ -31,10 +31,6 @@
     .footer-col:not(:last-child) {
         @apply mr-20;
     }
-
-    .footer-col ul li {
-        @apply flex mb-6;
-    }
     nav img {
         @apply h-8;
     }
