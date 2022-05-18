@@ -19,6 +19,10 @@ const UrlParser = {
     };
   },
 
+  urlsSplitterAllVerb(url){
+    return url.split('/');
+  },
+
   urlCombiner(splitedUrl) {
     return (splitedUrl.resource ? `/${splitedUrl.resource}` : '/')
     + (splitedUrl.id ? '/:id' : '')

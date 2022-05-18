@@ -52,6 +52,15 @@ class FootballDataApi{
 			});
 		return data;
 	}
+
+	async getTeams({id}){
+		let data;
+		await this.request(`teams/${id}`)
+			.then((response,status)=>{
+					data = (status != 'error') ? response : status;
+			});
+		return data;
+	}
 }
 
 

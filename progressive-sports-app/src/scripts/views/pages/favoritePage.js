@@ -2,7 +2,6 @@ import heroImage from '../components/hero-image'
 import cardItemFavorite from '../components/card-item-favorite'
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
-import '../components/custom-loading'
 
 const favoritePage = {
     async init() {
@@ -43,12 +42,13 @@ const favoritePage = {
     },
     async updateTeams(){
         const footballDataApi = new FootballDataApi();
-        await footballDataApi.getAllTeamsByIdCompetitions(idCompetitions[4])
+        await footballDataApi.getAllTeamsByIdCompetitions(idCompetitions[11])
         	.then((value)=>{
 		    	$("custom-loading").remove()
 	    		value.teams.forEach((e)=>{
 	    			let spitClubColors = e.clubColors.split(" / ");
 	                document.querySelector('.list-teams').innerHTML += cardItemFavorite({
+	                    idTeam : e.id,
 	                    nameTeam: e.shortName,
 	                    location: e.address,
 	                    stadion: e.venue,
