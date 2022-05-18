@@ -65,9 +65,6 @@ const homePage = {
     }, 
     async afterRender() {
         document.getElementById('hero-image').innerHTML = heroImage;
-
-        await header.clickingButton();
-        await footer.formSubmitting();
     }
 }
 
