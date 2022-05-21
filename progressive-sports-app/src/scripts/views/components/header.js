@@ -41,7 +41,7 @@ const header = {
 					<li><a href="#/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 bg-green-500 text-white">Home</a></li>
 					<li><a href="#/favorite-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Favorite Teams</a></li>
 					<li><a href="#/game-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">About</a></li>
-					<li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+					<li><a href="#footer-contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
 				</ul>
 			</div>
 		</nav>
