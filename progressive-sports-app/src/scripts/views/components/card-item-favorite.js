@@ -55,8 +55,6 @@ const cardItemFavorite = ({idTeam, nameTeam, location, stadion, pathImage, clubC
 	}
 	
 	return render();
-
-
 }
 
 export default cardItemFavorite;

@@ -1,9 +1,12 @@
+import FootballDataApi from '../../data/footballDataApi'
+import idCompetitions from '../../data/idCompetitions'
+
 const detailLeaguePage = {
 	async init(){
 		return `
+		<div class="info-detail"></div>
 		<div class="">
 			<p class="text-center font-bold">INFO LIGA</p>
-			<p class="text-center font-bold">Premier League</span>
 
 			<div class="relative overflow-x-auto grid justify-center">
 				<table class="myTable w-700px text-sm text-left text-black ">
@@ -116,8 +119,56 @@ const detailLeaguePage = {
 		</div>
 		
 		`;
+	},
 
-
-	}
+	async afterRender() {
+		await this.renderTable();
+	},
+	async renderTable() {
+		let containerHTML = '';
+    	const footballDataApi = new FootballDataApi();
+    	footballDataApi.getStandingsById(idCompetitions[4])
+    	.then((value) => {
+    		value.standings.forEach((item) => {
+    		console.log(item.table);
+    		containerHTML += ` 
+				<thead class="text-xs text-black uppercase">
+					<tr>
+					<th scope="col" class="px-6 py-3 ">
+						${item.table.position}
+					</th>
+					<th scope="col" class="px-6 py-3">
+						${item.table.shortname}
+					</th>
+					<th scope="col" class="px-6 py-3">
+						MP
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Won
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Draw
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Lose
+					</th>
+					<th scope="col" class="px-6 py-3">
+						GF
+					</th>
+					<th scope="col" class="px-6 py-3">
+						GA
+					</th>
+					<th scope="col" class="px-6 py-3">
+						GD
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Points
+					</th>
+					</tr>
+				</thead>
+    		`
+    		})
+    	})
+    		}
 }
 export default detailLeaguePage;

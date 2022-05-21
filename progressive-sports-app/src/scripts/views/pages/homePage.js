@@ -3,7 +3,8 @@ import header from '../components/header.js';
 import footer from '../components/footer.js';
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
-
+ 
+const footballDataApi = new FootballDataApi();
 const homePage = {
     async init() {
         return `
@@ -21,10 +22,10 @@ const homePage = {
     },
     async renderCompetitions() {
         let competitionsHTML = '';
-        const footballDataApi = new FootballDataApi();
+       	
         await footballDataApi.getAllCompetitions()
             .then((value) => {
-                value.competitions.filter((competitions) => competitions.id <= 2200 && competitions.emblemUrl !== null).slice(0,15).forEach((item) => {
+                value.competitions.filter((competitions) => competitions.id <= 2200 && competitions.emblemUrl !== null).slice(0,20).forEach((item) => {
                     competitionsHTML +=
                         `
                           <div id="${item.id}" class="card-league mb-6 shadow-lg item-card h-[400px] bg-[#f2f2f2] rounded-[8%] shadow-lg">
@@ -39,9 +40,9 @@ const homePage = {
 								  </div>
 							  </div>
 							  <div class="side-bottom w-full h-1/6 mb-2 flex justify-end">
-							  		<button class="btn-favorite rounded-[15%] w-[30%] h-5/6 bg-[#f9f9f9]  shadow-md group hover:shadow-inner">
+							  		<a href="#/detail-league-page" class="btn-favorite rounded-[15%] w-[30%] hover:w-[50%] hover:duration-300 h-5/6 bg-[#f9f9f9]  shadow-md group hover:shadow-inner">
 				             <svg class=" m-auto h-5 w-5 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="13" y1="20" x2="20" y2="13" />  <path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
-									</button>
+									</a>
 							  </div>
 		  					</div>
 

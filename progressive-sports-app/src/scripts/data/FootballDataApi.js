@@ -52,10 +52,18 @@ class FootballDataApi{
 			});
 		return data;
 	}
-
 	async getTeams({id}){
 		let data;
 		await this.request(`teams/${id}`)
+			.then((response,status)=>{
+					data = (status != 'error') ? response : status;
+			});
+		return data;
+	}
+
+	async getStandingsById({id}){
+		let data;
+		await this.request(`competitions/${id}/standings`)
 			.then((response,status)=>{
 					data = (status != 'error') ? response : status;
 			});
