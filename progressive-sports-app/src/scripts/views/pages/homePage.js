@@ -10,13 +10,12 @@ const homePage = {
 		<div id="hero-image"></div>
 		<h1 class="text-center mt-2 text-2xl font-bold underline  md:text-xl md:font-semibold ">LEAGUES</h1>
 		<br>
-		<div class="league-container container flex justify-end items-strecth flex-wrap">
+		<div class="league-container  w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 		</div>
 		`;
     },
     async afterRender() {
         document.getElementById('hero-image').innerHTML = heroImage;
-
         await this.renderCompetitions();
     },
     async renderCompetitions() {
@@ -24,10 +23,14 @@ const homePage = {
         const footballDataApi = new FootballDataApi();
         await footballDataApi.getAllCompetitions()
             .then((value) => {
-                value.competitions.filter((competitions) => competitions.id <= 2200 && competitions.emblemUrl !== null).slice(0,15).forEach((item) => {
+            	let leagues = Array();
+            	idCompetitions.forEach((competition)=>{
+            		leagues.push(value.competitions.find(e => e.id == competition.id));
+            	})
+                leagues.forEach((item) => {
                     competitionsHTML +=
                         `
-                          <div id="${item.id}" class="card-league mb-6 shadow-lg item-card h-[400px] bg-[#f2f2f2] rounded-[8%] shadow-lg">
+             <div id="${item.id}" class="card-league w-full h-[400px] flex flex-col bg-[#f2f2f2] rounded-[8%] shadow-lg m-auto">
 							  <div class="side-top w-full h-3/6 max-h-[50%] min-h-[50%] flex items-center bg-white p-4">
 							    <img class="mx-auto h-full" src="${item.emblemUrl}" alt="picture team">
 							  </div>
@@ -43,10 +46,7 @@ const homePage = {
 				             <svg class=" m-auto h-5 w-5 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="13" y1="20" x2="20" y2="13" />  <path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
 									</button>
 							  </div>
-		  					</div>
-
-						`
-						;
+		  				</div>`;
                 })
 
             }).catch((err) => console.error(err))
