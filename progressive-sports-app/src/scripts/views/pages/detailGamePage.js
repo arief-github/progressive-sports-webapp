@@ -1,51 +1,33 @@
+import detailGame from "../components/detail-game";
+import FootballDataApi from "../../data/footballDataApi";
 const detailGamePage = {
 	async init(){
-		return `<div class="relative">
-		<p class="mb-20 text-center text-4xl font-medium uppercase">Last Macth</p>
-		<p class="mb-10 text-center font- text-2xl uppercase ">Champions League</p>
-	 </div>
-	  <div id="lastMatch" class="container flex justify-around mx-auto ">
-		<div class="text-center text-2xl sm:text-center  md:flex  ">
-			  <img class="h-36" src="./images/Liverpool.jpg" alt="Liverpool" />
-				<h2 class="mt-10  ">Liverpool</h2>
-		</div>
-			<h2 class="text-2xl mt-10">VS</h2>
-		<div class="text-center  text-2xl   sm:text-center   md:flex flex-row-reverse ">
-			<img class="h-36" src="./images/Madrid.jpg" alt="Real Madrid" />
-				<h2 class="mt-10  ">Real Madrid</h2>
-		</div>
-	</div>
-	  <div class="relative ">
-		<p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
-			<div class="flex">
-				  <div class="sm:flex mx-auto">
-					<div class="card-comment mb-6">
-						  <h2 class="font-bold">Raditya Dika</h2>
-							  <p class="mt-8">Hala Madrid</p>
-			</div>
-				<div class="card-comment mb-6">
-				  <h2 class="font-bold">Raditya Dika</h2>
-					  <p class="mt-8">Hala Madrid</p>
-				</div>
-				<div class="card-comment mb-6">
-					<h2 class="font-bold">Raditya Dika</h2>
-						<p class="mt-8">Hala Madrid</p>
-				</div>
-				<form>
-					<div class="mb-4">
-						<label for="name" class="mb-2">Name</label>
-							<input type="name" id="name" class="border border-black text-gray-900  rounded-lg focus:ring-black focus:border-black block w-full p-1 dark:bg-white" placeholder="Input Name" required>
-								</div>
-					<div class="mb-6">
-						<label for="message" class="mb-2 block text-sm font-medium "">Comment</label>
-							<textarea id="message" rows="4" class="block w-80 rounded-lg border border-black p-1 text-gray-900 focus:border-black focus:ring-black dark:bg-white" placeholder="Leave a comment..."></textarea>
-								</div>
-							<button type="submit" class="text-white bg-black hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-20">Submit</button>
-				</form>
-			</div>
-		</div>
+		return `<div class="detail-games relative">
+		<p class="mb-20 text-center text-4xl  uppercase">Last Macth</p>
 	  </div>`;
-	}
+	},
+	async afterRender() {
+		await this.detailMatch();
+	},
+	
+	async detailMatch(){
+		const footballDataApi = new FootballDataApi();
+		await footballDataApi.getAllMatches()
+		  .then((value)=>{
+		  $("custom-loading").remove()
+		  console.log(value)
+		  value.matches.slice(0,1).forEach((e)=>{
+				  document.querySelector('.detail-games').innerHTML += detailGame({
+					  nameLeague: e.competition.name,
+					  teamOne: e.awayTeam.name,
+					  teamTwo: e.homeTeam.name,
+					  pathImage: e.competition.area.ensignUrl,
+	  
+				  });
+		  });
+		});
+		
+	  }
 }
 
 

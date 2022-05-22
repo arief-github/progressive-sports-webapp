@@ -35,7 +35,6 @@ const gamePage = {
     await footballDataApi.getAllMatches()
       .then((value)=>{
       $("custom-loading").remove()
-      console.log(value)
       value.matches.filter((matches) => matches.status === "FINISHED").forEach((e) => {
         document.querySelector('.last-match').innerHTML += cardLastMatch({
                   idMatch: e.id,
@@ -54,7 +53,6 @@ const gamePage = {
   await footballDataApi.getAllMatches()
     .then((value)=>{
     $("custom-loading").remove()
-    console.log(value)
     value.matches.filter((matches) => matches.status === "SCHEDULED" && matches.score.fullTime.homeTeam === null && matches.score.fullTime.awayTeam === null).forEach((e) => {
             document.querySelector('.next-match').innerHTML += cardNextMatch({
                 idMatch: e.id,
