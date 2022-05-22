@@ -1,5 +1,6 @@
 import FootballDataApi from '../../data/footballDataApi'
 import heroImage from '../components/hero-image.js';
+import idCompetitions from '../../data/idCompetitions'
 
 const detailLeaguePage = {
 	async init(){
@@ -8,7 +9,6 @@ const detailLeaguePage = {
 		<div class="detailLeague">
 				<p>INFO LIGA</p>
 				<p>Premier League</p>
-
 			<div class="table-frame">
 				<table id="table-header">
 				<thead>
@@ -45,40 +45,9 @@ const detailLeaguePage = {
 						</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-						<th>
-							1
-						</th>
-						<td>
-							2
-						</td>
-						<td>
-							3
-						</td>
-						<td>
-							4
-						</td>
-						<td>
-							5
-						</td>
-						<td>
-							6
-						</td>
-						<td>
-							7
-						</td>
-						<td>
-							8
-						</td>
-						<td>
-							9
-						</td>
-						<td>
-							10
-						</td>
-					</tr>
-				</tbody>
+
+					<tbody id="team-list">
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -86,8 +55,41 @@ const detailLeaguePage = {
 	},
 	async afterRender(){
 		document.getElementById('hero-image').innerHTML = heroImage;
-	}
-	
+	},
+
+	async afterRender() {
+		await this.renderTable();
+	},
+	async renderTable() {
+		let containerHTML = '';
+    	const footballDataApi = new FootballDataApi();
+    	footballDataApi.getStandingsById(idCompetitions[11])
+    	.then((value) => {
+			console.log(value);
+    		value.standings.forEach((item) => {
+			let dataTable = item.table
+			let getAlldataTeam = dataTable.map(function(e){
+				containerHTML += ` 
+							<tr>
+								<td>${e.position}</td>
+								<td>${e.team.name}</td>
+								<td>${e.playedGames}</td>
+								<td>${e.won}</td>
+								<td>${e.draw}</td>
+								<td>${e.lost}</td>
+								<td>${e.goalsFor}</td>
+								<td>${e.goalsAgainst}</td>
+								<td>${e.goalDifference}</td>
+								<td>${e.points}</td>
+							</tr>
+						`
+				})
+			
+			console.log(getAlldataTeam);
+			document.getElementById('team-list').innerHTML = containerHTML;
+    		})
+    	})
+    }
 }
 
 export default detailLeaguePage;
