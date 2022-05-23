@@ -83,9 +83,7 @@ const detailLeaguePage = {
 								<td>${e.points}</td>
 							</tr>
 						`
-				})
-			
-			console.log(getAlldataTeam);
+				})			
 			document.getElementById('team-list').innerHTML = containerHTML;
     		})
     	})
