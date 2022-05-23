@@ -34,8 +34,8 @@ const homePage = {
         await this.showingResults();
     },
     async renderCompetitions() {
-    	const leaguesCardContainer = document.querySelector('.league-container');
-    	const footballDataApi = new FootballDataApi();
+        const leaguesCardContainer = document.querySelector('.league-container');
+        const footballDataApi = new FootballDataApi();
         await footballDataApi.getAllCompetitions()
             .then((value) => {
                 let leagues = Array();
@@ -43,38 +43,38 @@ const homePage = {
                     leagues.push(value.competitions.find(value => value.id == competition.id));
                 })
                 leagues.forEach((item) => {
-                leaguesCardContainer.innerHTML += cardsLeague({
-                    	idLeague: item.id,
-                    	emblemUrl: item.emblemUrl,
-                    	leagueName: item.name,
-                    	leagueAreaName: item.area.name,
-                    	currentSeasonStartDate: item.currentSeason.startDate,
-                    	currentSeasonEndDate: item.currentSeason.endDate,
+                    leaguesCardContainer.innerHTML += cardsLeague({
+                        idLeague: item.id,
+                        emblemUrl: item.emblemUrl,
+                        leagueName: item.name,
+                        leagueAreaName: item.area.name,
+                        currentSeasonStartDate: item.currentSeason.startDate,
+                        currentSeasonEndDate: item.currentSeason.endDate,
                     })
                 })
             }).catch((err) => console.error(err))
     },
     async searchingForLeague() {
-    	$('#search-league').on('keyup', () => {
-    		let value = $('#search-league').val();
-    		let cardsLeague = [...$('.league-container .card-league')];
-    		cardsLeague.filter((item) => {
-    			let listCards = item.querySelector('.side-mid .description h1');
-    			if (listCards.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-    				item.classList.add('inline');
-    				item.classList.remove('hidden');
-    			} else {
-    				item.classList.add('hidden');
-    				item.classList.remove('inline');
-   
-    			}
-    		})
-    	})
+        $('#search-league').on('keyup', () => {
+            let value = $('#search-league').val();
+            let cardsLeague = [...$('.league-container .card-league')];
+            cardsLeague.filter((item) => {
+                let listCards = item.querySelector('.side-mid .description h1');
+                if (listCards.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                    item.classList.add('inline');
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('inline');
+
+                }
+            })
+        })
     },
     async showingResults() {
-    	$('#btn-search-leagues').on('click', () => {
-    		$('#search-league').toggleClass('hidden');
-    	})
+        $('#btn-search-leagues').on('click', () => {
+            $('#search-league').toggleClass('hidden');
+        })
     }
 }
 
