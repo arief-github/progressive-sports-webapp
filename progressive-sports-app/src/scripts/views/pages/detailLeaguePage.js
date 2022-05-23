@@ -63,7 +63,7 @@ const detailLeaguePage = {
 	async renderTable() {
 		let containerHTML = '';
     	const footballDataApi = new FootballDataApi();
-    	footballDataApi.getStandingsById(idCompetitions[11])
+    	footballDataApi.getAllCompetitionStandingsById(idCompetitions[11])
     	.then((value) => {
 			console.log(value);
     		value.standings.forEach((item) => {
