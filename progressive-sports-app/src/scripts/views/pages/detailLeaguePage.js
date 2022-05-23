@@ -53,11 +53,8 @@ const detailLeaguePage = {
 		</div>
 		`;
 	},
-	async afterRender(){
-		document.getElementById('hero-image').innerHTML = heroImage;
-	},
-
 	async afterRender() {
+		document.getElementById('hero-image').innerHTML = heroImage;
 		await this.renderTable();
 	},
 	async renderTable() {
