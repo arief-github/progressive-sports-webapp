@@ -1,123 +1,93 @@
+import FootballDataApi from '../../data/footballDataApi'
+import heroImage from '../components/hero-image.js';
+import idCompetitions from '../../data/idCompetitions'
+
 const detailLeaguePage = {
 	async init(){
 		return `
-		<div class="">
-			<p class="text-center font-bold">INFO LIGA</p>
-			<p class="text-center font-bold">Premier League</span>
-
-			<div class="relative overflow-x-auto grid justify-center">
-				<table class="myTable w-700px text-sm text-left text-black ">
-				<thead class="text-xs text-black uppercase">
+		<div id="hero-image"></div>
+		<div class="detailLeague">
+				<p>INFO LIGA</p>
+				<p>Premier League</p>
+			<div class="table-frame">
+				<table id="table-header">
+				<thead>
 					<tr>
-					<th scope="col" class="px-6 py-3 ">
-						Position
-					</th>
-					<th scope="col" class="px-6 py-3">
-						Clubs
-					</th>
-					<th scope="col" class="px-6 py-3">
-						MP
-					</th>
-					<th scope="col" class="px-6 py-3">
-						Won
-					</th>
-					<th scope="col" class="px-6 py-3">
-						Draw
-					</th>
-					<th scope="col" class="px-6 py-3">
-						Lose
-					</th>
-					<th scope="col" class="px-6 py-3">
-						GF
-					</th>
-					<th scope="col" class="px-6 py-3">
-						GA
-					</th>
-					<th scope="col" class="px-6 py-3">
-						GD
-					</th>
-					<th scope="col" class="px-6 py-3">
-						Points
-					</th>
-					</tr>
-				</thead>
-				<tbody class="border dark:border-gray-700">
-					<tr class="bg-white border-r dark:border-gray-700">
-					<th
-						class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap border-spacing-7 ">
-						1
-					</th>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap">
-						2
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						3
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						4
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						5
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						6
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						7
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						8
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						9
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						10
-					</td>
+						<th scope="col">
+							Position
+						</th>
+						<th scope="col">
+							Clubs
+						</th>
+						<th scope="col">
+							MP
+						</th>
+						<th scope="col">
+							Won
+						</th>
+						<th scope="col">
+							Draw
+						</th>
+						<th scope="col">
+							Lose
+						</th>
+						<th scope="col">
+							GF
+						</th>
+						<th scope="col">
+							GA
+						</th>
+						<th scope="col">
+							GD
+						</th>
+						<th scope="col">
+							Points
+						</th>
+						</tr>
+					</thead>
 
-					</tr>
-
-					<tr class="bg-white dark:border-gray-700">
-					<th class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap">
-						1
-					</th>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap">
-						2
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						3
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						4
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						5
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						6
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						7
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						8
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						9
-					</td>
-					<td class="px-6 py-4 border-r dark:border-gray-700 font-medium text-black whitespace-nowrap ">
-						10
-					</td>
-
-					</tr>
-				</tbody>
+					<tbody id="team-list">
+					</tbody>
 				</table>
 			</div>
 		</div>
-		
 		`;
+	},
+	async afterRender(){
+		document.getElementById('hero-image').innerHTML = heroImage;
+	},
 
-
-	}
+	async afterRender() {
+		await this.renderTable();
+	},
+	async renderTable() {
+		let containerHTML = '';
+    	const footballDataApi = new FootballDataApi();
+    	footballDataApi.getStandingsById(idCompetitions[11])
+    	.then((value) => {
+			console.log(value);
+    		value.standings.forEach((item) => {
+			let dataTable = item.table
+			let getAlldataTeam = dataTable.map(function(e){
+				containerHTML += ` 
+							<tr>
+								<td>${e.position}</td>
+								<td>${e.team.name}</td>
+								<td>${e.playedGames}</td>
+								<td>${e.won}</td>
+								<td>${e.draw}</td>
+								<td>${e.lost}</td>
+								<td>${e.goalsFor}</td>
+								<td>${e.goalsAgainst}</td>
+								<td>${e.goalDifference}</td>
+								<td>${e.points}</td>
+							</tr>
+						`
+				})			
+			document.getElementById('team-list').innerHTML = containerHTML;
+    		})
+    	})
+    }
 }
+
 export default detailLeaguePage;
