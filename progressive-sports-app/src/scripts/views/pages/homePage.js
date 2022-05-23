@@ -1,10 +1,11 @@
 import heroImage from '../components/hero-image.js';
 import header from '../components/header.js';
 import footer from '../components/footer.js';
-import FootballDataApi from '../../data/footballDataApi'
-import idCompetitions from '../../data/idCompetitions'
+import cardsLeague from '../components/card-league';
+import FootballDataApi from '../../data/footballDataApi';
+import idCompetitions from '../../data/idCompetitions';
 
-const footballDataApi = new FootballDataApi();
+
 const homePage = {
     async init() {
         return `
@@ -33,38 +34,25 @@ const homePage = {
         await this.showingResults();
     },
     async renderCompetitions() {
-        let competitionsHTML = '';
-
+    	const leaguesCardContainer = document.querySelector('.league-container');
+    	const footballDataApi = new FootballDataApi();
         await footballDataApi.getAllCompetitions()
             .then((value) => {
                 let leagues = Array();
                 idCompetitions.forEach((competition) => {
-                    leagues.push(value.competitions.find(e => e.id == competition.id));
+                    leagues.push(value.competitions.find(value => value.id == competition.id));
                 })
                 leagues.forEach((item) => {
-                    competitionsHTML +=
-                        `
-             <div id="${item.id}" class="card-league w-full h-[400px] flex flex-col bg-[#f2f2f2] rounded-[8%] shadow-lg m-auto">
-							  <div class="side-top w-full h-3/6 max-h-[50%] min-h-[50%] flex items-center bg-white p-4">
-							    <img class="mx-auto h-full" src="${item.emblemUrl}" alt="picture team">
-							  </div>
-							  <div class="side-mid flex pt-2 px-4 h-2/6 w-full items-center">
-								  <div class="description min-w-[85%] mr-4">
-								  	<h1 class="truncate text-2xl font-semibold">${item.name}</h1>
-								  	<h2 class="truncate text-lg mt-[2px] text-gray-700">${item.area.name}</h2>
-								  	<h3 class="truncate text-md mt-[2px] text-gray-700">${item.currentSeason.startDate} ${item.currentSeason.endDate}</h3>
-								  </div>
-							  </div>
-							  <div class="side-bottom w-full h-1/6 mb-2 flex justify-end">
-							  		<a href="#/detail-league-page" class="btn-favorite rounded-[15%] w-[30%] hover:w-[50%] hover:duration-300 h-5/6 bg-[#f9f9f9]  shadow-md group hover:shadow-inner">
-				             <svg class=" m-auto h-5 w-5 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="13" y1="20" x2="20" y2="13" />  <path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
-									</a>
-							  </div>
-		  				</div>`;
+                leaguesCardContainer.innerHTML += cardsLeague({
+                    	idLeague: item.id,
+                    	emblemUrl: item.emblemUrl,
+                    	leagueName: item.name,
+                    	leagueAreaName: item.area.name,
+                    	currentSeasonStartDate: item.currentSeason.startDate,
+                    	currentSeasonEndDate: item.currentSeason.endDate,
+                    })
                 })
-
             }).catch((err) => console.error(err))
-        document.querySelector('.league-container').innerHTML = competitionsHTML;
     },
     async searchingForLeague() {
     	$('#search-league').on('keyup', () => {
@@ -78,6 +66,7 @@ const homePage = {
     			} else {
     				item.classList.add('hidden');
     				item.classList.remove('inline');
+   
     			}
     		})
     	})
