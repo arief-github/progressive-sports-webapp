@@ -9,12 +9,12 @@ const gamePage = {
 		return `
     <div class="relative">
             <p class="mt-20 text-center font-medium uppercase text-4xl">Games</p>
-            <p class="ml-20 mt-10 text-3xl mb-10 font-medium">Last Macth</p>
+            <p class="ml-20 mt-10 text-3xl mb-10 font-medium">Last Match</p>
           </div>
           <custom-loading></custom-loading>
           <div id="list-teams2"  class="last-match w-full text-2xl grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1  xl:grid-cols-2 2xl:grid-cols-2">
           </div>
-          <p class="ml-20 mt-10 text-3xl mb-10 font-medium">Next Macth</p>
+          <p class="ml-20 mt-10 text-3xl mb-10 font-medium">Next Match</p>
           <custom-loading></custom-loading>
           <div id="next-matchs"  class="next-match mb-10 w-full text-2xl grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1  xl:grid-cols-2 2xl:grid-cols-2">
           </div>

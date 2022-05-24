@@ -3,7 +3,7 @@ import FootballDataApi from "../../data/footballDataApi";
 const detailGamePage = {
 	async init(){
 		return `<div class="detail-games relative">
-		<p class="mb-20 text-center text-4xl  uppercase">Last Macth</p>
+		<p class="mb-20 text-center text-4xl  uppercase">Last Match</p>
 	  </div>`;
 	},
 	async afterRender() {

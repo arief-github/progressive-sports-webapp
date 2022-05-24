@@ -73,7 +73,7 @@ const detailLeaguePage = {
 				document.querySelector('.list-standings').innerHTML += `
 					<div class="item-list w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-12">
 						<div class="w-full ${tampClass} ">${e.position}</div>
-						<div class="w-full  ${tampClass} col-span-2 truncate">${e.team.name}</div>
+						<div class="w-full flex justify-start ${tampClass} col-span-2 truncate"><img class="w-10 h-10 mr-4" src="${e.team.crestUrl}" alt="${e.team.name}">${e.team.name}</div>
 						<div class="w-full  ${tampClass} hidden sm:inline">${e.playedGames}</div>
 						<div class="w-full  ${tampClass} hidden sm:inline">${e.won}</div>
 						<div class="w-full  ${tampClass} hidden md:inline">${e.draw}</div>

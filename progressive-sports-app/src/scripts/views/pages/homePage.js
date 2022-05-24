@@ -22,7 +22,7 @@ const homePage = {
 							<input type="text" id="search-league" class="w-5/6  text-xl sm:ml-auto hidden focus:outline-none" placeholder="Search leagues">
 						</div>
 		</div>
-		<div class="league-container  w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+		<div id="league" class="league-container  w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 		</div>
 		
 		`;
@@ -63,10 +63,11 @@ const homePage = {
                 if (listCards.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
                     item.classList.add('inline');
                     item.classList.remove('hidden');
+                    
                 } else {
                     item.classList.add('hidden');
                     item.classList.remove('inline');
-
+                    
                 }
             })
         })
@@ -75,7 +76,7 @@ const homePage = {
         $('#btn-search-leagues').on('click', () => {
             $('#search-league').toggleClass('hidden');
         })
-    }
+    },
 }
 
 
