@@ -63,11 +63,10 @@ const detailLeaguePage = {
 	async renderTable() {
     	$(".frame-select").children().toggleClass('hidden');
     	$(".frame-select .list-standings").removeClass('hidden');
-		document.querySelector('.list-standings').innerHTML = "";
+    	$(".item-list").remove();
 		document.querySelector('.list-standings').innerHTML += `<custom-loading></custom-loading>`;
 		await this.footballDataApi.getAllCompetitionStandingsById({id:this.id}).then((competition)=>{
-			$("custom-loading").remove();
-			$(".item-list").remove();
+			$("custom-loading").remove();			
 			let colorList = false;
 			competition.standings[0].table.map((e)=>{
 				let tampClass = (colorList)? "bg-green-300": "bg-green-200";
