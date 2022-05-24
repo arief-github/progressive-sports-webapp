@@ -61,6 +61,14 @@ class FootballDataApi{
 			});
 		return data;
 	}
+	async getAllCompetitionStandingsById({id}){
+		let data;
+		await this.request(`competitions/${id}/standings`)
+			.then((response,status)=>{
+					data = (status != 'error') ? response : status;
+			});
+		return data;
+	}
 }
 
 
