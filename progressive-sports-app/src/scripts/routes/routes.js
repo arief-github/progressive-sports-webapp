@@ -11,9 +11,8 @@ const routes = {
     '/favorite-page': FavoritePage,
     '/game-page': gamePage,
     '/teams/:id': clubPage,
-    '/league/:id': clubPage,
+    '/league/:id': detailLeaguePage,
     '/matches/:id': detailGamePage,
-    '/detail-league-page': detailLeaguePage,
 };
 
 export default routes;
