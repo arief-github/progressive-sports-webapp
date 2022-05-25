@@ -27,6 +27,7 @@ const gamePage = {
     const footballDataApi = new FootballDataApi();
     await footballDataApi.getAllMatches()
       .then((value)=>{
+        console.log(value)
       $("custom-loading").remove()
       console.log(value)
         value.matches.filter((matches) => matches.status === "FINISHED").forEach((e) => {
