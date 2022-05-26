@@ -62,7 +62,10 @@ const detailLeaguePage = {
     },
     async renderTable() {
     	const titleGroup = (nameGroup)=>{
-    		return `<div class="item-group w-full bg-green-400 mt-4 text-white">${nameGroup}</div>`;
+    		return `
+			<div class="item-list w-full h-full py-[1px] mt-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
+    			<div class="item-group bg-green-400 text-white">${nameGroup}</div>
+    		</div>`;
     	};
 
 
