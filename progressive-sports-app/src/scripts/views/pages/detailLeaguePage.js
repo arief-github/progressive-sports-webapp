@@ -14,7 +14,7 @@ const detailLeaguePage = {
             <div class="w-full flex flex-col p-8 flex-column">
                 <div class="w-full h-full m-auto">
                     <img src="${this.competitionDetail.emblemUrl}" class="m-auto w-[200px] h-[200px]">
-					<h1 class="m-auto bg-green-200 w-fit h-fit text-xl">${this.competitionDetail.name}</h1>
+					<h1 class="m-auto mt-2 bg-green-200 w-fit h-fit text-xl">${this.competitionDetail.name}</h1>
                 </div>
             </div>
             <div class="buttonSelect w-full shadow-md bg-green-200 flex p-2">
