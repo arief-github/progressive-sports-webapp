@@ -2,7 +2,7 @@ import heroImage from '../components/hero-image'
 import cardItemFavorite from '../components/card-item-favorite'
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
-
+import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 const favoritePage = {
     async init() {
         return `
@@ -36,16 +36,50 @@ const favoritePage = {
 
     async afterRender() {
         document.querySelector('#hero-image').innerHTML += heroImage;
+        this.allTeams = await FavoriteTeamIDB.getAllTeams();
         await this.updateTeams();
         await this.domSearchTeam();
         await this.domShowFormSeach();
     },
+    addColorsTeams(colors = ["black", "white"]){
+		const colorsHex = [];
+		const typoColorNames = {
+			"navyblue" : "navy",
+			"claret" : "#811331",
+		};
+
+		let item = '';
+		let maxItem = {
+			'start' : 0,
+			'stop' : 3,
+		};
+		colors.forEach((e)=>{
+			if(maxItem['start'] != maxItem['stop']){
+				let deleteSpaceInText = e.toLowerCase().replace(/\s/g, '');
+				let color = (typoColorNames[deleteSpaceInText] != null) ? typoColorNames[deleteSpaceInText] : deleteSpaceInText;
+				colorsHex.push(color);
+			}
+			maxItem['start']++;
+		});
+		return colorsHex;
+	},
+    allButton(colors){
+		const buttons = {
+			"afterAdd" : `<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+						   </svg>`,
+			"beforeAdd" : `<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+						  </svg>`
+		};
+		return buttons;
+	},
     async updateTeams(){
-        const footballDataApi = new FootballDataApi();
-        await footballDataApi.getAllTeamsByIdCompetitions(idCompetitions[11])
+        await FavoriteTeamIDB.getAllTeams()
         	.then((value)=>{
+        		document.querySelector('.list-teams').innerHTML = "";
 		    	$("custom-loading").remove()
-	    		value.teams.forEach((e)=>{
+	    		value.forEach((e)=>{
 	    			let spitClubColors = e.clubColors.split(" / ");
 	                document.querySelector('.list-teams').innerHTML += cardItemFavorite({
 	                    idTeam : e.id,
@@ -57,6 +91,39 @@ const favoritePage = {
 	                });
 	    		});
    		 });
+        const prosesBtn = ()=>{
+       		$('.btn-favorite').each( async(i,obj)=>{
+       			try{
+	       			const id = obj.attributes[1].value;
+	       			const data = this.allTeams.find((value)=> value.id == id);
+					if(!!await FavoriteTeamIDB.getTeam(data.id)){						
+							obj.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["afterAdd"];
+					}else{
+							obj.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["beforeAdd"];			
+					}       				
+       			}catch(e){
+       			}
+       		})
+        }
+		const prosesEventClickFavorite = ()=>{
+			$('.btn-favorite').on('click',async (e)=>{
+				const id = e.currentTarget.attributes[1].value;
+				const data = this.allTeams.find((value)=> value.id == id);
+				if(!!await FavoriteTeamIDB.getTeam(data.id)){
+					await FavoriteTeamIDB.deleteTeam(data.id).then(async()=>{
+						this.allTeams = await FavoriteTeamIDB.getAllTeams();
+						await this.updateTeams();
+					})
+				}else{
+					await FavoriteTeamIDB.putTeam(data).then(()=>{
+						let target = e.currentTarget;						
+						target.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["afterAdd"];
+					})						
+				}
+			})
+		}
+		prosesBtn();
+		prosesEventClickFavorite();
    	},
     async domSearchTeam() {
         $('#search-team').on('keyup', () => {

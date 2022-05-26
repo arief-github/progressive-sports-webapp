@@ -19,7 +19,6 @@ const detailGamePage = {
 		await footballDataApi.getMatchById({id : this.getId()})
 		  .then((value)=>{
 		  $("custom-loading").remove()
-		  console.log(value)
 		  let match = value.match;
 	    document.querySelector('.detail-games').innerHTML += detailGame({
 				  nameLeague: match.competition.name,
