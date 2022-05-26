@@ -1,16 +1,18 @@
 import UrlParser from '../../routes/url-parser';
 import FootballDataApi from '../../data/footballDataApi';
+import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 
 const clubPage = {
 
 	async init(){
 		let html;
+		
+
 		this.data = await this.getData();
-		console.log(this.data)
-		let spitClubColors = this.data.clubColors.split(" / ");
-		html = this.createHTML({
+		this.colors = this.addColorsTeams(this.data.clubColors.split(" / "));
+		html = await this.createHTML({
 			value: this.data,
-			colors : this.addColorsTeams(spitClubColors),
+			colors : this.colors,
 		});
 		return html;
 	},
@@ -21,7 +23,7 @@ const clubPage = {
 		return await footballDataApi.getTeams({id : url.id});
 	},
 
-	createHTML({value, colors}){
+	async createHTML({value, colors}){
 		return `
 			<div class="w-full h-auto bg-white">
 				<div class="hero-image w-full h-[300px] relative bg-gradient-to-r from-black via-white to-green-500 py-8 flex"
@@ -56,11 +58,9 @@ const clubPage = {
 						</div>
 					</div>
 					<div class="allButton w-full md:w-1/6 flex">
-						<a href="#" class="mb-auto mx-auto mt-7 w-[100px] rounded-md shadow-lg shadow text-center p-2 bg-white">
-							<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							  <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-							</svg>
-						</a>
+						<button id="addToFavorite" class="mb-auto mx-auto mt-7 w-[100px] rounded-md shadow-lg shadow text-center p-2 bg-white">
+							${(!!await FavoriteTeamIDB.getTeam(value.id)) ? this.allButton(colors)["afterAdd"] : this.allButton(colors)["beforeAdd"]}
+						</button>
 						<a href="${value.website}" rel="noopener noreferrer" target="_blank" class="mb-auto mx-auto mt-7 w-[100px] rounded-md shadow-lg shadow text-center p-2 bg-white">
 							<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -80,7 +80,17 @@ const clubPage = {
 				</div>
 			</div>`
 	},
-	
+	allButton(colors){
+		const buttons = {
+			"afterAdd" : `<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+						   </svg>`,
+			"beforeAdd" : `<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+						  </svg>`
+		};
+		return buttons;
+	},
 	itemSquad(e){
 		return `<div class="bg-white shadow-md w-full h-20 rounded-md flex flex-col">
 						<div class="title flex w-full">
@@ -103,6 +113,9 @@ const clubPage = {
 	},
 
 	async afterRender(){
+		$('.allButton #addToFavorite').on('click',async ()=>{
+			await this.addToFavoriteTeamIDB();
+		})
 		this.data.squad.forEach((e)=>{
 				document.querySelector('.squad div.squad-team').innerHTML += this.itemSquad(e);
 			}
@@ -110,7 +123,6 @@ const clubPage = {
 	},
 
 	addColorsTeams(colors){
-		console.log(colors)
 		const colorsHex = [];
 		const typoColorNames = {
 			"navyblue" : "navy",
@@ -132,7 +144,19 @@ const clubPage = {
 		});
 		return colorsHex;
 	},
-
+	async addToFavoriteTeamIDB(){
+		if(!!await FavoriteTeamIDB.getTeam(this.data.id)){
+			await FavoriteTeamIDB.deleteTeam(this.data.id).then(()=>{
+				$('.allButton #addToFavorite').empty();
+				$('.allButton #addToFavorite').append(this.allButton(this.colors)["beforeAdd"]);
+			})
+		}else{
+			await FavoriteTeamIDB.putTeam(this.data).then(()=>{
+				$('.allButton #addToFavorite').empty();
+				$('.allButton #addToFavorite').append(this.allButton(this.colors)["afterAdd"]);
+			})
+		}
+	}
 }
 
 

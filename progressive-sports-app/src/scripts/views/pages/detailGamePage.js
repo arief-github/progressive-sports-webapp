@@ -15,16 +15,14 @@ const detailGamePage = {
 		await footballDataApi.getAllMatches()
 		  .then((value)=>{
 		  $("custom-loading").remove()
-		  console.log(value)
-		  value.matches.slice(0,1).forEach((e)=>{
-				  document.querySelector('.detail-games').innerHTML += detailGame({
-					  nameLeague: e.competition.name,
-					  teamOne: e.awayTeam.name,
-					  teamTwo: e.homeTeam.name,
-					  pathImage: e.competition.area.ensignUrl,
-	  
-				  });
-		  });
+		  let match = value.match;
+	    document.querySelector('.detail-games').innerHTML += detailGame({
+				  nameLeague: match.competition.name,
+				  teamOne: match.awayTeam.name,
+				  teamTwo: match.homeTeam.name,
+				  pathImage: match.competition.area.ensignUrl,
+  
+			  });
 		});
 		
 	  }

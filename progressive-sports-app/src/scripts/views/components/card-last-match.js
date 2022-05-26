@@ -1,4 +1,4 @@
-const cardLastMatch = ({teamOne,teamTwo, scoreOne, scoreTwo, pathImage, idMatch}) => {
+const cardLastMatch = ({teamOne,teaidMatch}) => {
 	const render = () => {
 		return `
         <div class="">
