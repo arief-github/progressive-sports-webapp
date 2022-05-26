@@ -8,12 +8,16 @@ const detailLeaguePage = {
         this.footballDataApi = new FootballDataApi();
         this.id = this.getId();
         this.competitionDetail = await this.footballDataApi.getCompetitionsById({ id: this.id });
+        console.log(this.competitionDetail)
         return `
         <div class="detailLeague flex flex-col">
             <div class="w-full flex flex-col p-8 flex-column">
                 <div class="w-full h-full m-auto">
                     <img src="${this.competitionDetail.emblemUrl}" class="m-auto w-[200px] h-[200px]">
-					<h1 class="m-auto mt-2 w-fit h-fit text-xl">${this.competitionDetail.name}</h1>
+					<h1 class="m-auto mt-2 w-fit h-fit  text-3xl underline">${this.competitionDetail.name}</h1>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">Match Today : ${this.competitionDetail.currentSeason.currentMatchday}</span>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">Start : ${this.competitionDetail.currentSeason.startDate}</span>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">End : ${this.competitionDetail.currentSeason.endDate}</span>
                 </div>
             </div>
             <div class="buttonSelect w-full shadow-md bg-green-200 flex p-2">
