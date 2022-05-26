@@ -14,7 +14,10 @@ const detailLeaguePage = {
             <div class="w-full flex flex-col p-8 flex-column">
                 <div class="w-full h-full m-auto">
                     <img src="${this.competitionDetail.emblemUrl}" class="m-auto w-[200px] h-[200px]">
-					<h1 class="m-auto mt-2 w-fit h-fit text-xl">${this.competitionDetail.name}</h1>
+					          <h1 class="m-auto mt-2 w-fit h-fit  text-3xl underline">${this.competitionDetail.name}</h1>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">Match Today : ${this.competitionDetail.currentSeason.currentMatchday}</span>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">Start : ${this.competitionDetail.currentSeason.startDate}</span>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">End : ${this.competitionDetail.currentSeason.endDate}</span>
                 </div>
             </div>
             <div class="buttonSelect w-full shadow-md bg-green-200 flex p-2">
@@ -62,14 +65,12 @@ const detailLeaguePage = {
         })
     },
     async renderTable() {
-    	const titleGroup = (nameGroup)=>{
-    		return `
-			<div class="item-list w-full h-full py-[1px] mt-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
-    			<div class="item-group bg-green-400 text-white">${nameGroup}</div>
-    		</div>`;
-    	};
-
-
+        const titleGroup = (nameGroup)=>{
+          return `
+        <div class="item-list w-full h-full py-[1px] mt-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
+            <div class="item-group bg-green-400 text-white">${nameGroup}</div>
+          </div>`;
+        };
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-standings").removeClass('hidden');
         $(".item-list").remove();

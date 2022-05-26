@@ -14,22 +14,37 @@ const detailGame = ({teamOne, teamTwo, nameLeague}) => {
 				<h2 class="mt-10  ">${teamTwo}</h2>
 		</div>
 	</div>
-	  <div class="relative ">
-		<p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
-			<div class="flex">
-				  <div class="sm:flex mx-auto">
-					<div class="card-comment mb-6">
-						  <h2 class="font-bold">Raditya Dika</h2>
-							  <p class="mt-8">Hala Madrid</p>
-			</div>
-				<div class="card-comment mb-6">
-				  <h2 class="font-bold">Raditya Dika</h2>
-					  <p class="mt-8">Hala Madrid</p>
-				</div>
-				<div class="card-comment mb-6">
-					<h2 class="font-bold">Raditya Dika</h2>
-						<p class="mt-8">Hala Madrid</p>
-				</div>
+    <div class="relative ">
+    <p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
+        <div class="flex">
+              <div class="sm:flex mx-auto">
+                <div class="card-comment mb-6">
+                    <div class="title-comment justify-center flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                  </svg>
+                            <h2 class="font-bold">Raditya Dika</h2>
+                </div>
+                <p class="mt-8">Hala Madrid</p>
+         </div>
+                    <div class="card-comment mb-6">
+                        <div class="title-comment justify-center flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                        </svg>
+                            <h2 class="font-bold">Raditya Dika</h2>
+                    </div>
+                        <p class="mt-8">Hala Madrid</p>
+                    </div>
+                <div class="card-comment mb-6">
+                <div class="title-comment justify-center flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                    </svg>
+                            <h2 class="font-bold">Raditya Dika</h2>
+                    </div>
+                    <p class="mt-8">Hala Madrid</p>
+                </div>
 				<form>
 					<div class="mb-4">
 						<label for="name" class="mb-2">Name</label>
