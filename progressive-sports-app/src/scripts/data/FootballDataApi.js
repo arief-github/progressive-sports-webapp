@@ -26,6 +26,14 @@ class FootballDataApi{
 		return data;
 	}
 
+	async getMatchById({id}){
+		let data;
+		await this.request(`matches/${id}`)
+			.then((response,status)=>{
+					data = (status != 'error') ? response : status;
+			});
+		return data;
+	}
 	async getAllCompetitions(){
 		let data;
 		await this.request('competitions/')

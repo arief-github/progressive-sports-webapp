@@ -28,6 +28,7 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "idb": "^7.0.1",
     "jquery": "^3.6.0",
     "webpack-merge": "^5.8.0"
   }

@@ -1,5 +1,6 @@
 import detailGame from "../components/detail-game";
 import FootballDataApi from "../../data/footballDataApi";
+import UrlParser from '../../routes/url-parser';
 const detailGamePage = {
 	async init(){
 		return `<div class="detail-games relative">
@@ -9,22 +10,24 @@ const detailGamePage = {
 	async afterRender() {
 		await this.detailMatch();
 	},
-	
+	getId() {
+        const url = UrlParser.parseActiveUrlWithoutCombiner();
+        return url.id;
+    },
 	async detailMatch(){
 		const footballDataApi = new FootballDataApi();
-		await footballDataApi.getAllMatches()
+		await footballDataApi.getMatchById({id : this.getId()})
 		  .then((value)=>{
 		  $("custom-loading").remove()
 		  console.log(value)
-		  value.matches.slice(0,1).forEach((e)=>{
-				  document.querySelector('.detail-games').innerHTML += detailGame({
-					  nameLeague: e.competition.name,
-					  teamOne: e.awayTeam.name,
-					  teamTwo: e.homeTeam.name,
-					  pathImage: e.competition.area.ensignUrl,
-	  
-				  });
-		  });
+		  let match = value.match;
+	    document.querySelector('.detail-games').innerHTML += detailGame({
+				  nameLeague: match.competition.name,
+				  teamOne: match.awayTeam.name,
+				  teamTwo: match.homeTeam.name,
+				  pathImage: match.competition.area.ensignUrl,
+  
+			  });
 		});
 		
 	  }
