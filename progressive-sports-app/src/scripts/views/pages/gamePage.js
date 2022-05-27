@@ -37,7 +37,7 @@ const gamePage = {
             .then((value) => {
                 console.log(value)
                 $("custom-loading").remove()
-               value.matches.filter((matches) => matches.status === "FINISHED").forEach((e) => {
+                value.matches.filter((matches) => matches.status === "FINISHED").forEach((e) => {
                     document.querySelector('.last-match').innerHTML += cardLastMatch({
                         idMatch: e.id,
                         teamOne: e.awayTeam.name,
