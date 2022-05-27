@@ -18,6 +18,7 @@ const detailGamePage = {
 		const footballDataApi = new FootballDataApi();
 		await footballDataApi.getMatchById({id : this.getId()})
 		  .then((value)=>{
+		  	console.log(value);
 		  $("custom-loading").remove()
 		  let match = value.match;
 	    document.querySelector('.detail-games').innerHTML += detailGame({
@@ -25,7 +26,8 @@ const detailGamePage = {
 				  teamOne: match.awayTeam.name,
 				  teamTwo: match.homeTeam.name,
 				  pathImage: match.competition.area.ensignUrl,
-  
+  				  scoreAwayTeam: match.score.fullTime.awayTeam,
+  				  scoreHomeTeam: match.score.fullTime.homeTeam,
 			  });
 		});
 		
