@@ -25,7 +25,6 @@ const detailGamePage = {
 				  teamOne: match.awayTeam.name,
 				  teamTwo: match.homeTeam.name,
 				  pathImage: match.competition.area.ensignUrl,
-  
 			  });
 		});
 		

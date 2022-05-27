@@ -1,4 +1,4 @@
-const cardLastMatch = ({teamOne,teaidMatch}) => {
+const cardLastMatch = ({teamOne, teamTwo, scoreOne, scoreTwo,pathImage, idMatch}) => {
 	const render = () => {
 		return `
         <div class="">
@@ -12,9 +12,9 @@ const cardLastMatch = ({teamOne,teaidMatch}) => {
                   <h2 class="mb-4 mt-4">${scoreOne}</h2>
                   <h2>${scoreTwo}</h2>
                 </div>
-                <button id="btn-last-match" class="hover:shadow-inner group p-2 ">
+                <button id="btn-last-match" class="rounded-[10%] w-14 h-14 fill-gray-500 my-auto shadow-md group hover:shadow-inner ">
                 <a href="#/matches/${idMatch}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-6 w-6 hover:stroke-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               </a>

@@ -44,7 +44,6 @@ const gamePage = {
                   scoreOne: e.score.fullTime.homeTeam,
                   scoreTwo: e.score.fullTime.awayTeam,
                   pathImage: e.competition.area.ensignUrl,
-
               });
       });
     });
