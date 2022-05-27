@@ -14,7 +14,7 @@ const detailLeaguePage = {
             <div class="w-full flex flex-col p-8 flex-column">
                 <div class="w-full h-full m-auto">
                     <img src="${this.competitionDetail.emblemUrl}" class="m-auto w-[200px] h-[200px]">
-                              <h1 class="m-auto mt-2 w-fit h-fit  text-3xl underline">${this.competitionDetail.name}</h1>
+                    <h1 class="m-auto mt-2 w-fit h-fit  text-3xl underline">${this.competitionDetail.name}</h1>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">Match Today : ${this.competitionDetail.currentSeason.currentMatchday}</span>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">Start : ${this.competitionDetail.currentSeason.startDate}</span>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">End : ${this.competitionDetail.currentSeason.endDate}</span>
@@ -28,6 +28,7 @@ const detailLeaguePage = {
             </div>
             <div class="frame-select">
                 <div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>
+                
                 <div class="list-standings w-full h-auto px-8 mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11 bg-green-400 text-white">
                         <div class="w-full">Position</div>
@@ -42,10 +43,33 @@ const detailLeaguePage = {
                         <div class="w-full">Points</div>
                     </div>
                 </div>
-                <div class="list-matches w-full h-screen flex text-gray-700"></div>
+
+                <div class="list-matches w-full h-auto px-8 mt-4" >
+                <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
+                    <div class="w-full col-span-2 truncate">Away Team</div>
+                    <div class="w-full col-span-2 truncate">Home Team</div>
+                    <div class="w-full hidden sm:inline">Start Date</div>
+                    <div class="w-full hidden sm:inline">Last Date</div>
+                    <div class="w-full hidden md:inline">Winner</div>
+                    <div class="w-full hidden md:inline">Stage</div>
+                    <div class="w-full hidden lg:inline">Status</div>
+                </div>
+                </div>
+
+                
+                <div class="list-scorers w-full h-auto px-8 mt-4" >
+                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
+                        <div class="w-full ">Player Name</div>
+                        <div class="w-full col-span-2 truncate">Team Name</div>
+                        <div class="w-full hidden sm:inline">Nationality</div>
+                        <div class="w-full hidden sm:inline">Position</div>
+                        <div class="w-full hidden md:inline">Total Goals</div>
+                        <div class="w-full hidden md:inline">Time Updated</div>
+                    </div>
+                </div>
+
             </div>
-          
-        </div>    
+            </div>
         `;
     },
     getId() {
@@ -77,19 +101,60 @@ const detailLeaguePage = {
     async renderSchedules() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-matches").removeClass('hidden');
+        $(".list-standings").addClass('hidden');
+        $(".list-scorers").addClass('hidden');
 
         await this.footballDataApi.getMatchesByIdCompetitions({ id: this.id })
             .then((value) => {
+                
+            let colorList = false;
                 console.log(value);
-                document.querySelector('.list-matches').innerHTML += ` 
-                  <div class="item m-auto">
-                        Sedang dalam pengembangan
-                </div>
-              `
+                value.matches.forEach((e) => {
+                    let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
+                    const options = { timeZone: 'UTC', timeZoneName: 'false' };
+                    let startDate = new Date(e.utcDate);
+                    let lastDate = new Date(e.lastUpdated);
+                    document.querySelector('.list-matches').innerHTML += `
+                    <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
+                    <div class="w-full ${tampClass} col-span-2 truncate">${e.awayTeam.name}</div>
+                    <div class="w-full ${tampClass} col-span-2 truncate">${e.homeTeam.name}</div>
+                    <div class="w-full ${tampClass} hidden sm:inline">${startDate.toUTCString()}</div>
+                    <div class="w-full ${tampClass} hidden sm:inline">${lastDate.toUTCString()}</div>
+                    <div class="w-full ${tampClass} hidden md:inline">${(e.score.winner != null) ? e.score.winner : "Sedang Berlangsung"}</div>
+                    <div class="w-full ${tampClass} hidden md:inline">${e.stage}</div>
+                    <div class="w-full ${tampClass} hidden lg:inline">${e.status}</div>
+                    </div>
+                `
+                colorList = (colorList) ? false : true;
+                })
             })
     },
 
     async renderTopScorers() {
+        $(".frame-select").children().toggleClass('hidden');
+        $(".frame-select .list-scorers").removeClass('hidden');
+        $(".list-standings").addClass('hidden');
+        $(".list-matches").addClass('hidden');
+        await this.footballDataApi.getTopScorersByIdCompetitions({ id: this.id })
+            .then((value) => {
+            console.log(value);
+            let colorList = false;
+                value.scorers.forEach((e) => {
+                    let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
+                    let startDate = new Date(e.player.lastUpdated);
+                    document.querySelector('.list-scorers').innerHTML += `
+                    <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7">
+                    <div class="w-full ${tampClass} md:inline">${e.player.name}</div>
+                    <div class="w-full ${tampClass} col-span-2 truncate">${e.team.name}</div>
+                    <div class="w-full ${tampClass} hidden sm:inline">${(e.player.nationality != null) ? e.player.nationality : "N/A"}</div>
+                    <div class="w-full ${tampClass} hidden sm:inline">${(e.player.position != null) ? e.player.position : "N/A"}</div>
+                    <div class="w-full ${tampClass} hidden md:inline">${e.numberOfGoals}</div>
+                    <div class="w-full ${tampClass} hidden md:inline">${startDate.toUTCString()}</div>
+                    </div>
+                `
+                colorList = (colorList) ? false : true;
+                })
+            })
 
     },
     async renderTable() {
@@ -101,12 +166,15 @@ const detailLeaguePage = {
         };
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-standings").removeClass('hidden');
+        $(".list-matches").addClass('hidden');
+        $(".list-scorers").addClass('hidden');
         $(".item-list").remove();
         document.querySelector('.list-standings').innerHTML += `<custom-loading></custom-loading>`;
+
         await this.footballDataApi.getAllCompetitionStandingsById({ id: this.id }).then((competition) => {
             $("custom-loading").remove();
-
             let colorList = false;
+
             competition.standings.forEach((item) => {
                 let nameGroup = item.group;
                 if (nameGroup != null) {
@@ -173,6 +241,8 @@ const detailLeaguePage = {
     async renderTeams() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-teams").removeClass('hidden');
+        $(".list-standings").addClass('hidden');
+        $(".list-matches").addClass('hidden');
 
         document.querySelector('.frame-select').innerHTML += `<custom-loading></custom-loading>`;
         await this.footballDataApi.getAllTeamsByIdCompetitions({ id: this.id })
