@@ -44,6 +44,19 @@ const detailLeaguePage = {
                     </div>
                 </div>
 
+                <div class="list-matches w-full h-auto px-8 mt-4" >
+                <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
+                    <div class="w-full col-span-2 truncate">Away Team</div>
+                    <div class="w-full col-span-2 truncate">Home Team</div>
+                    <div class="w-full hidden sm:inline">Start Date</div>
+                    <div class="w-full hidden sm:inline">Last Date</div>
+                    <div class="w-full hidden md:inline">Winner</div>
+                    <div class="w-full hidden md:inline">Stage</div>
+                    <div class="w-full hidden lg:inline">Status</div>
+                </div>
+                </div>
+
+                
                 <div class="list-scorers w-full h-auto px-8 mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
                         <div class="w-full ">Player Name</div>
@@ -55,16 +68,6 @@ const detailLeaguePage = {
                     </div>
                 </div>
 
-                <div class="list-matches w-full h-auto px-8 mt-4" >
-                <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
-                    <div class="w-full col-span-2 truncate">Away Team</div>
-                    <div class="w-full col-span-2 truncate">Home Team</div>
-                    <div class="w-full hidden sm:inline">Start Date</div>
-                    <div class="w-full hidden sm:inline">Last Date</div>
-                    <div class="w-full hidden md:inline">Winner</div>
-                    <div class="w-full hidden md:inline">Stage</div>
-                    <div class="w-full hidden lg:inline">Status</div>
-                </div>
             </div>
             </div>
         `;
