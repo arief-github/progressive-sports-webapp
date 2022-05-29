@@ -1,6 +1,6 @@
-const cardLastMatch = ({teamOne, teamTwo, scoreOne, scoreTwo,pathImage, idMatch}) => {
-	const render = () => {
-		return `
+const cardLastMatch = ({ teamOne, teamTwo, scoreOne, scoreTwo, pathImage, idMatch }) => {
+    const render = () => {
+        return `
         <div class="">
             <div class="card-game mb-6 ml-20 justify-between flex">
               <img class="h-24 w-24 mt-4" src="${pathImage}" alt="country"" />
@@ -22,9 +22,9 @@ const cardLastMatch = ({teamOne, teamTwo, scoreOne, scoreTwo,pathImage, idMatch}
             </div>
           </div>
 		`;
-	}
-	
-	return render();
+    }
+
+    return render();
 
 
 }

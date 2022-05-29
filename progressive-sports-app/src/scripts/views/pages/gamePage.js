@@ -1,12 +1,13 @@
 import cardLastMatch from '../components/card-last-match'
 import cardNextMatch from '../components/card-next-match'
 import FootballDataApi from '../../data/footballDataApi'
+import idCompetitions from '../../data/idCompetitions';
 import UrlParser from '../../routes/url-parser'
 import '../components/custom-loading'
 
 const gamePage = {
-	async init(){
-		return `
+    async init() {
+        return `
     <div class="relative">
             <p class="mt-20 text-center font-medium underline uppercase text-4xl">Games</p>
             <p class="ml-20 mt-10 text-3xl underline font-medium">Last Match</p>
@@ -20,51 +21,52 @@ const gamePage = {
           </div>
           
           `;
-	},
-  async afterRender() {
-    await this.LastMatch();
-    await this.nextMatch();
-  },
-  async getData(){
-		const footballDataApi = new FootballDataApi();
-		const url = UrlParser.parseActiveUrlWithoutCombiner();
-		return await footballDataApi.getAllMatches({id : url.id});
-	},
-  async LastMatch(){
-    const footballDataApi = new FootballDataApi();
-    await footballDataApi.getAllMatches()
-      .then((value)=>{
-        console.log(value)
-      $("custom-loading").remove()
-      value.matches.filter((matches) => matches.status === "FINISHED").forEach((e) => {
-        document.querySelector('.last-match').innerHTML += cardLastMatch({
-                  idMatch: e.id,
-                  teamOne: e.awayTeam.name,
-                  teamTwo: e.homeTeam.name,
-                  scoreOne: e.score.fullTime.homeTeam,
-                  scoreTwo: e.score.fullTime.awayTeam,
-                  pathImage: e.competition.area.ensignUrl,
-              });
-      });
-    });
- },
- async nextMatch(){
-  const footballDataApi = new FootballDataApi();
-  await footballDataApi.getAllMatches()
-    .then((value)=>{
-    $("custom-loading").remove()
-    value.matches.filter((matches) => matches.status === "SCHEDULED" && matches.score.fullTime.homeTeam === null && matches.score.fullTime.awayTeam === null).forEach((e) => {
-            document.querySelector('.next-match').innerHTML += cardNextMatch({
-                idMatch: e.id,
-                teamOne: e.awayTeam.name,
-                teamTwo: e.homeTeam.name,
-                pathImage: e.competition.area.ensignUrl,
+    },
+    async afterRender() {
+        await this.LastMatch();
+        await this.nextMatch();
+    },
+    async getData() {
+        const footballDataApi = new FootballDataApi();
+        const url = UrlParser.parseActiveUrlWithoutCombiner();
+        return await footballDataApi.getAllMatches({ id: url.id });
+    },
+    async LastMatch() {
+        const footballDataApi = new FootballDataApi();
+        await footballDataApi.getAllMatches()
+            .then((value) => {
+                console.log(value)
+                $("custom-loading").remove()
+                value.matches.filter((matches) => matches.status === "FINISHED").forEach((e) => {
+                    document.querySelector('.last-match').innerHTML += cardLastMatch({
+                        idMatch: e.id,
+                        teamOne: e.awayTeam.name,
+                        teamTwo: e.homeTeam.name,
+                        scoreOne: e.score.fullTime.homeTeam,
+                        scoreTwo: e.score.fullTime.awayTeam,
+                        pathImage: e.competition.area.ensignUrl,
 
+                    });
+                });
             });
-    });
-  });
-  
-}
+    },
+    async nextMatch() {
+        const footballDataApi = new FootballDataApi();
+        await footballDataApi.getAllMatches()
+            .then((value) => {
+                $("custom-loading").remove()
+                value.matches.filter((matches) => matches.status === "SCHEDULED" && matches.score.fullTime.homeTeam === null && matches.score.fullTime.awayTeam === null).forEach((e) => {
+                    document.querySelector('.next-match').innerHTML += cardNextMatch({
+                        idMatch: e.id,
+                        teamOne: e.awayTeam.name,
+                        teamTwo: e.homeTeam.name,
+                        pathImage: e.competition.area.ensignUrl,
+
+                    });
+                });
+            });
+
+    }
 };
 
 export default gamePage;
