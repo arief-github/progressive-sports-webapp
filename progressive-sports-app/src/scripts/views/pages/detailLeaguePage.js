@@ -15,61 +15,21 @@ const detailLeaguePage = {
                 <div class="w-full h-full m-auto">
                     <img src="${this.competitionDetail.emblemUrl}" class="m-auto w-[200px] h-[200px]">
                     <h1 class="m-auto mt-2 w-fit h-fit  text-3xl underline">${this.competitionDetail.name}</h1>
-                    <span class="m-auto mt-2 w-fit h-fit text-l flex">Match Today : ${this.competitionDetail.currentSeason.currentMatchday}</span>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">Start : ${this.competitionDetail.currentSeason.startDate}</span>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">End : ${this.competitionDetail.currentSeason.endDate}</span>
+                    <span class="m-auto mt-2 w-fit h-fit text-l flex">Last Updated : ${new Date(this.competitionDetail.lastUpdated).toLocaleDateString("en-US")}</span>
                 </div>
             </div>
             <div class="buttonSelect w-full shadow-md bg-green-200 flex justify-center p-2">
-                <button id="selectTeams" class="bg-white w-1/6 shadow-inner  p-2 mx-4 bg-green-400 shadow-md font-semibold text-white">Teams</button>
-                <button id="selectStandings" class="w-1/6 bg-white shadow-inner p-2 mx-4">Standings</button>
-                <button id="selectSchedules" class="w-1/6 bg-white shadow-inner p-2 mx-4">Schedules</button>
-                <button id="selectTopScorers" class="w-1/6 bg-white shadow-inner p-2 mx-4">Top Scorers</button>
+                <button id="selectTeams" class="bg-white w-1/6 shadow-inner p-2 mx-4 bg-green-400 shadow-md font-semibold text-white text-sm md:text-base">Teams</button>
+                <button id="selectStandings" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Standings</button>
+                <button id="selectSchedules" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Schedules</button>
+                <button id="selectTopScorers" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Top Scorers</button>
             </div>
-            <div class="frame-select">
-                <div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>
+            <div class="frame-select flex flex-col">
                 
-                <div class="list-standings w-full h-auto px-8 mt-4" >
-                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11 bg-green-400 text-white">
-                        <div class="w-full">Position</div>
-                        <div class="w-full col-span-2 truncate">Clubs</div>
-                        <div class="w-full hidden sm:inline">MP</div>
-                        <div class="w-full hidden sm:inline">Won</div>
-                        <div class="w-full hidden md:inline">Draw</div>
-                        <div class="w-full hidden md:inline">Lose</div>
-                        <div class="w-full hidden lg:inline">GF</div>
-                        <div class="w-full hidden lg:inline">GA</div>
-                        <div class="w-full hidden lg:inline">GD</div>
-                        <div class="w-full">Points</div>
-                    </div>
-                </div>
-
-                <div class="list-matches w-full h-auto px-8 mt-4" >
-                <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
-                    <div class="w-full col-span-2 truncate">Away Team</div>
-                    <div class="w-full col-span-2 truncate">Home Team</div>
-                    <div class="w-full hidden sm:inline">Start Date</div>
-                    <div class="w-full hidden sm:inline">Last Date</div>
-                    <div class="w-full hidden md:inline">Winner</div>
-                    <div class="w-full hidden md:inline">Stage</div>
-                    <div class="w-full hidden lg:inline">Status</div>
-                </div>
-                </div>
-
-                
-                <div class="list-scorers w-full h-auto px-8 mt-4" >
-                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
-                        <div class="w-full ">Player Name</div>
-                        <div class="w-full col-span-2 truncate">Team Name</div>
-                        <div class="w-full hidden sm:inline">Nationality</div>
-                        <div class="w-full hidden sm:inline">Position</div>
-                        <div class="w-full hidden md:inline">Total Goals</div>
-                        <div class="w-full hidden md:inline">Time Updated</div>
-                    </div>
-                </div>
-
             </div>
-            </div>
+        </div>
         `;
     },
     getId() {
@@ -101,43 +61,107 @@ const detailLeaguePage = {
     async renderSchedules() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-matches").removeClass('hidden');
-        $(".list-standings").addClass('hidden');
-        $(".list-scorers").addClass('hidden');
-
-        await this.footballDataApi.getMatchesByIdCompetitions({ id: this.id })
-            .then((value) => {
-                
-            let colorList = false;
-                console.log(value);
-                value.matches.forEach((e) => {
-                    let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
-                    const options = { timeZone: 'UTC', timeZoneName: 'false' };
-                    let startDate = new Date(e.utcDate);
-                    let lastDate = new Date(e.lastUpdated);
-                    document.querySelector('.list-matches').innerHTML += `
-                    <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
-                    <div class="w-full ${tampClass} col-span-2 truncate">${e.awayTeam.name}</div>
-                    <div class="w-full ${tampClass} col-span-2 truncate">${e.homeTeam.name}</div>
-                    <div class="w-full ${tampClass} hidden sm:inline">${startDate.toUTCString()}</div>
-                    <div class="w-full ${tampClass} hidden sm:inline">${lastDate.toUTCString()}</div>
-                    <div class="w-full ${tampClass} hidden md:inline">${(e.score.winner != null) ? e.score.winner : "Sedang Berlangsung"}</div>
-                    <div class="w-full ${tampClass} hidden md:inline">${e.stage}</div>
-                    <div class="w-full ${tampClass} hidden lg:inline">${e.status}</div>
+        
+        const headTable = ()=>{
+            return `
+                <div class="list-matches w-full h-auto px-8 mt-4" >
+                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
+                        <div class="w-full col-span-2 truncate text-base md:text-lg">Away Team</div>
+                        <div class="w-full col-span-2 truncate text-base md:text-lg">Home Team</div>
+                        <div class="w-full col-span-2 md:col-span-1 truncate text-base md:text-lg">Date</div>
+                        <div class="w-full truncate text-base md:text-lg">Time</div>
+                        <div class="w-full hidden md:inline truncate text-base md:text-lg">Winner</div>
+                        <div class="w-full hidden md:inline truncate text-base md:text-lg">Stage</div>
+                        <div class="w-full hidden md:inline truncate text-base md:text-lg">Status</div>
                     </div>
-                `
-                colorList = (colorList) ? false : true;
+                </div>
+            `;
+        }
+        const btnConfigDate = ()=>{
+           return  `
+            <div class="w-full flex ml-auto mt-2  py-[1px] px-8">
+                <div class="w-2/6 bg-green-400 m-auto p-2 shadow-md">
+                    <label for="dateconfig" class="text-white text-base" >Date From<label>
+                    <input type="date" id="dateFrom" name="dateconfig"  class="bg-green-100 w-full dateconfig text-black text-base" value="${configurationDate(-30)}" class=""></input>
+                </div>
+                <div class="w-2/6 bg-green-400 m-auto p-2 shadow-md">
+                    <label for="dateconfig" class="text-white text-base" >Date To<label>
+                    <input type="date" id="dateTo" name="dateconfig"  class="bg-green-100 w-full dateconfig text-black text-base" value="${configurationDate(+30)}" class=""></input>
+                </div>
+                 <button id="btn-date" class="w-1/6 text-white font-semibold bg-green-200 hover:bg-green-400 p-2 m-auto">Search</button>
+
+            </div>`;
+        }
+        const configurationDate = (value)=>{
+            const date = new Date();
+            date.setDate(date.getDate() + value)
+            let dateFrom = date.toLocaleDateString("en-US").split('/');
+            return `${dateFrom[2]}-${(dateFrom[0] >= 9) ? dateFrom[0] : `0${dateFrom[0]}`}-${(dateFrom[1] >= 9) ? dateFrom[1] : `0${dateFrom[1]}`}`;
+        }
+        const renderData = async ()=>{        
+            $(".item-list").remove();
+            document.querySelector('.list-matches').innerHTML += `<custom-loading></custom-loading>`;
+            await this.footballDataApi.getMatchesByIdCompetitions({
+                id: this.id, 
+                dateTo : $("#dateTo").val(),
+                dateFrom : $("#dateFrom").val(),
+            }).then((value) => {
+                console.log();
+                    $("custom-loading").remove();
+                    let colorList = false;
+                    let matches = [...value.matches].sort((a,b)=>{ return a.utcDate - b.utcDate}).reverse()
+                     matches.forEach((e) => {
+
+                        let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
+                        const options = { timeZone: 'UTC', timeZoneName: 'false' };
+                        let startDate = new Date(e.utcDate);
+                        document.querySelector('.list-matches').innerHTML += `
+                        <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
+                        <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${e.awayTeam.name}</div>
+                        <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${e.homeTeam.name}</div>
+                        <div class="w-full ${tampClass} col-span-2 md:col-span-1 truncate text-sm md:text-base">${startDate.toLocaleDateString("en-US")}</div>
+                        <div class="w-full ${tampClass} truncate text-sm md:text-base">${startDate.toLocaleTimeString("en-US")}</div>
+                        <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base">${(e.score.winner != null) ? e.score.winner.split("_")[0] + " TEAM" : "Sedang Berlangsung"}</div>
+                        <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base">${e.stage.replace("_"," ")}</div>
+                        <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base">${e.status}</div>
+                        </div>
+                    `
+                    colorList = (colorList) ? false : true;
+                    })
                 })
+        }
+
+        document.querySelector('.frame-select').innerHTML = btnConfigDate();
+        document.querySelector('.frame-select').innerHTML += headTable();
+        renderData();
+        $('#btn-date').on("click",()=>{
+                renderData();
+                console.log("sss");
             })
     },
 
     async renderTopScorers() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-scorers").removeClass('hidden');
-        $(".list-standings").addClass('hidden');
-        $(".list-matches").addClass('hidden');
+        const headTable = ()=>{
+            return `
+                <div class="list-scorers w-full h-auto px-8 mt-4" >
+                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
+                        <div class="w-full ">Player Name</div>
+                        <div class="w-full col-span-2 truncate">Team Name</div>
+                        <div class="w-full hidden sm:inline">Nationality</div>
+                        <div class="w-full hidden sm:inline">Position</div>
+                        <div class="w-full hidden md:inline">Total Goals</div>
+                        <div class="w-full hidden md:inline">Time Updated</div>
+                    </div>
+                </div>
+            `;
+        }
+        document.querySelector('.frame-select').innerHTML = headTable();
+        document.querySelector('.list-scorers').innerHTML += `<custom-loading></custom-loading>`;
         await this.footballDataApi.getTopScorersByIdCompetitions({ id: this.id })
             .then((value) => {
-            console.log(value);
+            $("custom-loading").remove();
             let colorList = false;
                 value.scorers.forEach((e) => {
                     let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
@@ -164,11 +188,27 @@ const detailLeaguePage = {
             <div class="item-group bg-green-400 text-white">${nameGroup}</div>
           </div>`;
         };
+        const headTable = ()=>{
+            return `
+                <div class="list-standings w-full h-auto px-8 mt-4" >
+                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11 bg-green-400 text-white">
+                        <div class="w-full">Position</div>
+                        <div class="w-full col-span-2 truncate">Clubs</div>
+                        <div class="w-full hidden sm:inline">MP</div>
+                        <div class="w-full hidden sm:inline">Won</div>
+                        <div class="w-full hidden md:inline">Draw</div>
+                        <div class="w-full hidden md:inline">Lose</div>
+                        <div class="w-full hidden lg:inline">GF</div>
+                        <div class="w-full hidden lg:inline">GA</div>
+                        <div class="w-full hidden lg:inline">GD</div>
+                        <div class="w-full">Points</div>
+                    </div>
+                </div>
+            `;
+        }
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-standings").removeClass('hidden');
-        $(".list-matches").addClass('hidden');
-        $(".list-scorers").addClass('hidden');
-        $(".item-list").remove();
+        document.querySelector('.frame-select').innerHTML = headTable();
         document.querySelector('.list-standings').innerHTML += `<custom-loading></custom-loading>`;
 
         await this.footballDataApi.getAllCompetitionStandingsById({ id: this.id }).then((competition) => {
@@ -241,9 +281,10 @@ const detailLeaguePage = {
     async renderTeams() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-teams").removeClass('hidden');
-        $(".list-standings").addClass('hidden');
-        $(".list-matches").addClass('hidden');
-
+        const headTable = ()=>{
+            return `<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
+        }
+        document.querySelector('.frame-select').innerHTML = headTable();
         document.querySelector('.frame-select').innerHTML += `<custom-loading></custom-loading>`;
         await this.footballDataApi.getAllTeamsByIdCompetitions({ id: this.id })
             .then((value) => {

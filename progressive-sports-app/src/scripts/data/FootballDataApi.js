@@ -12,7 +12,7 @@ class FootballDataApi {
             type: `GET`,
             url: `${this.baseUrl}/${request}`,
             headers: {
-                "X-Auth-Token": this.APIKey
+                "X-Auth-Token": this.APIKey,
             }
         });
     }
@@ -78,9 +78,11 @@ class FootballDataApi {
         return data;
     }
 
-    async getMatchesByIdCompetitions({ id }) {
+    async getMatchesByIdCompetitions({ id, dateFrom, dateTo}) {
+        console.log(dateFrom)
+        console.log(dateTo)
         let data;
-        await this.request(`competitions/${id}/matches`)
+        await this.request(`competitions/${id}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`)
             .then((response, status) => {
                 data = (status != 'error') ? response : status;
             });
