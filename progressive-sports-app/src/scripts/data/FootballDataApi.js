@@ -34,6 +34,7 @@ class FootballDataApi {
             });
         return data;
     }
+    
     async getAllCompetitions() {
         let data;
         await this.request('competitions/')
@@ -69,6 +70,7 @@ class FootballDataApi {
             });
         return data;
     }
+
     async getAllCompetitionStandingsById({ id }) {
         let data;
         await this.request(`competitions/${id}/standings`)

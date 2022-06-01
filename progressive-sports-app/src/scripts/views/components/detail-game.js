@@ -16,50 +16,6 @@ const detailGame = ({teamOne, teamTwo, nameLeague, scoreAwayTeam, scoreHomeTeam}
 				<h2 class="mt-2">${scoreAwayTeam}</h2>
 		</div>
 	</div>
-    <div class="relative ">
-    <p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
-        <div class="flex">
-              <div class="sm:flex mx-auto">
-                <div class="card-comment mb-6">
-                    <div class="title-comment justify-center flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                  </svg>
-                            <h2 class="font-bold">Raditya Dika</h2>
-                </div>
-                <p class="mt-8">Hala Madrid</p>
-         </div>
-                    <div class="card-comment mb-6">
-                        <div class="title-comment justify-center flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                        </svg>
-                            <h2 class="font-bold">Raditya Dika</h2>
-                    </div>
-                        <p class="mt-8">Hala Madrid</p>
-                    </div>
-                <div class="card-comment mb-6">
-                <div class="title-comment justify-center flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                    </svg>
-                            <h2 class="font-bold">Raditya Dika</h2>
-                    </div>
-                    <p class="mt-8">Hala Madrid</p>
-                </div>
-				<form>
-					<div class="mb-4">
-						<label for="name" class="mb-2">Name</label>
-							<input type="name" id="name" class="border border-black text-gray-900  rounded-lg focus:ring-black focus:border-black block w-full p-1 dark:bg-white" placeholder="Input Name" required>
-								</div>
-					<div class="mb-6">
-						<label for="message" class="mb-2 block text-sm font-medium "">Comment</label>
-							<textarea id="message" rows="4" class="block w-80 rounded-lg border border-black p-1 text-gray-900 focus:border-black focus:ring-black dark:bg-white" placeholder="Leave a comment..."></textarea>
-								</div>
-							<button type="submit" class="text-white bg-black hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-20">Submit</button>
-				</form>
-			</div>
-		</div>
 		`;
 	}
 	
