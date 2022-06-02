@@ -1,51 +1,19 @@
 import 'regenerator-runtime';
-import {precacheAndRoute} from 'workbox-precaching';
-import {clientsClaim, setCacheNameDetails} from 'workbox-core';
-import {registerRoute} from 'workbox-routing';
-import {CacheFirst, NetworkFirst} from 'workbox-strategies';
-import {ExpirationPlugin} from 'workbox-expiration';
-import {CacheableResponsePlugin} from 'workbox-cacheable-response';
-import FootballDataApi from './data/FootballDataApi';
+import { precacheAndRoute } from 'workbox-precaching';
+import CacheHelper from './utils/cache-helper';
+precacheAndRoute(self.__WB_MANIFEST);
 
-const {
-  baseUrl,
-  PRECACHE_NAME,
-  PRECACHE_PREFIX,
-  PRECACHE_SUFFIX,
-  API_CACHE_NAME,
-  IMAGE_CACHE_NAME,
-} = FootballDataApi;
-
-self.skipWaiting();
-clientsClaim();
-
-setCacheNameDetails({
-  prefix: PRECACHE_PREFIX,
-  suffix: PRECACHE_SUFFIX,
-  precache: PRECACHE_NAME,
+self.addEventListener('install', (event) => {
+  console.log('Installing Service Worker ...');
+  event.waitUntil(CacheHelper.networkFirst());
 });
 
-precacheAndRoute(self.__WB_MANIFEST, {ignoreURLParametersMatching: [/.*/]});
+self.addEventListener('activate', (event) => {
+  console.log('Activating Service Worker ...');
+  event.waitUntil(CacheHelper.networkFirst());
+});
 
-registerRoute(
-    ({url, request}) => {
-      return url.origin === baseUrl && request.destination !== 'image';
-    },
-    new NetworkFirst({cacheName: API_CACHE_NAME}),
-);
-
-registerRoute(
-    ({url, request}) => {
-      return url.origin === baseUrl && request.destination === 'image';
-    },
-    new CacheFirst({
-      cacheName: IMAGE_CACHE_NAME,
-      plugins: [
-        new CacheableResponsePlugin({statuses: [0, 200]}),
-        new ExpirationPlugin({
-          maxEntries: 40,
-          maxAgeSeconds: 30 * 24 * 60 * 60,
-        }),
-      ],
-    }),
-);
+self.addEventListener('fetch', (event) => {
+  event.waitUntil(CacheHelper.staleWhileRevalidate());
+  event.waitUntil(CacheHelper.cacheOnly());
+});

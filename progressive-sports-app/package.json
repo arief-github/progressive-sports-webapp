@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js && serve -s dist",
+    "build": "webpack --config webpack.prod.js",
     "start-prod": "node server.js"
   },
   "keywords": [],

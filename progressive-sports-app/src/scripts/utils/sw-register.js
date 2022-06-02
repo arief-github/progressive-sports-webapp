@@ -11,4 +11,4 @@ if ('serviceWorker' in navigator) {
     }
 };
 
-export {swRegister};
+export default swRegister;

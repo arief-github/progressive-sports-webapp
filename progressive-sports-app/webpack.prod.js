@@ -40,7 +40,7 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    
     new MiniCssExtractPlugin({filename: 'assets/css/[hash].css'}),
     new HtmlWebpackInjectPreload({
       files: [
