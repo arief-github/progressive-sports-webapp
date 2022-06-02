@@ -1,6 +1,8 @@
 import detailGame from "../components/detail-game";
 import FootballDataApi from "../../data/footballDataApi";
 import UrlParser from '../../routes/url-parser';
+import db from '../../data/commentHelperFirebase';
+import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 
 
 const detailGamePage = {
@@ -32,7 +34,7 @@ const detailGamePage = {
     async afterRender() {
         await this.detailMatch();
         await this.showDiscussionCard();
-        await this.getDiscussFromLocalStorage();
+        await this.getData();
     },
     getId() {
         const url = UrlParser.parseActiveUrlWithoutCombiner();
@@ -61,6 +63,7 @@ const detailGamePage = {
         const discussInput = document.querySelector('#message');
         const btnSubmit = document.querySelector('.btnSubmit');
 
+
         btnSubmit.addEventListener('click', (event) => {
             event.preventDefault();
 
@@ -70,42 +73,69 @@ const detailGamePage = {
                 nameInput.value = '';
                 discussInput.value = '';
             } else {
-                this.PostDiscuss(nameInput.value, discussInput.value);
+                this.postData({ name: nameInput.value, comment: discussInput.value })
                 nameInput.value = '';
                 discussInput.value = '';
             }
         })
     },
-    async PostDiscuss(name, comment) {
-        const discussInput = `
-          <div id="card-comment shadow-lg mb-6 w-48">
-            <div class="title-comment flex justify-center">
-              <div class="rounded-lg bg-white p-6 shadow-lg w-48">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                </svg>
-                <h2 class="mb-2 font-bold text-gray-800">${name}</h2>
-                <p class="text-gray-700">${comment}</p>
-                 <button class="deleteComment">
-                   <span class="bg-red-light mt-1 inline-block rounded-full p-1 pb-0">
-                  <svg fill="red" width="20" height="20" viewBox="0 0 24 24">
-                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
-                  </svg>
-                </span>
-                </button>
-              </div>
-            </div>
-          </div>
-    `
-        document.querySelector('.allComments').innerHTML += discussInput;
-        this.setOnLocalStorage();
+    async postData({ name, comment }) {
+        try {
+            const docRef = await addDoc(collection(db, "discuss"), {
+                name,
+                comment,
+            });
+            console.log("Document written with ID: ", docRef.id);
+            document.querySelector('.allComments').innerHTML +=
+                `
+                  <div id="card-comment shadow-lg mb-6 w-48">
+                    <div class="title-comment flex justify-center">
+                      <div class="rounded-lg bg-white p-6 shadow-lg w-48">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                        </svg>
+                        <h2 class="mb-2 font-bold text-gray-800">${name}</h2>
+                        <p class="text-gray-700">${comment}</p>
+                         <button class="deleteComment">
+                           <span class="bg-red-light mt-1 inline-block rounded-full p-1 pb-0">
+                          <svg fill="red" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
+                          </svg>
+                        </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>`
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
     },
-    async setOnLocalStorage() {
-        localStorage.setItem('discussion', document.querySelector('.allComments').innerHTML)
-    },
-    async getDiscussFromLocalStorage() {
-        document.querySelector('.allComments').innerHTML = localStorage.getItem('discussion');
-    },
+    async getData() {
+        const querySnapshot = await getDocs(collection(db, "discuss"))
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} =>`, doc.data());
+            const commentData = doc.data();
+            document.querySelector('.allComments').innerHTML += `
+                  <div id="card-comment shadow-lg mb-6 w-48">
+                    <div class="title-comment flex justify-center">
+                      <div class="rounded-lg bg-white p-6 shadow-lg w-48">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                        </svg>
+                        <h2 class="mb-2 font-bold text-gray-800">${commentData.name}</h2>
+                        <p class="text-gray-700">${commentData.comment}</p>
+                         <button class="deleteComment">
+                           <span class="bg-red-light mt-1 inline-block rounded-full p-1 pb-0">
+                          <svg fill="red" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
+                          </svg>
+                        </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>`
+        })
+    }
 }
 
 export default detailGamePage;

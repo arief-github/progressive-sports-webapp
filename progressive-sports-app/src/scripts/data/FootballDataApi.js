@@ -34,7 +34,7 @@ class FootballDataApi {
             });
         return data;
     }
-    
+
     async getAllCompetitions() {
         let data;
         await this.request('competitions/')
@@ -80,7 +80,7 @@ class FootballDataApi {
         return data;
     }
 
-    async getMatchesByIdCompetitions({ id, dateFrom, dateTo}) {
+    async getMatchesByIdCompetitions({ id, dateFrom, dateTo }) {
         console.log(dateFrom)
         console.log(dateTo)
         let data;
@@ -97,6 +97,15 @@ class FootballDataApi {
             .then((response, status) => {
                 data = (status != 'error') ? response : status;
             })
+        return data;
+    }
+
+    async getDetailPlayers({ id }) {
+        let data;
+        await this.request(`persons/${id}`)
+            .then((response, status) => {
+                data = (status != 'error') ? response : status;
+            });
         return data;
     }
 }
