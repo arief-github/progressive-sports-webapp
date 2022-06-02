@@ -1,0 +1,1 @@
+export {swRegister} from './sw-register';

@@ -26,15 +26,25 @@ module.exports = {
             },
             {
               test: /\.(png|svg|jpg|jpeg|gif)$/,
-              use: [
-                  'file-loader',
-              ],
+              use: {
+                loader: 'file-loader',
+                options: {
+                  outputPath: './assets/img',
+                  quality: 50,
+                  progressive: true,
+                },
+              },
+            },
+            {
+              test: /\.html$/i,
+              loader: 'html-loader',
             },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src/templates/index.html"),
+            favicon: path.resolve(__dirname, 'src/public/icons/favicon.ico'),
             filename: "index.html",
         }),
         new CopyWebpackPlugin({
@@ -45,9 +55,6 @@ module.exports = {
             },
           ],
         }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        })
+        
     ],
 };

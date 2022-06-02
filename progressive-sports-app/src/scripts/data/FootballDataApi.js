@@ -1,10 +1,22 @@
+import $ from 'jquery';
+
 class FootballDataApi {
     APIKey = "";
     baseUrl = "";
+    PRECACHE_PREFIX = "";
+    PRECACHE_SUFFIX = "";
+    PRECACHE_NAME = "";
+    API_CACHE_NAME = "";
+    IMAGE_CACHE_NAME = "";
 
     constructor() {
         this.APIKey = "fdaae91cecbc4992be43f96cc4ba9598";
         this.baseUrl = "https://api.football-data.org/v2";
+        this.PRECACHE_PREFIX = "progressive-sports";
+        this.PRECACHE_SUFFIX = "v1";
+        this.PRECACHE_NAME = "precache";
+        this.API_CACHE_NAME = "api-cache";
+        this.IMAGE_CACHE_NAME = "img-cache";
     }
 
     async request(request) {

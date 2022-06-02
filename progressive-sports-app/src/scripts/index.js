@@ -1,6 +1,8 @@
 import App from './views/app';
 import '../styles/main.css';
 import './views/components/custom-loading'
+import {swRegister} from './helper';
+
 const app = new App({
   header: document.querySelector('header'),
   main: document.querySelector('main'),
@@ -13,4 +15,5 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('load', () => {
   app.renderPage();
+  swRegister();
 });
