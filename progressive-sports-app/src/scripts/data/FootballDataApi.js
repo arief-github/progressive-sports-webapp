@@ -29,9 +29,9 @@ class FootballDataApi {
         });
     }
 
-    async getAllMatches() {
+    async getAllMatches({dateFrom, dateTo}) {
         let data;
-        await this.request('matches')
+        await this.request(`matches?dateFrom=${dateFrom}&dateTo=${dateTo}`)
             .then((response, status) => {
                 data = (status != 'error') ? response : status;
             });
@@ -93,8 +93,6 @@ class FootballDataApi {
     }
 
     async getMatchesByIdCompetitions({ id, dateFrom, dateTo }) {
-        console.log(dateFrom)
-        console.log(dateTo)
         let data;
         await this.request(`competitions/${id}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`)
             .then((response, status) => {
