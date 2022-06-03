@@ -25,7 +25,7 @@ const gamePage = {
         return `
             <div class="bg-[#f2f2f2] rounded-[8%] shadow-lg w-full h-[340px] flex flex-col">
                 <div class="mx-auto flex h-3/6 w-full bg-white">
-                    <span class="font-bold w-full flex flex-col text-black "> 
+                    <span class="font-semibold w-full flex flex-col text-black "> 
                         <i class="truncate m-auto">${element.homeTeam.name}</i> 
                         <i class="m-auto">VS</i> 
                         <i class="truncate m-auto">${element.awayTeam.name}</i>

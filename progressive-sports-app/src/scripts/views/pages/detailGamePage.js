@@ -9,7 +9,7 @@ const detailGamePage = {
     async init() {
         return `
       <div class="detail-games relative">
-        <p class="mb-20 text-center text-4xl  uppercase">Last Match</p>
+        <p class="text-center text-4xl font-semibold uppercase">Detail Game</p>
       </div> 
 
        <div class="relative w-80 m-auto">
@@ -52,8 +52,8 @@ const detailGamePage = {
                     teamOne: match.homeTeam.name,
                     teamTwo: match.awayTeam.name,
                     pathImage: match.competition.area.ensignUrl,
-                    scoreHomeTeam: match.score.fullTime.homeTeam,
-                    scoreAwayTeam: match.score.fullTime.awayTeam,
+
+              
                 });
             });
 
