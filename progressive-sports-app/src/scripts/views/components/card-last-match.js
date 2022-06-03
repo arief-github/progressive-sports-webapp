@@ -23,10 +23,7 @@ const cardLastMatch = ({ teamOne, teamTwo, scoreOne, scoreTwo, pathImage, idMatc
           </div>
 		`;
     }
-
     return render();
-
-
 }
 
 export default cardLastMatch;
