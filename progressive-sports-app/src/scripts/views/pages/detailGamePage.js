@@ -34,7 +34,7 @@ const detailGamePage = {
     async afterRender() {
         await this.detailMatch();
         await this.showDiscussionCard();
-        await this.getData();
+        await this.getData({id:this.getId()});
     },
     getId() {
         const url = UrlParser.parseActiveUrlWithoutCombiner();
@@ -73,22 +73,23 @@ const detailGamePage = {
                 nameInput.value = '';
                 discussInput.value = '';
             } else {
-                this.postData({ name: nameInput.value, comment: discussInput.value })
+                this.postData({ id: this.getId(), name: nameInput.value, comment: discussInput.value })
                 nameInput.value = '';
                 discussInput.value = '';
             }
         })
     },
-    async postData({ name, comment }) {
+    async postData({ id, name, comment }) {
         try {
             const docRef = await addDoc(collection(db, "discuss"), {
+                id,
                 name,
                 comment,
             });
             console.log("Document written with ID: ", docRef.id);
             document.querySelector('.allComments').innerHTML +=
                 `
-                  <div id="card-comment shadow-lg mb-6 w-48">
+                  <div id="${id} card-comment shadow-lg mb-6 w-48">
                     <div class="title-comment flex justify-center">
                       <div class="rounded-lg bg-white p-6 shadow-lg w-48">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -110,13 +111,14 @@ const detailGamePage = {
             console.error("Error adding document: ", e);
         }
     },
-    async getData() {
+    async getData({ id }) {
         const querySnapshot = await getDocs(collection(db, "discuss"))
         querySnapshot.forEach((doc) => {
             console.log(`${doc.id} =>`, doc.data());
             const commentData = doc.data();
-            document.querySelector('.allComments').innerHTML += `
-                  <div id="card-comment shadow-lg mb-6 w-48">
+            if (commentData.id === id) {
+                document.querySelector('.allComments').innerHTML += `
+                  <div id="${commentData.id} card-comment shadow-lg mb-6 w-48">
                     <div class="title-comment flex justify-center">
                       <div class="rounded-lg bg-white p-6 shadow-lg w-48">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -134,6 +136,8 @@ const detailGamePage = {
                       </div>
                     </div>
                   </div>`
+            }
+
         })
     }
 }
