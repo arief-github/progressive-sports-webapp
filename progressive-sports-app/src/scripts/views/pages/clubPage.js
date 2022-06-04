@@ -99,7 +99,7 @@ const clubPage = {
 						</div>
 						<div class="title flex w-full h-full my-2">
 							<div class="w-3/6 h-full bg-gray-100 mx-2 text-sm flex">
-								<span class="truncate m-auto p-3">${e.name || '?'}</span>
+							<a href="#/players/${e.id}"><span class="truncate m-auto p-3">${e.name || '?'}</span></a>	
 							</div>
 							<div class="w-2/6 h-full bg-gray-100 mx-2 text-sm flex">
 								<span class="truncate m-auto p-3">${e.nationality || '?'}</span>

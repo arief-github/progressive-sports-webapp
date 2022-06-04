@@ -112,7 +112,7 @@ class FootballDataApi {
 
     async getDetailPlayers({ id }) {
         let data;
-        await this.request(`persons/${id}`)
+        await this.request(`players/${id}`)
             .then((response, status) => {
                 data = (status != 'error') ? response : status;
             });
