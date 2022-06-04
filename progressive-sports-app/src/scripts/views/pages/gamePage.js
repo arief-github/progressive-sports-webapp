@@ -1,6 +1,7 @@
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions';
 import UrlParser from '../../routes/url-parser'
+import cardLastMatch from '../components/card-last-match';
 import '../components/custom-loading'
 
 const gamePage = {
@@ -12,7 +13,7 @@ const gamePage = {
         
         <div id="next-match" class="next-match w-full my-4 p-8 text-2xl grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         </div>
-  
+        
           `;
     },
     async afterRender() {
@@ -26,15 +27,16 @@ const gamePage = {
             <div class="bg-[#f2f2f2] rounded-[8%] shadow-lg w-full h-[340px] flex flex-col">
                 <div class="mx-auto flex h-3/6 w-full bg-white">
                     <span class="font-semibold w-full flex flex-col text-black "> 
-                        <i class="truncate m-auto">${element.homeTeam.name}</i> 
-                        <i class="m-auto">VS</i> 
-                        <i class="truncate m-auto">${element.awayTeam.name}</i>
+                        <img class="w-[70%] h-[70%] m-auto brightness-150" src="${element.competition.area.ensignUrl}">
                     </span>
                 </div>
                 <div class="text-sm h-2/6 px-4 mt-4">
                     <div class="truncate flex">
-                        <span>Area : ${element.competition.area.name}</span>
-                        <img class="w-[6%] h-[6%] ml-2 my-auto brightness-150" src="${element.competition.area.ensignUrl}">
+                    <span class="font-semibold flex-col text-black"> 
+                        <i class="truncate m-auto">${element.homeTeam.name}</i> 
+                        <i class="m-auto">VS</i> 
+                        <i class="truncate m-auto">${element.awayTeam.name}</i>
+                    </span>
                     </div>
                     <div class="truncate">Competition : ${element.competition.name}</div>
                     <div class="truncate">Match Day : ${element.matchday}</div>
