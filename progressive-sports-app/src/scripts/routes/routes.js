@@ -4,6 +4,7 @@ import gamePage from '../views/pages/gamePage';
 import clubPage from '../views/pages/clubPage';
 import detailGamePage from '../views/pages/detailGamePage';
 import detailLeaguePage from '../views/pages/detailLeaguePage';
+import detailPlayerPage from '../views/pages/detailPlayerPage';
 
 
 const routes = {
@@ -13,6 +14,7 @@ const routes = {
     '/teams/:id': clubPage,
     '/league/:id': detailLeaguePage,
     '/matches/:id': detailGamePage,
+    '/players/:id': detailPlayerPage,
 };
 
 export default routes;
