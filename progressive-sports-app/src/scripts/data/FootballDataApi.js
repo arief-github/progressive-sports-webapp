@@ -1,12 +1,16 @@
-
-
 class FootballDataApi {
     APIKey = "";
+
     baseUrl = "";
+    
     PRECACHE_PREFIX = "";
+    
     PRECACHE_SUFFIX = "";
+    
     PRECACHE_NAME = "";
+    
     API_CACHE_NAME = "";
+    
     IMAGE_CACHE_NAME = "";
 
     constructor() {
@@ -29,11 +33,11 @@ class FootballDataApi {
         });
     }
 
-    async getAllMatches({dateFrom, dateTo}) {
+    async getAllMatches({ dateFrom, dateTo }) {
         let data;
         await this.request(`matches?dateFrom=${dateFrom}&dateTo=${dateTo}`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -42,7 +46,7 @@ class FootballDataApi {
         let data;
         await this.request(`matches/${id}`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -51,7 +55,7 @@ class FootballDataApi {
         let data;
         await this.request('competitions/')
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -60,7 +64,7 @@ class FootballDataApi {
         let data;
         await this.request(`competitions/${id}`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -69,7 +73,7 @@ class FootballDataApi {
         let data;
         await this.request(`competitions/${id}/teams`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -78,7 +82,7 @@ class FootballDataApi {
         let data;
         await this.request(`teams/${id}`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -87,7 +91,7 @@ class FootballDataApi {
         let data;
         await this.request(`competitions/${id}/standings`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -96,7 +100,7 @@ class FootballDataApi {
         let data;
         await this.request(`competitions/${id}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
@@ -105,8 +109,8 @@ class FootballDataApi {
         let data;
         await this.request(`competitions/${id}/scorers`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
-            })
+                data = (status !== 'error') ? response : status;
+            });
         return data;
     }
 
@@ -114,11 +118,10 @@ class FootballDataApi {
         let data;
         await this.request(`players/${id}`)
             .then((response, status) => {
-                data = (status != 'error') ? response : status;
+                data = (status !== 'error') ? response : status;
             });
         return data;
     }
 }
-
 
 export default FootballDataApi;
