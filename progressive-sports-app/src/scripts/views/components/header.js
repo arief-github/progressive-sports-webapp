@@ -6,15 +6,15 @@ const header = {
 					<div class="flex justify-between space-x-7">
 						<div>
 							<!-- Website Logo -->
-							<a href="#" class="flex items-center py-4 px-2">
+							<a href="#" class="flex items-center py-4 px-2 focus:outline-none focus:ring focus:ring-green-500">
 								<img src="./images/Progressive-Sport-Logo-Dark.png" alt="Logo">
 							</a>
 						</div>
 						<!-- Primary Navbar items -->
-						<div class="hidden md:flex items-center space-x-2 desktop-navbar">
-							<a href="#/" class="py-4 px-2 font-semibold border-b-4 border-green-500 text-green-500">Home</a>
+						<div class="hidden md:flex items-center space-x-2 desktop-navbar focus:outline-none focus:ring focus:ring-green-500">
+							<a href="#/" class="py-4 px-2 font-semibold border-b-4 border-green-500 text-green-500 ">Home</a>
 							<a href="#/favorite-page" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Favorite Teams</a>
-							<a href="#/game-page" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Game</a>
+							<a href="#/game-page" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300 ">Game</a>
 							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
 						</div>
 						<!-- Mobile menu button -->
@@ -37,7 +37,7 @@ const header = {
 			</div>
 			<!-- mobile menu -->
 			<div class="md:hidden relative mobile-menu z-10">
-				<ul class="absolute bg-white w-full">
+				<ul class="absolute bg-white w-full focus:outline-none focus:ring focus:ring-green-500">
 					<li><a href="#/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 bg-green-500 text-white">Home</a></li>
 					<li><a href="#/favorite-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Favorite Teams</a></li>
 					<li><a href="#/game-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Game</a></li>

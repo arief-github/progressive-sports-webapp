@@ -27,10 +27,7 @@ const clubPage = {
 			<div class="w-full h-auto bg-white">
 				<div class="hero-image w-full h-[300px] relative bg-gradient-to-r from-black via-white to-green-500 py-8 flex"
 					style = "
-						--tw-gradient-stops: ${colors[0]},${colors[1]},${colors[2] || colors[0] };
-
-					"
-					>
+						--tw-gradient-stops: ${colors[0]},${colors[1]},${colors[2] || colors[0] };">
 					<img class="m-auto h-full" src="${value.crestUrl || '?'}"></img>
 				</div>
 				<div class="flex flex-col md:flex-row w-full h-auto">
@@ -62,7 +59,7 @@ const clubPage = {
 						</button>
 						<a href="${value.website}" rel="noopener noreferrer" target="_blank" class="mb-auto mx-auto mt-7 w-[100px] rounded-md shadow-lg shadow text-center p-2 bg-white">
 							<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+								<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
 							</svg>	
 						</a>
 					</div>
