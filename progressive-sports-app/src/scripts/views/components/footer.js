@@ -11,7 +11,7 @@ const footer = {
 		    <svg class=" w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		  </button>
 		</div>
-		<footer id="footer-contact" class="flex justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('./images/footer.jpg');">
+		<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('./images/footer.jpg');">
   			<div class="footer-col mt-3 sm:mb-4">
         		<ul class="list-none">
 					<li>
@@ -49,6 +49,11 @@ const footer = {
 				</button>
 			</form>
 			</div>
+			<div class="absolute right-5 bottom-5 text-green-700">
+				<button class="scrollTop">
+					<svg class="w-14 h-14 dark:text-white" fill="text-green-700" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path></svg>
+				</button>		
+			</div>		
 		</footer>
 		`;
     },
@@ -66,7 +71,6 @@ const footer = {
             btnLoading.classList.toggle('hidden');
             btnSend.classList.toggle('hidden');
 
-
             $(form).find('button.btn-send').prop('disabled',true);
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
@@ -74,7 +78,6 @@ const footer = {
 
                     btnLoading.classList.toggle('hidden');
             		btnSend.classList.toggle('hidden');
-
 
                     // success alert
                     $('.alert-success').toggleClass('hidden');
@@ -91,8 +94,15 @@ const footer = {
                 .catch((error) => console.log('Error!', error.message))
         });
     },
+    scrollingTop(){
+    	$('button.scrollTop').click(function(){
+    		$('html,body').animate({ scrollTop:0 }, "slow");
+    		return false;
+    	})
+    },
      afterRender(){
 		this.formSubmitting();
+		this.scrollingTop();
 	},    
 }
 
