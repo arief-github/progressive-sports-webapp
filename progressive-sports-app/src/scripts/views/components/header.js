@@ -15,7 +15,7 @@ const header = {
 							<a href="#/" class="py-4 px-2 font-semibold border-b-4 border-green-500 text-green-500 ">Home</a>
 							<a href="#/favorite-page" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Favorite Teams</a>
 							<a href="#/game-page" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300 ">Game</a>
-							<a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
+							<a href="javascript:scrollingDown()" class="scrPy py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
 						</div>
 						<!-- Mobile menu button -->
 					<div class="md:hidden flex items-center">
@@ -41,17 +41,18 @@ const header = {
 					<li><a href="#/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 bg-green-500 text-white">Home</a></li>
 					<li><a href="#/favorite-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Favorite Teams</a></li>
 					<li><a href="#/game-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Game</a></li>
-					<li><a href="#footer-contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+					<li><a href="javascript:scrollingDown()" class="scrPy block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
 				</ul>
 			</div>
 		</nav>
 		`;
     },
-	
-	afterRender(){
-		this.clickingButton();
-		this.changeActiveClass();
-	},    
+
+    afterRender() {
+        this.clickingButton();
+        this.changeActiveClass();
+        this.scrollingDown();
+    },
     clickingButton() {
         const button = document.querySelector('button.mobile-menu-button');
         const menu = document.querySelector('.mobile-menu');
@@ -60,19 +61,27 @@ const header = {
         });
     },
 
-    changeActiveClass(){
-    	$('.desktop-navbar a').click((event)=>{
-    		$('.desktop-navbar').children().removeClass('border-b-4 border-green-500 text-green-500')
-    		$(event.target).toggleClass('border-b-4 border-green-500 text-green-500')
-    	})
+    changeActiveClass() {
+        $('.desktop-navbar a').click((event) => {
+            $('.desktop-navbar').children().removeClass('border-b-4 border-green-500 text-green-500')
+            $(event.target).toggleClass('border-b-4 border-green-500 text-green-500')
+        })
 
-    	$('.mobile-menu ul li').click((event)=>{
-    		$('.mobile-menu ul li').children().removeClass('bg-green-500 text-white')
-    		console.log(event.target)
-    		$(event.target).toggleClass('bg-green-500 text-white')
-    	})
+        $('.mobile-menu ul li').click((event) => {
+            $('.mobile-menu ul li').children().removeClass('bg-green-500 text-white')
+            console.log(event.target)
+            $(event.target).toggleClass('bg-green-500 text-white')
+        })
 
+    },
+
+    scrollingDown() {
+        $('.scrPy').click(function() {
+            let y = $(window).scrollTop();
+            $('html, body').animate({ scrollTop: y + $(document).height() }, 1000)
+        })
     }
+
 };
 
 export default header;
