@@ -3,6 +3,7 @@ import FootballDataApi from "../../data/footballDataApi";
 import UrlParser from '../../routes/url-parser';
 import db from '../../data/commentHelperFirebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
+import { Timestamp } from 'firebase/firestore';
 
 
 const detailGamePage = {
@@ -23,7 +24,7 @@ const detailGamePage = {
                                 </div>
                     <div class="mb-6">
                         <label for="message" class="mb-2 block text-sm font-medium "">Comment</label>
-                            <textarea id="message" rows="4" class="block w-80 rounded-lg border border-black p-1 text-gray-900 focus:border-black focus:ring-black dark:bg-white" placeholder="Leave a comment..."></textarea>
+                            <textarea id="message" maxlength="255" rows="4" class="block w-80 rounded-lg border border-black p-1 text-gray-900 focus:border-black focus:ring-black dark:bg-white" placeholder="Leave a comment... Maximal 255 Characters"></textarea>
                                 </div>
                             <button type="submit" class="btnSubmit text-white bg-black hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-20">Submit</button>
                 </form>
@@ -52,8 +53,6 @@ const detailGamePage = {
                     teamOne: match.homeTeam.name,
                     teamTwo: match.awayTeam.name,
                     pathImage: match.competition.area.ensignUrl,
-
-              
                 });
             });
 
@@ -85,16 +84,18 @@ const detailGamePage = {
                 id,
                 name,
                 comment,
+                time: new Date(Timestamp.now().seconds*1000).toLocaleDateString(),
             });
             console.log("Document written with ID: ", docRef.id);
             document.querySelector('.allComments').innerHTML +=
                 `
-                  <div id="${id} card-comment shadow-lg mb-6 w-48">
+                  <div id="${id} card-comment shadow-lg mb-6">
                     <div class="title-comment flex justify-center">
-                      <div class="rounded-lg bg-white p-6 shadow-lg w-48">
+                      <div class="rounded-lg bg-white p-6 shadow-lg w-80 border-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                         </svg>
+                        <span>${time}</span>
                         <h2 class="mb-2 font-bold text-gray-800">${name}</h2>
                         <p class="text-gray-700">${comment}</p>
                          <button class="deleteComment">
@@ -118,12 +119,13 @@ const detailGamePage = {
             const commentData = doc.data();
             if (commentData.id === id) {
                 document.querySelector('.allComments').innerHTML += `
-                  <div id="${commentData.id} card-comment shadow-lg mb-6 w-48">
+                  <div id="${commentData.id} card-comment shadow-lg">
                     <div class="title-comment flex justify-center">
-                      <div class="rounded-lg bg-white p-6 shadow-lg w-48">
+                      <div class="rounded-lg bg-white p-6 shadow-lg w-80 border-2 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                         </svg>
+                        <span>${commentData.time}</span>
                         <h2 class="mb-2 font-bold text-gray-800">${commentData.name}</h2>
                         <p class="text-gray-700">${commentData.comment}</p>
                          <button class="deleteComment">

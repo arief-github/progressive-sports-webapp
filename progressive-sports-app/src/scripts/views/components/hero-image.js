@@ -1,6 +1,6 @@
 const heroImage =  ` 
 			<header class="mb-6">
-			 <div class="w-full bg-center bg-cover"
+			 <div class="w-full bg-center bg-cover bg-fixed"
 				    style="background-image: url('./images/hero.jpg');">
 				    <div class="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50 py-12">
 				      <div class="text-center">

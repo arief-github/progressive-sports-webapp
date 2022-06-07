@@ -7,9 +7,12 @@ import '../components/custom-loading'
 const gamePage = {
     async init() {
         return `
+
         <div class="relative">
             <p class="my-10 text-4xl font-semibold text-center">Games Scheduled</p>
         </div>
+
+        <custom-loading></custom-loading>
         
         <div id="next-match" class="next-match w-full my-4 p-8 text-2xl grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         </div>
