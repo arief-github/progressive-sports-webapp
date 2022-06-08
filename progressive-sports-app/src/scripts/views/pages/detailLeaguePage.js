@@ -168,7 +168,7 @@ const detailLeaguePage = {
                     let startDate = new Date(e.player.lastUpdated);
                     document.querySelector('.list-scorers').innerHTML += `
                     <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7">
-                    <div class="w-full ${tampClass} md:inline">${e.player.name}</div>
+                    <div class="w-full ${tampClass} md:inline"> <a href="#/players/${e.player.id}">${e.player.name}</a></div>
                     <div class="w-full ${tampClass} col-span-2 truncate">${e.team.name}</div>
                     <div class="w-full ${tampClass} hidden sm:inline">${(e.player.nationality != null) ? e.player.nationality : "N/A"}</div>
                     <div class="w-full ${tampClass} hidden sm:inline">${(e.player.position != null) ? e.player.position : "N/A"}</div>
