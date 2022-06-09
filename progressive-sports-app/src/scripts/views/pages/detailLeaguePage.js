@@ -64,7 +64,7 @@ const detailLeaguePage = {
         
         const headTable = ()=>{
             return `
-                <div class="list-matches w-full h-auto px-8 mt-4" >
+                <div class="list-matches w-full h-auto mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
                         <div class="w-full col-span-2 truncate text-base md:text-lg">Away Team</div>
                         <div class="w-full col-span-2 truncate text-base md:text-lg">Home Team</div>
@@ -96,9 +96,9 @@ const detailLeaguePage = {
             const date = new Date();
             date.setDate(date.getDate() + value)
             let dateFrom = date.toLocaleDateString("en-US").split('/');
-            return `${dateFrom[2]}-${(dateFrom[0] >= 9) ? dateFrom[0] : `0${dateFrom[0]}`}-${(dateFrom[1] >= 9) ? dateFrom[1] : `0${dateFrom[1]}`}`;
+            return `${dateFrom[2]}-${(dateFrom[0] <= 9) ? `0${dateFrom[0]}` : `${dateFrom[0]}`}-${(dateFrom[1] <= 9) ? `0${dateFrom[1]}` : `${dateFrom[1]}`}`;
         }
-        const renderData = async ()=>{        
+        const renderData = async ()=>{
             $(".item-list").remove();
             document.querySelector('.list-matches').innerHTML += `<custom-loading></custom-loading>`;
             await this.footballDataApi.getMatchesByIdCompetitions({
@@ -106,8 +106,8 @@ const detailLeaguePage = {
                 dateTo : $("#dateTo").val(),
                 dateFrom : $("#dateFrom").val(),
             }).then((value) => {
-                console.log();
                     $("custom-loading").remove();
+                    document.querySelector('.list-matches').innerHTML = headTable();
                     let colorList = false;
                     let matches = [...value.matches].sort((a,b)=>{ return a.utcDate - b.utcDate}).reverse()
                      matches.forEach((e) => {
@@ -128,7 +128,9 @@ const detailLeaguePage = {
                     `
                     colorList = (colorList) ? false : true;
                     })
-                })
+            }).catch((error)=>{
+                location.reload();
+            })
         }
 
         document.querySelector('.frame-select').innerHTML = btnConfigDate();
@@ -178,6 +180,8 @@ const detailLeaguePage = {
                 `
                 colorList = (colorList) ? false : true;
                 })
+            }).catch((error)=>{
+                location.reload();
             })
 
     },
@@ -243,6 +247,9 @@ const detailLeaguePage = {
                 })
             })
         })
+        .catch((error)=>{
+            location.reload();
+        })
     },
     addColorsTeams(colors = ["black", "white"]) {
         const colorsHex = [];
@@ -292,23 +299,22 @@ const detailLeaguePage = {
                 document.querySelector('.frame-select .list-teams').innerHTML = "";
                 this.allTeams = value.teams;
                 value.teams.forEach((e) => {
-                    try {
-                        let spitClubColors = (e.clubColors != null) ? e.clubColors.split(" / ") : ["white", "white"];
-                        document.querySelector('.frame-select .list-teams').innerHTML += cardItemFavorite({
-                            idTeam: e.id,
-                            nameTeam: e.shortName,
-                            location: e.address,
-                            stadion: e.venue,
-                            pathImage: e.crestUrl,
-                            clubColor: spitClubColors,
-                            data: e,
+                    let spitClubColors = (e.clubColors != null) ? e.clubColors.split(" / ") : ["white", "white"];
+                    document.querySelector('.frame-select .list-teams').innerHTML += cardItemFavorite({
+                        idTeam: e.id,
+                        nameTeam: e.shortName,
+                        location: e.address,
+                        stadion: e.venue,
+                        pathImage: e.crestUrl,
+                        clubColor: spitClubColors,
+                        data: e,
 
-                        });
-                    } catch (e) {
-
-                    }
+                    });
                 });
-            });
+            }).catch((error)=>{
+                location.reload();
+            })
+           
 
         const prosesBtn = () => {
             $('.btn-favorite').each(async (i, obj) => {

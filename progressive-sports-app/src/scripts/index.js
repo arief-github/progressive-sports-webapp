@@ -1,6 +1,8 @@
 import App from './views/app';
 import '../styles/main.css';
 import './views/components/custom-loading'
+import './views/components/message-error'
+import './views/components/message-null'
 import swRegister from './utils/sw-register';
 import WebSocketInitiator from './utils/websocket-initiator';
 import CONFIG from './utils/config';
