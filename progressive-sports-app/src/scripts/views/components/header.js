@@ -36,7 +36,7 @@ const header = {
 					</div>
 			</div>
 			<!-- mobile menu -->
-			<div class="md:hidden relative mobile-menu z-10">
+			<div class="hidden md:hidden relative mobile-menu z-10">
 				<ul class="absolute bg-white w-full focus:outline-none focus:ring focus:ring-green-500">
 					<li><a href="#/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 bg-green-500 text-white">Home</a></li>
 					<li><a href="#/favorite-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Favorite Teams</a></li>

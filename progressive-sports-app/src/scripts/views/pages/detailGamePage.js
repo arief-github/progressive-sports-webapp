@@ -13,7 +13,7 @@ const detailGamePage = {
         <p class="text-center text-4xl font-semibold uppercase">Detail Game</p>
       </div> 
 
-       <div class="relative w-80 m-auto">
+       <div class="form relative w-80 m-auto">
         <p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
         <div class="allComments mx-auto"></div>
              <div class="flex">           
@@ -54,6 +54,16 @@ const detailGamePage = {
                     teamTwo: match.awayTeam.name,
                     pathImage: match.competition.area.ensignUrl,
                 });
+            })
+            .catch((e)=>{
+                $("custom-loading").remove()
+                if(e.status == 0){
+                  document.querySelector('.detail-games').innerHTML = `<message-error message="Limit Request waiting 1 minute" class="col-span-full"></message-error>`;
+                  document.querySelector('.form').innerHTML = "";
+                }else{
+                  document.querySelector('.detail-games').innerHTML = `<message-error message="${e.statusText}" class="col-span-full"></message-error>`;
+                  document.querySelector('.form').innerHTML = "";
+                }
             });
 
     },
@@ -86,7 +96,6 @@ const detailGamePage = {
                 comment,
                 time: new Date(Timestamp.now().seconds*1000).toLocaleDateString(),
             });
-            console.log("Document written with ID: ", docRef.id);
             document.querySelector('.allComments').innerHTML +=
                 `
                   <div id="${id} card-comment shadow-lg mb-6">
@@ -115,7 +124,6 @@ const detailGamePage = {
     async getData({ id }) {
         const querySnapshot = await getDocs(collection(db, "discuss"))
         querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} =>`, doc.data());
             const commentData = doc.data();
             if (commentData.id === id) {
                 document.querySelector('.allComments').innerHTML += `
@@ -139,7 +147,6 @@ const detailGamePage = {
                     </div>
                   </div>`
             }
-
         })
     }
 }

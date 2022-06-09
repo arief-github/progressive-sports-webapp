@@ -29,6 +29,7 @@ const favoritePage = {
 					</div>
 				</div>
 				<custom-loading></custom-loading>
+				
 				<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 				</div>
 			</div>`;
@@ -79,18 +80,26 @@ const favoritePage = {
         	.then((value)=>{
         		document.querySelector('.list-teams').innerHTML = "";
 		    	$("custom-loading").remove()
-	    		value.forEach((e)=>{
-	    			let spitClubColors = e.clubColors.split(" / ");
-	                document.querySelector('.list-teams').innerHTML += cardItemFavorite({
-	                    idTeam : e.id,
-	                    nameTeam: e.shortName,
-	                    location: e.address,
-	                    stadion: e.venue,
-	                    pathImage: e.crestUrl,
-	                    clubColor: spitClubColors,
-	                });
-	    		});
-   		 });
+		    	if(value.length == 0){
+					document.querySelector('.favorite-page').innerHTML += "<message-null></message-null>";	    		
+		    	}else{
+		    		value.forEach((e)=>{
+		    			let spitClubColors = e.clubColors.split(" / ");
+		                document.querySelector('.list-teams').innerHTML += cardItemFavorite({
+		                    idTeam : e.id,
+		                    nameTeam: e.shortName,
+		                    location: e.address,
+		                    stadion: e.venue,
+		                    pathImage: e.crestUrl,
+		                    clubColor: spitClubColors,
+		                });
+		            });
+		    	}
+		    })
+		   	.catch((e)=>{
+		   		document.querySelector('.favorite-page').innerHTML += `<message-error message="${e.statusText}"></message-error>`;
+		   	});
+
         const prosesBtn = ()=>{
        		$('.btn-favorite').each( async(i,obj)=>{
        			try{
