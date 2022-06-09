@@ -114,7 +114,7 @@ const clubPage = {
 			        <div class="transition hover:bg-indigo-50">
 			        <!-- header -->
 			        <div class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-9">
-			            <i class="fas fa-plus"></i>
+			            <i class="fas fa-info"></i>
 			            <h3>${e.name || '?'}</h3>
 			        </div>
 			        <!-- Content -->
@@ -173,12 +173,12 @@ const clubPage = {
 
                 if (accordionMaxHeight === "0px" || accordionMaxHeight.length == 0) {
                     accordionContent.style.maxHeight = `${accordionContent.scrollHeight + 32}px`;
-                    header.querySelector(".fas").classList.remove("fa-plus");
+                    header.querySelector(".fas").classList.remove("fa-info");
                     header.querySelector(".fas").classList.add("fa-minus");
                     header.parentElement.classList.add("bg-indigo-50");
                 } else {
                     accordionContent.style.maxHeight = `0px`;
-                    header.querySelector(".fas").classList.add("fa-plus");
+                    header.querySelector(".fas").classList.add("fa-info");
                     header.querySelector(".fas").classList.remove("fa-minus");
                     header.parentElement.classList.remove("bg-indigo-50");
                 }
