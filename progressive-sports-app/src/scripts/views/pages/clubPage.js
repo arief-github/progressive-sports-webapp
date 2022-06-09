@@ -6,7 +6,6 @@ const clubPage = {
 
     async init() {
         let html;
-
         this.data = await this.getData();
         this.activeCompt = this.renderCompetitions({ data: this.data })
         this.colors = this.addColorsTeams(this.data.clubColors.split(" / "));

@@ -57,7 +57,13 @@ const homePage = {
                         currentSeasonEndDate: item.currentSeason.endDate,
                     })
                 })
-            }).catch((err) => console.error(err))
+            }).catch((e)=>{
+                if(e.status == 0){
+                    leaguesCardContainer.innerHTML = `<message-error message="Limit Request waiting 1 minute" class="col-span-full"></message-error>`;
+                }else{
+                  leaguesCardContainer.innerHTML = `<message-error message="${e.statusText}"></message-error>`;
+                }
+            })
     },
     async searchingForLeague() {
         $('#search-league').on('keyup', () => {

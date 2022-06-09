@@ -20,7 +20,17 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
-    this.main.innerHTML = await page.init();
+    await page.init()
+      .then((e)=>{
+        this.main.innerHTML = e;
+      })
+      .catch((e)=>{
+        if(e.status == 0){
+            this.main.innerHTML = `<message-error message="Limit Request waiting 1 minute"></message-error>`;
+        }else{
+          this.main.innerHTML = `<message-error message="${e.statusText}"></message-error>`;
+        }
+      })
     await page.afterRender();
   }
 }

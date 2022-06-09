@@ -21,7 +21,6 @@ const gamePage = {
     },
     async afterRender() {
         await this.getDataAndFilter();
-        await this.nextMatch();
     },
     card({element}){
         const time = new Date(element.utcDate).toLocaleTimeString("en-US")
@@ -56,11 +55,6 @@ const gamePage = {
             </div>
         `
     },
-    async getData() {
-        const footballDataApi = new FootballDataApi();
-        const url = UrlParser.parseActiveUrlWithoutCombiner();
-        return await footballDataApi.getAllMatches({ id: url.id });
-    },
     configurationDate(value){
         const date = new Date();
         date.setDate(date.getDate() + value)
@@ -70,7 +64,7 @@ const gamePage = {
     async getDataAndFilter(){
         const footballDataApi = new FootballDataApi();
          await footballDataApi.getAllMatches({
-            dateFrom : this.configurationDate(0),
+            dateFrom : this.configurationDate(1),
             dateTo : this.configurationDate(10)
         }).then((value)=>{
              this.dataMatch = Array();
@@ -82,10 +76,18 @@ const gamePage = {
                     this.dataMatch.push(tamp);
                 }
             });
+             this.nextMatch();
+        }).catch((e)=>{
+            $("custom-loading").remove()
+            if(e.status == 0){
+                document.querySelector('.next-match').innerHTML = `<message-error message="Limit Request waiting 1 minute" class="col-span-full"></message-error>`;
+            }else{
+              document.querySelector('.next-match').innerHTML = `<message-error message="${e.statusText}" class="col-span-full"></message-error>`;
+            }
         })
+
     },
     async nextMatch() {
-        console.log(this.dataMatch);
         $("custom-loading").remove()
         this.dataMatch.forEach((value)=>{
             value.filter((matches) => matches.status === "SCHEDULED").forEach((e) => {
