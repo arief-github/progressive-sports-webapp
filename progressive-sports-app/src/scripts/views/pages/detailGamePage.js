@@ -82,19 +82,19 @@ const detailGamePage = {
                 nameInput.value = '';
                 discussInput.value = '';
             } else {
-                this.postData({ id: this.getId(), name: nameInput.value, comment: discussInput.value })
+                this.postData({ id: this.getId(), name: nameInput.value, comment: discussInput.value, time: new Date(Timestamp.now().seconds*1000).toLocaleDateString() })
                 nameInput.value = '';
                 discussInput.value = '';
             }
         })
     },
-    async postData({ id, name, comment }) {
+    async postData({ id, name, comment, time }) {
         try {
             const docRef = await addDoc(collection(db, "discuss"), {
                 id,
                 name,
                 comment,
-                time: new Date(Timestamp.now().seconds*1000).toLocaleDateString(),
+                time,
             });
             document.querySelector('.allComments').innerHTML +=
                 `
