@@ -2,15 +2,15 @@ class FootballDataApi {
     APIKey = "";
 
     baseUrl = "";
-    
+
     PRECACHE_PREFIX = "";
-    
+
     PRECACHE_SUFFIX = "";
-    
+
     PRECACHE_NAME = "";
-    
+
     API_CACHE_NAME = "";
-    
+
     IMAGE_CACHE_NAME = "";
 
     constructor() {
@@ -120,6 +120,15 @@ class FootballDataApi {
             .then((response, status) => {
                 data = (status !== 'error') ? response : status;
             });
+        return data;
+    }
+
+    async getDetailPlayersAndMatch({ id }) {
+        let data;
+        await this.request(`players/${id}/matches`)
+        .then((response, status) => {
+            data = (status !== 'error') ? response : status;
+        })
         return data;
     }
 }

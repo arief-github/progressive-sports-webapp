@@ -144,7 +144,7 @@ const detailGamePage = {
                 nameInput.value = '';
                 discussInput.value = '';
             } else {
-                this.postData({ id: this.getId(), name: nameInput.value, comment: discussInput.value, time: new Date(Timestamp.now().seconds*1000).toLocaleDateString() })
+                this.postData({ id: this.getId(), name: nameInput.value, comment: discussInput.value, time: new Date(Timestamp.now().seconds * 1000).toLocaleDateString() })
                 nameInput.value = '';
                 discussInput.value = '';
             }
