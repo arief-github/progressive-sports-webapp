@@ -1,4 +1,3 @@
-
 class MessageNull extends HTMLElement{
 	async connectedCallback() {
 		this.innerHTML = await this.render();
