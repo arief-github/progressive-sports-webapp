@@ -37,6 +37,11 @@
         "no-mixed-spaces-and-tabs": 0,
         "no-shadow": 0,
         "no-return-await": 0,
-        "max-len": ["error", 200]
+        "import/no-unresolved": 0,
+        "max-len": 0,
+        "import/extensions": 0,
+        "array-callback-return": 0,
+        "no-array-constructor": 0,
+        "eqeqeq": 0,
     }
 }

@@ -1,18 +1,33 @@
 import detailGame from "../components/detail-game";
+import detailStat from "../components/detail-table";
 import FootballDataApi from "../../data/footballDataApi";
 import UrlParser from '../../routes/url-parser';
 import db from '../../data/commentHelperFirebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 import { Timestamp } from 'firebase/firestore';
+import heroImage from "../components/hero-image";
 
 
 const detailGamePage = {
     async init() {
         return `
+        <div id="hero-image"></div>
       <div class="detail-games relative">
-        <p class="text-center text-4xl font-semibold uppercase">Detail Game</p>
       </div> 
-
+      <p class="text-center text-4xl mb-10 font-semibold uppercase">Head-To-Head</p>
+      <div class="list-standings w-full h-auto px-8 mt-4" >
+      <div class="item-title w-3/4 h-auto py-2 mx-auto  grid gap-2 grid-cols-4 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 bg-green-400 justify-center text-white">
+          <div class="w-full mx-5">Team</div>
+          <div class="w-full mx-5 ">Won</div>
+          <div class="w-full mx-5 ">Lose</div>
+          <div class="w-full mx-5 md:inline">Draw</div>
+          <div class="w-full hidden mx-5 lg:inline">Half Time</div>
+          <div class="w-full hidden mx-5 md:inline">Full Time</div>
+      </div>
+      <div class="item-list w-3/4 h-auto py-2 mx-auto shadow-md  grid gap-2 grid-cols-4 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 bg-green-200 justify-center text-black">
+  </div>
+  </div>
+  </div>
        <div class="form relative w-80 m-auto">
         <p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
         <div class="allComments mx-auto"></div>
@@ -33,7 +48,9 @@ const detailGamePage = {
     `;
     },
     async afterRender() {
+        document.getElementById('hero-image').innerHTML = heroImage;
         await this.detailMatch();
+        await this.detailItem();
         await this.showDiscussionCard();
         await this.getData({id:this.getId()});
     },
@@ -43,6 +60,7 @@ const detailGamePage = {
     },
     async detailMatch() {
         const footballDataApi = new FootballDataApi();
+        
         await footballDataApi.getMatchById({ id: this.getId() })
             .then((value) => {
                 console.log(value);
@@ -53,6 +71,13 @@ const detailGamePage = {
                     teamOne: match.homeTeam.name,
                     teamTwo: match.awayTeam.name,
                     pathImage: match.competition.area.ensignUrl,
+                    ScoreTwo: match.score.fullTime.awayTeam,
+                    ScoreOne: match.score.fullTime.homeTeam,
+                    Status: match.status,
+                    Stage: match.stage,
+                    Venue: match.venue,
+                    Date: match.utcDate
+
                 });
             })
             .catch((e)=>{
@@ -67,6 +92,43 @@ const detailGamePage = {
             });
 
     },
+    async detailItem() {
+      const footballDataApi = new FootballDataApi();
+      await footballDataApi.getMatchById({ id: this.getId() })
+          .then((value) => {
+              console.log(value);
+              $("custom-loading").remove()
+              let match = value.match;
+              document.querySelector('.item-list').innerHTML += detailStat({
+                  nameLeague: match.competition.name,
+                  teamOne: value.head2head.awayTeam.name,
+                  teamTwo: value.head2head.homeTeam.name,
+                  pathImage: match.competition.area.ensignUrl,
+                  ScoreFullAway: match.score.fullTime.awayTeam,
+                  ScoreFullHome: match.score.fullTime.homeTeam,
+                  ScoreHalfAway: match.score.halfTime.awayTeam,
+                  ScoreHalfHome: match.score.halfTime.homeTeam,
+                  DrawAway : value.head2head.awayTeam.draws,
+                  WonAway : value.head2head.awayTeam.wins,
+                  LoseAway : value.head2head.awayTeam.losses,
+                  DrawHome : value.head2head.homeTeam.draws,
+                  WonHome : value.head2head.homeTeam.wins,
+                  LoseHome : value.head2head.homeTeam.losses
+
+              });
+          })
+          .catch((e)=>{
+              $("custom-loading").remove()
+              if(e.status == 0){
+                document.querySelector('.detail-games').innerHTML = `<message-error message="Limit Request waiting 1 minute" class="col-span-full"></message-error>`;
+                document.querySelector('.form').innerHTML = "";
+              }else{
+                document.querySelector('.detail-games').innerHTML = `<message-error message="${e.statusText}" class="col-span-full"></message-error>`;
+                document.querySelector('.form').innerHTML = "";
+              }
+          });
+
+  },
     async showDiscussionCard() {
         const nameInput = document.querySelector('#name');
         const discussInput = document.querySelector('#message');
