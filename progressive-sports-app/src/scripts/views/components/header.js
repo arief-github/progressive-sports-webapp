@@ -18,8 +18,8 @@ const header = {
 							<a href="javascript:scrollingDown()" class="scrPy py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
 						</div>
 						<!-- Mobile menu button -->
-					<div class="md:hidden flex items-center">
-						<button class="outline-none mobile-menu-button">
+					<div class="md:hidden flex items-center ">
+						<button class="outline-none mobile-menu-button  focus:outline-none focus:ring focus:ring-green-500">
 						<svg class=" w-6 h-6 text-gray-500 hover:text-green-500 "
 							x-show="!showMenu"
 							fill="none"

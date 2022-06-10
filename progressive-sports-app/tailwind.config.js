@@ -19,6 +19,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcss-skip-link')(),
+     require('tailwindcss-skip-link')(),
   ],
 }
