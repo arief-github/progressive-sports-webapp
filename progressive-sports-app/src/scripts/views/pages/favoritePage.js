@@ -6,6 +6,7 @@ import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 const favoritePage = {
     async init() {
         return `
+		<a href="#list-teams" class="skip-link top-0 w-full left-1/3 md:w-fit mb-4 md:mr-5 py-5 px-7 text-sm text-black font-bold uppercase border-2 border-transparent rounded hover:text-green-400 transition duration-200 focus:outline-none focus:ring focus:ring-green-500" tabindex="1">Skip to main content &rarr; </a>
 			<div class="favorite-page w-full h-auto flex-row ">
 				<div id="hero-image"></div>
 				<div class="title flex sm:flex-row font-semibold ml-6 text-2xl sm:items-center">

@@ -9,6 +9,7 @@ import idCompetitions from '../../data/idCompetitions';
 const homePage = {
     async init() {
         return `
+        <a href="#league" class="skip-link top-0 w-full left-1/3 md:w-fit mb-4 md:mr-5 py-5 px-7 text-sm text-black font-bold uppercase border-2 border-transparent rounded hover:text-green-400 transition duration-200 focus:outline-none focus:ring focus:ring-green-500" tabindex="1">Skip to main content &rarr;</a>
 		<div id="hero-image"></div>
         <div class="flex">
             <div class="w-2/4 ml-6">
@@ -18,7 +19,7 @@ const homePage = {
                 <div class="ml-auto flex items-center border border-gray-300 w-4/4 shadow-inner rounded-md ">
                     <button id="btn-search-leagues" class="hover:shadow-inner m-auto flex items-center p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
                     <input type="text" id="search-league" class="w-5/6  text-xl sm:ml-auto hidden focus:outline-none" placeholder="Search leagues">
@@ -61,7 +62,7 @@ const homePage = {
                 if(e.status == 0){
                     leaguesCardContainer.innerHTML = `<message-error message="Limit Request waiting 1 minute" class="col-span-full"></message-error>`;
                 }else{
-                  leaguesCardContainer.innerHTML = `<message-error message="${e.statusText}"></message-error>`;
+                    leaguesCardContainer.innerHTML = `<message-error message="${e.statusText}"></message-error>`;
                 }
             })
     },

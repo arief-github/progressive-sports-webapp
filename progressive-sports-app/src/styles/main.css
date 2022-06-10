@@ -81,7 +81,6 @@
         transition: max-height 0.3s ease-out, padding 0.3s ease;
     }
 
-
     /* these styles are applying just for footer */
     .footer-col:not(:last-child) {
         @apply mr-20;
