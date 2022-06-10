@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-     "./src/**/*.{html,js}"
+    "./src/**/*.{html,js}"
   ],
   theme: {
     extend: {},
@@ -18,5 +18,7 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-skip-link')(),
+  ],
 }

@@ -11,10 +11,10 @@ const detailPlayerPage = {
                 <button id="playerBiodata" class="bg-white w-1/6 shadow-inner p-2 mx-4 bg-green-400 shadow-md font-semibold text-white text-sm md:text-base">Biodata</button>
                 <button id="matchesHistory" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Match History</button>
             </div>
-            <div class="player container h-full max-w-none w-auto p-8 flex flex-wrap justify-center">
+            <div class="player container min-h-[400px] w-auto p-8 flex flex-wrap justify-center">
             
             </div>
-            <table class="list-history w-full h-auto px-8 m-auto" >
+            <table class="list-history w-full px-8 m-auto hidden" >
 
             </table>
         `
@@ -30,14 +30,18 @@ const detailPlayerPage = {
         const historyMatch = document.querySelector('#matchesHistory');
 
         playerInfo.addEventListener('click', () => {
+            $('.list-history').addClass("hidden");
+            $('.player').removeClass("hidden");
             this.renderInfoPlayer();
         });
 
-        historyMatch.addEventListener('click', () => {
+        historyMatch.addEventListener('click', () => {            
+            $('.player').addClass("hidden");
+            $('.list-history').removeClass("hidden");
             this.renderMatchHistory();
         })
-
         await this.processBtn();
+        this.renderInfoPlayer();
 
     },
     getId() {
