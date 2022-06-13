@@ -29,6 +29,21 @@ module.exports = function(config) {
             'specs/**/*Spec.js': ['webpack', 'sourcemap'],
         },
 
+        webpack: {
+            // karma watches the test entry points
+            // (you don't need to specify the entry option)
+            // webpack watches dependencies
+            // webpack configuration
+            devtool: 'inline-source-map',
+            mode: 'development',
+        },
+
+        webpackMiddleware: {
+            // webpack-dev-middleware configuration
+            // i. e.
+            stats: 'errors-only',
+        },
+
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
@@ -55,7 +70,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
-        browsers: ['Chrome', 'Firefox'],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode
