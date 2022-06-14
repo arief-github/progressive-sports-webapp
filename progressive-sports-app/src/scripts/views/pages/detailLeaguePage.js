@@ -5,10 +5,7 @@ import cardItemFavorite from '../components/card-item-favorite';
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 
 const detailLeaguePage = {
-    async init({ likeButtonContainer, favoriteTeam, teams }) {
-        this.likeButtonContainer = likeButtonContainer;
-        this.favoriteTeam = favoriteTeam;
-        teams = this.getId();
+    async init() {    
         this.footballDataApi = new FootballDataApi();
         this.id = this.getId();
 

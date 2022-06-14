@@ -6,7 +6,7 @@ import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 const favoritePage = {
     async init() {
         return `
-			<div class="favorite-page w-full h-auto flex-row ">
+			<div class="favorite-page dark:bg-gray-800 w-full h-auto flex-row ">
 				<div id="hero-image"></div>
 				<div class="title flex sm:flex-row font-semibold ml-6 text-2xl sm:items-center">
 					<div class="title-favorite-teams my-auto flex items-center w-2/4 ">
@@ -19,12 +19,12 @@ const favoritePage = {
 					</div>
 					<div class="search-favorite-teams sm:ml-auto mr-6 flex w-2/4">
 						<div class="ml-auto flex items-center border border-gray-300 w-4/4 sm:2/4 shadow-inner rounded-md ">
-							<button id="btn-search-teams" class="hover:shadow-inner m-auto flex items-center p-2">
+							<button id="btn-search-teams" class="hover:shadow-inner dark:text-white m-auto flex items-center p-2">
 								<svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 								  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 								</svg>
 							</button>
-							<input type="text" id="search-team" class="w-5/6  text-xl sm:ml-auto hidden focus:outline-none" placeholder="Search Team">
+							<input type="text" id="search-team" class="w-5/6 dark:bg-gray-800 dark:text-white  text-xl sm:ml-auto hidden focus:outline-none" placeholder="Search Team">
 						</div>
 					</div>
 				</div>

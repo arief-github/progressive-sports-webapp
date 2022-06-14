@@ -21,4 +21,5 @@ module.exports = {
   plugins: [
      require('tailwindcss-skip-link')(),
   ],
+  darkMode: 'class',
 }
