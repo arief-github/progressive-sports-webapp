@@ -9,7 +9,7 @@ import idCompetitions from '../../data/idCompetitions';
 const homePage = {
     async init() {
         return `
-        <a href="#league" class="skip-link top-0 w-full left-1/3 md:w-fit mb-4 md:mr-5 py-5 px-7 text-sm text-black font-bold uppercase border-2 border-transparent rounded hover:text-green-400 transition duration-200 focus:outline-none focus:ring focus:ring-green-500" tabindex="1">Skip to main content &rarr;</a>
+        <a href="#league" class="skip-link translate-y-[-100%] top-0 w-full left-1/3 md:w-fit mb-4 md:mr-5 py-5 px-7 text-sm text-black font-bold uppercase border-2 border-transparent rounded hover:text-green-400 transition duration-200 focus:outline-none focus:ring focus:ring-green-500 focus:translate-y-[5%]" tabindex="1">Skip to main content &rarr;</a>
 		<div id="hero-image"></div>
         <div class="flex">
             <div class="w-2/4 ml-6">
