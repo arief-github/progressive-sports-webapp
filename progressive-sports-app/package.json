@@ -7,7 +7,8 @@
     "start-dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start-prod": "node server.js",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "e2e": "codeceptjs run --steps"
   },
   "keywords": [],
   "author": "cpng-81",
@@ -23,6 +24,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "codeceptjs": "^3.3.3",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
@@ -36,6 +38,7 @@
     "postcss": "^8.4.13",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.5.0",
+    "puppeteer": "^14.4.0",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.0.24",
     "tailwindcss-skip-link": "^1.0.1",

@@ -25,7 +25,7 @@ const gamePage = {
         const time = new Date(element.utcDate).toLocaleTimeString("en-US")
         const date = new Date(element.utcDate).toLocaleDateString("en-US")
         return `
-            <div class="bg-[#f2f2f2] rounded-[8%] shadow-lg w-full h-[340px] flex flex-col">
+            <div class="card bg-[#f2f2f2] rounded-[8%] shadow-lg w-full h-[340px] flex flex-col">
                 <div class="mx-auto flex h-3/6 w-full bg-white">
                     <span class="font-semibold w-full flex flex-col text-black "> 
                         <img class="w-[70%] h-[70%] m-auto brightness-150" src="${element.competition.area.ensignUrl}">

@@ -13,7 +13,7 @@ const cardsLeague = ({idLeague, emblemUrl, leagueName, leagueAreaName, currentSe
 					  </div>
 				  </div>
 				  <div class="side-bottom w-2/4 mx-auto h-1/6 mt-4 flex">
-				  		<a href="#/league/${idLeague}" class="btn-favorite w-full h-full flex  bg-[#f9f9f9] shadow-md group hover:shadow-inner focus:outline-none focus:ring focus:ring-green-500">
+				  		<a href="#/league/${idLeague}" class="btn-detail-liga w-full h-full flex  bg-[#f9f9f9] shadow-md group hover:shadow-inner focus:outline-none focus:ring focus:ring-green-500">
 	             			<svg class=" m-auto h-5 w-5 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="13" y1="20" x2="20" y2="13" />  <path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
 						</a>
 				  </div>

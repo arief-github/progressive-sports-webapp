@@ -129,7 +129,7 @@ const detailLeaguePage = {
                     colorList = (colorList) ? false : true;
                     })
             }).catch((error)=>{
-                location.reload();
+                
             })
         }
 
@@ -181,7 +181,7 @@ const detailLeaguePage = {
                 colorList = (colorList) ? false : true;
                 })
             }).catch((error)=>{
-                location.reload();
+                
             })
 
     },
@@ -248,7 +248,7 @@ const detailLeaguePage = {
             })
         })
         .catch((error)=>{
-            location.reload();
+            
         })
     },
     addColorsTeams(colors = ["black", "white"]) {
@@ -312,7 +312,7 @@ const detailLeaguePage = {
                     });
                 });
             }).catch((error)=>{
-                location.reload();
+                
             })
            
 
