@@ -1,5 +1,7 @@
 import App from './views/app';
 import '../styles/main.css';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import './views/components/custom-loading'
 import './views/components/message-error'
 import './views/components/message-null'

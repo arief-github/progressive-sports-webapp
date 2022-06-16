@@ -13,7 +13,7 @@ const detailLeaguePage = {
         <div class="detailLeague flex flex-col">
             <div class="w-full flex flex-col p-8 flex-column">
                 <div class="w-full h-full m-auto">
-                    <img src="${this.competitionDetail.emblemUrl}" class="m-auto w-[200px] h-[200px]">
+                    <img data-src="${this.competitionDetail.emblemUrl}" class="lazyload fade-in m-auto w-[200px] h-[200px]">
                     <h1 class="m-auto mt-2 w-fit h-fit  text-3xl underline">${this.competitionDetail.name}</h1>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">Start : ${this.competitionDetail.currentSeason.startDate}</span>
                     <span class="m-auto mt-2 w-fit h-fit text-l flex">End : ${this.competitionDetail.currentSeason.endDate}</span>
@@ -230,7 +230,7 @@ const detailLeaguePage = {
                     <div class="item-list w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
                         <div class="w-full ${tampClass} ">${e.position}</div>
                         <div class="w-full flex justify-start ${tampClass} col-span-2 truncate p-2">
-                            <img class="w-10 h-10 mr-4" src="${e.team.crestUrl}" alt="${e.team.name}">
+                            <img class="lazyload fade-in w-10 h-10 mr-4" data-src="${e.team.crestUrl}" alt="${e.team.name}">
                             <a href="#/teams/${e.team.id}" class="m-auto truncate">${e.team.name}</a>
                         </div>
                         <div class="w-full  ${tampClass} hidden sm:inline">${e.playedGames}</div>
@@ -289,7 +289,7 @@ const detailLeaguePage = {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-teams").removeClass('hidden');
         const headTable = ()=>{
-            return `<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
+            return `<div id="list-teams" class="lazyload fade-in list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
         }
         document.querySelector('.frame-select').innerHTML = headTable();
         document.querySelector('.frame-select').innerHTML += `<custom-loading></custom-loading>`;

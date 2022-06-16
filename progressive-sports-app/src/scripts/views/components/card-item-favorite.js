@@ -3,7 +3,7 @@ const cardItemFavorite = ({idTeam, nameTeam, location, stadion, pathImage, clubC
 		return `
 		  <div class="item-card w-full h-[400px] flex flex-col bg-[#f2f2f2] rounded-[8%] shadow-lg">
 			  <div class="side-top w-full h-3/6 max-h-[50%] min-h-[50%] flex items-center bg-white p-4">
-			    <img class="mx-auto h-full" src="${pathImage}" alt="picture team">
+			    <img class="lazyload fade-in mx-auto h-full" data-src="${pathImage}" alt="picture team">
 			  </div>
 			  <div class="side-mid flex pt-2 px-4 h-2/6 w-full items-center">
 				  <div class="description min-w-[85%] mr-4">

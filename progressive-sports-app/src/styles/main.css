@@ -5,7 +5,7 @@
 
 @layer base {
     * {
-        font-family : 'Montserrat', sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
 
     body {
@@ -123,4 +123,12 @@
     }
 
     /* end footer */
+    .fade-in {
+        @apply opacity-0
+    }
+
+    .fade-in.lazyloaded {
+        @apply opacity-100;
+        transition: opacity 3000ms 300ms;
+    }
 }

@@ -29,7 +29,7 @@ const clubPage = {
 				<div class="hero-image w-full h-[300px] relative bg-gradient-to-r from-black via-white to-green-500 py-8 flex"
 					style = "
 						--tw-gradient-stops: ${colors[0]},${colors[1]},${colors[2] || colors[0] };">
-					<img class="m-auto h-full" src="${value.crestUrl || '?'}"></img>
+					<img class="lazyload fade-in m-auto h-full" data-src="${value.crestUrl || '?'}"></img>
 				</div>
 				<div class="flex flex-col md:flex-row w-full h-auto">
 					<div class="detail flex flex-col w-full md:w-5/6 h-full">
