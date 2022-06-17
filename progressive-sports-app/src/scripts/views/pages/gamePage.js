@@ -25,14 +25,14 @@ const gamePage = {
         const time = new Date(element.utcDate).toLocaleTimeString("en-US")
         const date = new Date(element.utcDate).toLocaleDateString("en-US")
         return `
-            <div class="bg-[#f2f2f2] rounded-[8%] shadow-lg w-full h-[340px] flex flex-col">
+            <div class="bg-[#f2f2f2] dark:bg-gray-800 rounded-[8%] shadow-lg w-full h-[340px] flex flex-col">
                 <div class="mx-auto flex h-3/6 w-full bg-white">
                     <span class="font-semibold w-full flex flex-col text-black "> 
                         <img class="w-[70%] h-[70%] m-auto brightness-150" src="${element.competition.area.ensignUrl}">
                     </span>
                 </div>
                 <div class="text-sm h-2/6 px-4 mt-4">
-                    <div class="truncate flex">
+                    <div class="text-next-match truncate flex">
                     <span class="font-semibold flex-col text-black"> 
                         <i class="truncate m-auto">${element.homeTeam.name}</i> 
                         <i class="m-auto">VS</i> 

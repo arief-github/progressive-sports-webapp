@@ -25,7 +25,7 @@ const clubPage = {
 
     async createHTML({ value, colors, activeComptData }) {
         return `
-			<div class="w-full h-auto bg-white">
+			<div class="w-full h-auto bg-white dark:bg-gray-800">
 				<div class="hero-image w-full h-[300px] relative bg-gradient-to-r from-black via-white to-green-500 py-8 flex"
 					style = "
 						--tw-gradient-stops: ${colors[0]},${colors[1]},${colors[2] || colors[0] };">
@@ -109,8 +109,8 @@ const clubPage = {
     itemSquad(e) {
         return `
 			   <div class="w-6/12 mx-auto rounded border">
-			    <div class="bg-white p-1 shadow-lg">
-			        <div class="transition hover:bg-indigo-50">
+			    <div class="bg-white dark:bg-gray-800 p-1 shadow-lg">
+			        <div class="transition hover:bg-indigo-50 dark:bg-gray-800">
 			        <!-- header -->
 			        <div class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-9">
 			            <i class="fas fa-info"></i>

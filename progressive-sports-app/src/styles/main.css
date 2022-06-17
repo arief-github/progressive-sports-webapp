@@ -88,6 +88,29 @@
         transition: max-height 0.3s ease-out, padding 0.3s ease;
     }
 
+
+    /* dark mode  */
+
+    .side-top {
+        @apply dark:bg-gray-700;
+    }
+
+    .text-next-match span i {
+        @apply dark:text-white;
+    }
+
+    button[id^="select"] {
+        @apply dark:text-gray-800;
+    }
+
+    .item-list {
+        @apply dark:text-gray-800;
+    }
+
+    .list-history tbody {
+        @apply dark:text-gray-800;
+    }
+
     /* these styles are applying just for footer */
     .footer-col:not(:last-child) {
         @apply mr-20;

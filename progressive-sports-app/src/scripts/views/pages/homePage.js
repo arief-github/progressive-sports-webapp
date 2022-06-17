@@ -22,7 +22,7 @@ const homePage = {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
-                    <input type="text" id="search-league" class="w-5/6  text-xl sm:ml-auto hidden focus:outline-none" placeholder="Search leagues">
+                    <input type="text" id="search-league" class="w-5/6 dark:bg-gray-800 text-xl sm:ml-auto hidden focus:outline-none" placeholder="Search leagues">
                 </div>
             </div>
         </div>

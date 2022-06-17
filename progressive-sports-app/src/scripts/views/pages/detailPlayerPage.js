@@ -8,8 +8,8 @@ const detailPlayerPage = {
         this.id = this.getId();
         return ` 
             <div class="buttonSelect w-full shadow-md bg-green-200 flex justify-center p-2">
-                <button id="playerBiodata" class="bg-white w-1/6 shadow-inner p-2 mx-4 bg-green-400 shadow-md font-semibold text-white text-sm md:text-base">Biodata</button>
-                <button id="matchesHistory" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Match History</button>
+                <button id="playerBiodata" class="bg-white w-1/6 shadow-inner p-2 mx-4 bg-green-400 shadow-md font-semibold dark:text-gray-800 text-white text-sm md:text-base">Biodata</button>
+                <button id="matchesHistory" class="w-1/6 dark:text-gray-800 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Match History</button>
             </div>
             <div class="player container min-h-[400px] w-auto p-8 flex flex-wrap justify-center">
             
@@ -52,7 +52,7 @@ const detailPlayerPage = {
         return `
               <div class="info">
               </div>
-              <div class="info info-player"></div>
+              <div class="info info-player dark:bg-gray-800"></div>
         `;
     },
     async renderInfoPlayer() {
