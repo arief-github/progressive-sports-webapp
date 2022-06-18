@@ -26,13 +26,9 @@ Feature("Home Page Testing")
 		}
 	})
 
-	Scenario("Menampilkan Error",async({I})=>{
-		I.amOnPage("/#/");
-		I.waitForElement("message-error",80)
-	})
 
 	Scenario("Klik Salah Satu Liga dan Menuju Halaman Detail Liga",async({I})=>{
-		I.wait(70);
+		I.wait(60);
 		I.amOnPage("/#/");
 		await I.waitForElement('.card-league',80).then(async()=>{
 			I.seeElement('.card-league');
