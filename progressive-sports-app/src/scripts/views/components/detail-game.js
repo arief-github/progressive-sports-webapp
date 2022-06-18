@@ -2,7 +2,7 @@ const detailGame = ({
 	teamOne, teamTwo, nameLeague, pathImage, ScoreOne, ScoreTwo, Venue, Date, Status, Stage   }) => {
 	   const render = () =>  {
 		return `
-		<div class=" container shadow-lg w-1/2 grid grid-cols-1 gap-4 content-around rounded-lg px-5 py-5  mx-auto  bg-white  shadow-md  ">
+		<div class=" container dark:bg-gray-800 shadow-lg w-1/2 grid grid-cols-1 gap-4 content-around rounded-lg px-5 py-5  mx-auto  bg-white  shadow-md  ">
 					<div class="text-center  text-4xl mb-5 font-semibold uppercase">Detail Game</div>
                     <div class="truncate text-sm">COMPETITION : ${nameLeague}</div>
                     <div class="truncate text-sm">STATUS :  ${Status}  </div>
@@ -12,7 +12,7 @@ const detailGame = ({
                 </div>
             </div>
 			<div class="text-center text-4xl my-5 font-semibold uppercase">Scores</div>
-	  <div id="lastMatch" class="container bg-white  shadow-md flex justify-evenly mx-auto my-10 mt-10">
+	  <div id="lastMatch" class="container bg-white dark:bg-gray-800 shadow-md flex justify-evenly mx-auto my-10 mt-10">
 	  <div class="text-center text-2xl sm:text-center">
 	  <img data-src="${pathImage}" class="lazyload fade-in m-auto w-[40%] h-[40%] h-36 brightness-150 ">
 			  <h2 class="mt-10 text-xl">${teamOne}</h2>

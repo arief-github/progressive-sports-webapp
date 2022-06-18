@@ -5,9 +5,10 @@ import cardItemFavorite from '../components/card-item-favorite';
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 
 const detailLeaguePage = {
-    async init() {
+    async init() {    
         this.footballDataApi = new FootballDataApi();
         this.id = this.getId();
+
         this.competitionDetail = await this.footballDataApi.getCompetitionsById({ id: this.id });
         return `
         <div class="detailLeague flex flex-col">
@@ -61,8 +62,8 @@ const detailLeaguePage = {
     async renderSchedules() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-matches").removeClass('hidden');
-        
-        const headTable = ()=>{
+
+        const headTable = () => {
             return `
                 <div class="list-matches w-full h-auto mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
@@ -77,8 +78,8 @@ const detailLeaguePage = {
                 </div>
             `;
         }
-        const btnConfigDate = ()=>{
-           return  `
+        const btnConfigDate = () => {
+            return `
             <div class="w-full flex ml-auto mt-2  py-[1px] px-8">
                 <div class="w-2/6 bg-green-400 m-auto p-2 shadow-md">
                     <label for="dateconfig" class="text-white text-base" >Date From<label>
@@ -92,30 +93,30 @@ const detailLeaguePage = {
 
             </div>`;
         }
-        const configurationDate = (value)=>{
+        const configurationDate = (value) => {
             const date = new Date();
             date.setDate(date.getDate() + value)
             let dateFrom = date.toLocaleDateString("en-US").split('/');
             return `${dateFrom[2]}-${(dateFrom[0] <= 9) ? `0${dateFrom[0]}` : `${dateFrom[0]}`}-${(dateFrom[1] <= 9) ? `0${dateFrom[1]}` : `${dateFrom[1]}`}`;
         }
-        const renderData = async ()=>{
+        const renderData = async () => {
             $(".item-list").remove();
             document.querySelector('.list-matches').innerHTML += `<custom-loading></custom-loading>`;
             await this.footballDataApi.getMatchesByIdCompetitions({
-                id: this.id, 
-                dateTo : $("#dateTo").val(),
-                dateFrom : $("#dateFrom").val(),
+                id: this.id,
+                dateTo: $("#dateTo").val(),
+                dateFrom: $("#dateFrom").val(),
             }).then((value) => {
-                    $("custom-loading").remove();
-                    document.querySelector('.list-matches').innerHTML = headTable();
-                    let colorList = false;
-                    let matches = [...value.matches].sort((a,b)=>{ return a.utcDate - b.utcDate}).reverse()
-                     matches.forEach((e) => {
+                $("custom-loading").remove();
+                document.querySelector('.list-matches').innerHTML = headTable();
+                let colorList = false;
+                let matches = [...value.matches].sort((a, b) => { return a.utcDate - b.utcDate }).reverse()
+                matches.forEach((e) => {
 
-                        let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
-                        const options = { timeZone: 'UTC', timeZoneName: 'false' };
-                        let startDate = new Date(e.utcDate);
-                        document.querySelector('.list-matches').innerHTML += `
+                    let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
+                    const options = { timeZone: 'UTC', timeZoneName: 'false' };
+                    let startDate = new Date(e.utcDate);
+                    document.querySelector('.list-matches').innerHTML += `
                         <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
                         <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${e.awayTeam.name}</div>
                         <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${e.homeTeam.name}</div>
@@ -127,25 +128,31 @@ const detailLeaguePage = {
                         </div>
                     `
                     colorList = (colorList) ? false : true;
+<<<<<<< HEAD
                     })
             }).catch((error)=>{
                 
+=======
+                })
+            }).catch((error) => {
+                location.reload();
+>>>>>>> arief-github
             })
         }
 
         document.querySelector('.frame-select').innerHTML = btnConfigDate();
         document.querySelector('.frame-select').innerHTML += headTable();
         renderData();
-        $('#btn-date').on("click",()=>{
-                renderData();
-                console.log("sss");
-            })
+        $('#btn-date').on("click", () => {
+            renderData();
+            console.log("sss");
+        })
     },
 
     async renderTopScorers() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-scorers").removeClass('hidden');
-        const headTable = ()=>{
+        const headTable = () => {
             return `
                 <div class="list-scorers w-full h-auto px-8 mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
@@ -163,8 +170,8 @@ const detailLeaguePage = {
         document.querySelector('.list-scorers').innerHTML += `<custom-loading></custom-loading>`;
         await this.footballDataApi.getTopScorersByIdCompetitions({ id: this.id })
             .then((value) => {
-            $("custom-loading").remove();
-            let colorList = false;
+                $("custom-loading").remove();
+                let colorList = false;
                 value.scorers.forEach((e) => {
                     let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
                     let startDate = new Date(e.player.lastUpdated);
@@ -178,10 +185,15 @@ const detailLeaguePage = {
                     <div class="w-full ${tampClass} hidden md:inline">${startDate.toUTCString()}</div>
                     </div>
                 `
-                colorList = (colorList) ? false : true;
+                    colorList = (colorList) ? false : true;
                 })
+<<<<<<< HEAD
             }).catch((error)=>{
                 
+=======
+            }).catch((error) => {
+                location.reload();
+>>>>>>> arief-github
             })
 
     },
@@ -192,7 +204,7 @@ const detailLeaguePage = {
             <div class="item-group bg-green-400 text-white">${nameGroup}</div>
           </div>`;
         };
-        const headTable = ()=>{
+        const headTable = () => {
             return `
                 <div class="list-standings w-full h-auto px-8 mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11 bg-green-400 text-white">
@@ -216,17 +228,17 @@ const detailLeaguePage = {
         document.querySelector('.list-standings').innerHTML += `<custom-loading></custom-loading>`;
 
         await this.footballDataApi.getAllCompetitionStandingsById({ id: this.id }).then((competition) => {
-            $("custom-loading").remove();
-            let colorList = false;
+                $("custom-loading").remove();
+                let colorList = false;
 
-            competition.standings.forEach((item) => {
-                let nameGroup = item.group;
-                if (nameGroup != null) {
-                    document.querySelector('.list-standings').innerHTML += titleGroup(nameGroup);
-                }
-                item.table.map((e) => {
-                    let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
-                    document.querySelector('.list-standings').innerHTML += `
+                competition.standings.forEach((item) => {
+                    let nameGroup = item.group;
+                    if (nameGroup != null) {
+                        document.querySelector('.list-standings').innerHTML += titleGroup(nameGroup);
+                    }
+                    item.table.map((e) => {
+                        let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
+                        document.querySelector('.list-standings').innerHTML += `
                     <div class="item-list w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
                         <div class="w-full ${tampClass} ">${e.position}</div>
                         <div class="w-full flex justify-start ${tampClass} col-span-2 truncate p-2">
@@ -243,13 +255,20 @@ const detailLeaguePage = {
                         <div class="w-full  ${tampClass}">${e.points}</div>
                     </div>
                 `;
-                    colorList = (colorList) ? false : true;
+                        colorList = (colorList) ? false : true;
+                    })
                 })
             })
+<<<<<<< HEAD
         })
         .catch((error)=>{
             
         })
+=======
+            .catch((error) => {
+                location.reload();
+            })
+>>>>>>> arief-github
     },
     addColorsTeams(colors = ["black", "white"]) {
         const colorsHex = [];
@@ -275,10 +294,10 @@ const detailLeaguePage = {
     },
     allButton(colors) {
         const buttons = {
-            "afterAdd": `<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            "afterAdd": `<svg xmlns="http://www.w3.org/2000/svg" aria-label="unlike" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                            </svg>`,
-            "beforeAdd": `<svg xmlns="http://www.w3.org/2000/svg" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            "beforeAdd": `<svg xmlns="http://www.w3.org/2000/svg" aria-label="like" style="color:${(colors[0] == "white")? colors[1] : colors[0]}" class=" m-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                           </svg>`
         };
@@ -288,8 +307,13 @@ const detailLeaguePage = {
     async renderTeams() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-teams").removeClass('hidden');
+<<<<<<< HEAD
         const headTable = ()=>{
             return `<div id="list-teams" class="lazyload fade-in list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
+=======
+        const headTable = () => {
+            return `<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
+>>>>>>> arief-github
         }
         document.querySelector('.frame-select').innerHTML = headTable();
         document.querySelector('.frame-select').innerHTML += `<custom-loading></custom-loading>`;
@@ -311,10 +335,15 @@ const detailLeaguePage = {
 
                     });
                 });
+<<<<<<< HEAD
             }).catch((error)=>{
                 
+=======
+            }).catch((error) => {
+                location.reload();
+>>>>>>> arief-github
             })
-           
+
 
         const prosesBtn = () => {
             $('.btn-favorite').each(async (i, obj) => {

@@ -162,13 +162,13 @@ const detailGamePage = {
                 `
                   <div id="${id} card-comment shadow-lg mb-6">
                     <div class="title-comment flex justify-center">
-                      <div class="rounded-lg bg-white p-6 shadow-lg w-80 border-2">
+                      <div class="rounded-lg bg-white dark:bg-gray-700 p-6 shadow-lg w-80 border-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                         </svg>
                         <span>${time}</span>
-                        <h2 class="mb-2 font-bold text-gray-800">${name}</h2>
-                        <p class="text-gray-700">${comment}</p>
+                        <h2 class="mb-2 font-bold text-gray-800 dark:text-white">${name}</h2>
+                        <p class="text-gray-700 dark:text-white">${comment}</p>
                          <button class="deleteComment">
                            <span class="bg-red-light mt-1 inline-block rounded-full p-1 pb-0">
                           <svg fill="red" width="20" height="20" viewBox="0 0 24 24">
@@ -191,13 +191,13 @@ const detailGamePage = {
                 document.querySelector('.allComments').innerHTML += `
                   <div id="${commentData.id} card-comment shadow-lg">
                     <div class="title-comment flex justify-center">
-                      <div class="rounded-lg bg-white p-6 shadow-lg w-80 border-2 mb-4">
+                      <div class="rounded-lg bg-white dark:bg-gray-700 p-6 shadow-lg w-80 border-2 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                         </svg>
                         <span>${commentData.time}</span>
-                        <h2 class="mb-2 font-bold text-gray-800">${commentData.name}</h2>
-                        <p class="text-gray-700">${commentData.comment}</p>
+                        <h2 class="mb-2 font-bold text-gray-800 dark:text-white">${commentData.name}</h2>
+                        <p class="text-gray-700 dark:text-white">${commentData.comment}</p>
                          <button class="deleteComment">
                            <span class="bg-red-light mt-1 inline-block rounded-full p-1 pb-0">
                           <svg fill="red" width="20" height="20" viewBox="0 0 24 24">
