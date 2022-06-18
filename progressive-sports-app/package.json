@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.prod.js",
     "start-prod": "node server.js",
     "lint": "eslint ./src",
-    "e2e": "codeceptjs run --steps"
+    "e2e": "codeceptjs run --steps",
+    "test": "karma start"
   },
   "keywords": [],
   "author": "cpng-81",
@@ -62,6 +63,7 @@
     "firebase": "^9.8.2",
     "idb": "^7.0.1",
     "jquery": "^3.6.0",
+    "karma": "^6.4.0",
     "regenerator-runtime": "^0.13.9",
     "webpack-merge": "^5.8.0"
   }

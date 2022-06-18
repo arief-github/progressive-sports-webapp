@@ -128,15 +128,9 @@ const detailLeaguePage = {
                         </div>
                     `
                     colorList = (colorList) ? false : true;
-<<<<<<< HEAD
                     })
             }).catch((error)=>{
                 
-=======
-                })
-            }).catch((error) => {
-                location.reload();
->>>>>>> arief-github
             })
         }
 
@@ -187,22 +181,17 @@ const detailLeaguePage = {
                 `
                     colorList = (colorList) ? false : true;
                 })
-<<<<<<< HEAD
             }).catch((error)=>{
                 
-=======
-            }).catch((error) => {
-                location.reload();
->>>>>>> arief-github
             })
 
     },
     async renderTable() {
         const titleGroup = (nameGroup) => {
             return `
-        <div class="item-list w-full h-full py-[1px] mt-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
-            <div class="item-group bg-green-400 text-white">${nameGroup}</div>
-          </div>`;
+            <div class="item-list w-full h-full py-[1px] mt-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11">
+                <div class="item-group bg-green-400 text-white">${nameGroup}</div>
+              </div>`;
         };
         const headTable = () => {
             return `
@@ -221,7 +210,7 @@ const detailLeaguePage = {
                     </div>
                 </div>
             `;
-        }
+        };
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-standings").removeClass('hidden');
         document.querySelector('.frame-select').innerHTML = headTable();
@@ -259,17 +248,11 @@ const detailLeaguePage = {
                     })
                 })
             })
-<<<<<<< HEAD
-        })
-        .catch((error)=>{
+            .catch((error)=>{
             
-        })
-=======
-            .catch((error) => {
-                location.reload();
             })
->>>>>>> arief-github
     },
+
     addColorsTeams(colors = ["black", "white"]) {
         const colorsHex = [];
         const typoColorNames = {
@@ -307,13 +290,8 @@ const detailLeaguePage = {
     async renderTeams() {
         $(".frame-select").children().toggleClass('hidden');
         $(".frame-select .list-teams").removeClass('hidden');
-<<<<<<< HEAD
         const headTable = ()=>{
             return `<div id="list-teams" class="lazyload fade-in list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
-=======
-        const headTable = () => {
-            return `<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"></div>`;
->>>>>>> arief-github
         }
         document.querySelector('.frame-select').innerHTML = headTable();
         document.querySelector('.frame-select').innerHTML += `<custom-loading></custom-loading>`;
@@ -335,13 +313,8 @@ const detailLeaguePage = {
 
                     });
                 });
-<<<<<<< HEAD
             }).catch((error)=>{
-                
-=======
-            }).catch((error) => {
-                location.reload();
->>>>>>> arief-github
+
             })
 
 
