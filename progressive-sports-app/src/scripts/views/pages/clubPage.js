@@ -7,7 +7,7 @@ const clubPage = {
     async init() {
         let html;
         this.data = await this.getData();
-        this.activeCompt = this.renderCompetitions({ data: this.data })
+        this.activeCompt = this.reniderCompetitons({ data: this.data })
         this.colors = this.addColorsTeams(this.data.clubColors.split(" / "));
         html = await this.createHTML({
             value: this.data,
@@ -153,9 +153,9 @@ const clubPage = {
 		`
     },
 
-    async afterRender() {
+    async afterRender(data) {
         $('.allButton #addToFavorite').on('click', async () => {
-            await this.addToFavoriteTeamIDB();
+            await this.addToFavoriteTeamIDB(this.data || data);
         })
         this.data.squad.forEach((e) => {
             document.querySelector('.squad div.squad-team').innerHTML += this.itemSquad(e);
@@ -206,14 +206,14 @@ const clubPage = {
         });
         return colorsHex;
     },
-    async addToFavoriteTeamIDB() {
-        if (!!await FavoriteTeamIDB.getTeam(this.data.id)) {
-            await FavoriteTeamIDB.deleteTeam(this.data.id).then(() => {
+    async addToFavoriteTeamIDB(data) {
+        if (!!await FavoriteTeamIDB.getTeam(data.id)) {
+            await FavoriteTeamIDB.deleteTeam(data.id).then(() => {
                 $('.allButton #addToFavorite').empty();
                 $('.allButton #addToFavorite').append(this.allButton(this.colors)["beforeAdd"]);
             })
         } else {
-            await FavoriteTeamIDB.putTeam(this.data).then(() => {
+            await FavoriteTeamIDB.putTeam(data).then(() => {
                 $('.allButton #addToFavorite').empty();
                 $('.allButton #addToFavorite').append(this.allButton(this.colors)["afterAdd"]);
             })
