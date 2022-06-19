@@ -145,6 +145,10 @@
         @apply inline-block px-1 py-1 text-white font-bold rounded-full;
     }
 
+    .footer-col ul li {
+        @apply flex gap-5 mb-6 md:text-2xl text-sm text-white;
+    }
+
     /* end footer */
     .fade-in {
         @apply opacity-0
