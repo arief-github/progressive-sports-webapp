@@ -1,3 +1,4 @@
+
 import detailGame from "../components/detail-game";
 import detailStat from "../components/detail-table";
 import FootballDataApi from "../../data/footballDataApi";
@@ -6,6 +7,7 @@ import db from '../../data/commentHelperFirebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 import { Timestamp } from 'firebase/firestore';
 import heroImage from "../components/hero-image";
+import heroGame from "../components/hero-game";
 
 
 const detailGamePage = {
@@ -14,22 +16,22 @@ const detailGamePage = {
         <div id="hero-image"></div>
       <div class="detail-games relative">
       </div> 
-      <p class="text-center text-4xl mb-10 font-semibold uppercase">Head-To-Head</p>
+      <p class="text-center text-xl lg:text-4xl mb-10 font-semibold uppercase">Head-To-Head</p>
       <div class="list-standings w-full h-auto px-8 mt-4" >
-      <div class="item-title w-3/4 h-auto py-2 mx-auto  grid gap-2 grid-cols-4 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 bg-green-400 justify-center text-white">
-          <div class="w-full mx-5">Team</div>
-          <div class="w-full mx-5 ">Won</div>
-          <div class="w-full mx-5 ">Lose</div>
-          <div class="w-full mx-5 md:inline">Draw</div>
-          <div class="w-full hidden mx-5 lg:inline">Half Time</div>
-          <div class="w-full hidden mx-5 md:inline">Full Time</div>
+      <div class="item-title w-3/4 sm:w-1/2 lg:w-1/2 h-auto mx-auto  grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 bg-green-400 justify-center text-white">
+          <div class="w-full text-xs mx-5 lg:text-sm">Team</div>
+          <div class="w-full text-xs mx-5 lg:text-sm">Won</div>
+          <div class="w-full text-xs mx-5 lg:text-sm">Lose</div>
+          <div class="w-full text-xs hidden mx-5 md:inline lg:text-sm">Draw</div>
+          <div class="w-full text-xs hidden lg:hidden xl:inline text-sm">Half Time</div>
+          <div class="w-full text-xs hidden lg:inline xl:inline text-sm">Full Time</div>
       </div>
-      <div class="item-list w-3/4 h-auto py-2 mx-auto shadow-md  grid gap-2 grid-cols-4 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 bg-green-200 justify-center text-black">
+      <div class="item-list w-3/4 sm:w-1/2 lg:w-1/2 h-auto py-2 mx-auto shadow-md  grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 bg-green-200 justify-center text-black">
   </div>
   </div>
   </div>
        <div class="form relative w-80 m-auto">
-        <p class="mb-20 text-center  text-4xl mt-10 font-medium uppercase">Discussion</p>
+        <p class="mb-20 text-center text-xl lg:text-4xl mt-10 font-medium uppercase">Discussion</p>
         <div class="allComments mx-auto"></div>
              <div class="flex">           
                 <form class = "m-auto form-review" method="POST">
@@ -48,7 +50,7 @@ const detailGamePage = {
     `;
     },
     async afterRender() {
-        document.getElementById('hero-image').innerHTML = heroImage;
+        document.getElementById('hero-image').innerHTML = heroGame;
         await this.detailMatch();
         await this.detailItem();
         await this.showDiscussionCard();
