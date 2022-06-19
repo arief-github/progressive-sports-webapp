@@ -112,10 +112,6 @@
     }
 
     /* these styles are applying just for footer */
-    .footer-col:not(:last-child) {
-        @apply mr-20;
-    }
-
     nav img {
         @apply h-8;
     }

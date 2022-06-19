@@ -7,7 +7,7 @@ const clubPage = {
     async init() {
         let html;
         this.data = await this.getData();
-        this.activeCompt = this.reniderCompetitons({ data: this.data })
+        this.activeCompt = this.renderCompetitions({ data: this.data })
         this.colors = this.addColorsTeams(this.data.clubColors.split(" / "));
         html = await this.createHTML({
             value: this.data,
@@ -143,6 +143,10 @@ const clubPage = {
 						    <tr>
 						      <td>Shirt Number</td>
 						      <td>${e.shirtNumber || '?'}</td> 
+						    </tr>
+						     <tr>
+						      <td>See More Detail</td>
+						      <td><a href="#/players/${e.id}"><i class="fas fa-info"></i></a></td> 
 						    </tr>
 						  </tbody>
 						</table>
