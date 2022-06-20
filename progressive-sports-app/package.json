@@ -71,6 +71,7 @@
     "idb": "^7.0.1",
     "jquery": "^3.6.0",
     "regenerator-runtime": "^0.13.9",
+    "tailwind-toast": "^1.1.0",
     "webpack-merge": "^5.8.0"
   }
 }

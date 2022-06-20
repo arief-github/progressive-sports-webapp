@@ -3,6 +3,7 @@ import cardItemFavorite from '../components/card-item-favorite'
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
+
 const favoritePage = {
     async init() {
         return `
@@ -123,6 +124,10 @@ const favoritePage = {
 						this.allTeams = await FavoriteTeamIDB.getAllTeams();
 						await this.updateTeams();
 					})
+					.then(() => {
+						let message = `${data.name} sucessfuly deleted from favorite`;
+						this.showNotification(message);
+					})
 				}else{
 					await FavoriteTeamIDB.putTeam(data).then(()=>{
 						let target = e.currentTarget;						
@@ -156,6 +161,22 @@ const favoritePage = {
             $('#search-team').toggleClass('hidden');
 
         })
+    },
+    showNotification(message) {
+        const title = "Progressive Web Apps";
+        const options = {
+            body: message,
+            icon: "./icons/icon.png",
+            badge: "./icons/icon.png",
+        }
+
+        if (Notification.permission === 'granted') {
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.showNotification(title, options);
+            })
+        } else {
+            console.error("Feature Notification Not Allowed")
+        }
     }
 }
 

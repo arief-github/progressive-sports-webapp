@@ -13,7 +13,7 @@ const NotificationHelper = {
         return;
       }
    
-      this._showNotification();
+      //this._showNotification();
     },
    
     _checkAvailability() {

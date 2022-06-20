@@ -2,6 +2,8 @@ import UrlParser from '../../routes/url-parser';
 import FootballDataApi from '../../data/footballDataApi';
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
 
+const { toast } = require('tailwind-toast');
+
 const clubPage = {
 
     async init() {
@@ -145,7 +147,7 @@ const clubPage = {
 						      <td>${e.shirtNumber || '?'}</td> 
 						    </tr>
 						     <tr>
-						      <td>See More Detail</td>
+						      <td>More Detail</td>
 						      <td><a href="#/players/${e.id}"><i class="fas fa-info"></i></a></td> 
 						    </tr>
 						  </tbody>
@@ -213,14 +215,62 @@ const clubPage = {
     async addToFavoriteTeamIDB(data) {
         if (!!await FavoriteTeamIDB.getTeam(data.id)) {
             await FavoriteTeamIDB.deleteTeam(data.id).then(() => {
-                $('.allButton #addToFavorite').empty();
-                $('.allButton #addToFavorite').append(this.allButton(this.colors)["beforeAdd"]);
-            })
+                    $('.allButton #addToFavorite').empty();
+                    $('.allButton #addToFavorite').append(this.allButton(this.colors)["beforeAdd"]);
+                })
+                .then(() => {
+                    let message = `${data.name} sucessfuly deleted from favorite`;
+                    toast()
+                        .danger(message)
+                        .with({
+                            shape: 'pill',
+                            duration: 4000,
+                            speed: 1000,
+                            positionX: 'end',
+                            positionY: 'top',
+                            color: 'bg-blue-800',
+                            fontColor: 'blue',
+                            fontTone: 200
+                        }).show()
+                    this.showNotification(message);
+                })
         } else {
             await FavoriteTeamIDB.putTeam(data).then(() => {
-                $('.allButton #addToFavorite').empty();
-                $('.allButton #addToFavorite').append(this.allButton(this.colors)["afterAdd"]);
+                    $('.allButton #addToFavorite').empty();
+                    $('.allButton #addToFavorite').append(this.allButton(this.colors)["afterAdd"]);
+                })
+                .then(() => {
+                    let message = `${data.name} sucessfuly added to favorite`;
+                    toast()
+                        .success(message)
+                        .with({
+                            shape: 'pill',
+                            duration: 4000,
+                            speed: 1000,
+                            positionX: 'end',
+                            positionY: 'top',
+                            color: 'bg-blue-800',
+                            fontColor: 'blue',
+                            fontTone: 200
+                        }).show()
+                    this.showNotification(message);
+                })
+        }
+    },
+    showNotification(message) {
+        const title = "Progressive Web Apps";
+        const options = {
+            body: message,
+            icon: "./icons/icon.png",
+            badge: "./icons/icon.png",
+        }
+
+        if (Notification.permission === 'granted') {
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.showNotification(title, options);
             })
+        } else {
+            console.error("Feature Notification Not Allowed")
         }
     }
 }
