@@ -1,6 +1,7 @@
 import UrlParser from '../../routes/url-parser';
 import FootballDataApi from '../../data/footballDataApi';
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
+import Toastify from 'toastify-js'
 
 const { toast } = require('tailwind-toast');
 
@@ -217,42 +218,42 @@ const clubPage = {
             await FavoriteTeamIDB.deleteTeam(data.id).then(() => {
                     $('.allButton #addToFavorite').empty();
                     $('.allButton #addToFavorite').append(this.allButton(this.colors)["beforeAdd"]);
-                })
-                .then(() => {
                     let message = `${data.name} sucessfuly deleted from favorite`;
-                    toast()
-                        .danger(message)
-                        .with({
-                            shape: 'pill',
-                            duration: 4000,
-                            speed: 1000,
-                            positionX: 'end',
-                            positionY: 'top',
-                            color: 'bg-blue-800',
-                            fontColor: 'blue',
-                            fontTone: 200
-                        }).show()
+                    Toastify({
+                        text: `${data.name} sucessfuly deleted from favorite`,
+                        duration: 3000,
+                        destination: "#/favorite-page",
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "center", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        offset: { x: 30, y: 30 },
+                        style: {
+                          background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                        onClick: function(){} // Callback after click
+                      }).showToast();
                     this.showNotification(message);
                 })
         } else {
             await FavoriteTeamIDB.putTeam(data).then(() => {
                     $('.allButton #addToFavorite').empty();
                     $('.allButton #addToFavorite').append(this.allButton(this.colors)["afterAdd"]);
-                })
-                .then(() => {
                     let message = `${data.name} sucessfuly added to favorite`;
-                    toast()
-                        .success(message)
-                        .with({
-                            shape: 'pill',
-                            duration: 4000,
-                            speed: 1000,
-                            positionX: 'end',
-                            positionY: 'top',
-                            color: 'bg-blue-800',
-                            fontColor: 'blue',
-                            fontTone: 200
-                        }).show()
+                    Toastify({
+                        text: `${data.name} sucessfuly added to favorite`,
+                        duration: 3000,
+                        destination: "#/favorite-page",
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "center", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        offset: { x: 30, y: 30 },
+                        style: {
+                          background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                        onClick: function(){} // Callback after click
+                      }).showToast();
                     this.showNotification(message);
                 })
         }
