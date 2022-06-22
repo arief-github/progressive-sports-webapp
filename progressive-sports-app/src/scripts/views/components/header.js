@@ -13,6 +13,7 @@ const header = {
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-2 desktop-navbar focus:outline-none focus:ring focus:ring-green-500">
 							<a href="#/" class="py-4 px-2 font-semibold border-b-4 border-green-500 dark:text-white text-green-500 ">Home</a>
+							<a href="#/news-page" class="py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300">News</a>
 							<a href="#/favorite-page" class="py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300">Favorite Teams</a>
 							<a href="#/game-page" class="py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300 ">Game</a>
 							<a href="javascript:scrollingDown()" class="scrPy py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
