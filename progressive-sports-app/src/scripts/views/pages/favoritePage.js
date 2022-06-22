@@ -3,6 +3,7 @@ import cardItemFavorite from '../components/card-item-favorite'
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
+import Toastify from 'toastify-js';
 
 const favoritePage = {
     async init() {
@@ -126,6 +127,21 @@ const favoritePage = {
 					})
 					.then(() => {
 						let message = `${data.name} sucessfuly deleted from favorite`;
+						Toastify({
+							text: `${data.name} sucessfuly deleted from favorite`,
+							duration: 3000,
+							destination: "#/",
+							close: true,
+							gravity: "top", // `top` or `bottom`
+							position: "center", // `left`, `center` or `right`
+							stopOnFocus: true, // Prevents dismissing of toast on hover
+							offset: { x: 30, y: 30 },
+							style: {
+							  background: "linear-gradient(to right, #00b09b, #96c93d)",
+							},
+							onClick: function(){} // Callback after click
+						  }).showToast();
+						
 						this.showNotification(message);
 					})
 				}else{
