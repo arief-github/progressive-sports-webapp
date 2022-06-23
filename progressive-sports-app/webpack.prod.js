@@ -13,6 +13,23 @@ module.exports = merge(common, {
   mode: 'production',
   module: {
     rules: [
+        {
+          test: /\.(png|jpg|jpeg)$/i,
+          use: {
+            loader: 'responsive-loader',
+            options: {
+              name: '[name].[ext]',
+              adapter: require('responsive-loader/sharp'),
+              outputPath: './assets/img',
+              quality: 50,
+              progressive: true,
+            },
+          },
+        },
+        {
+          test: /\.html$/i,
+          loader: 'html-loader',
+        },
       {
         test: /\.js$/,
         exclude: '/node_modules/',
