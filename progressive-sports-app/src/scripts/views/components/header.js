@@ -1,3 +1,5 @@
+import logoWebpDark from '../../../public/images/Progressive-Sport-Logo-Dark.png?format=webp';
+import logoWebpLight from '../../../public/images/Progressive-Sport-Logo-Light.png?format=webp';
 const header = {
     init() {
         return ` 
@@ -7,7 +9,7 @@ const header = {
 						<div>
 							<!-- Website Logo -->
 							<a href="#" class="flex items-center dark:text-white py-4 px-2 focus:outline-none focus:ring focus:ring-green-500">
-								<img src="./images/Progressive-Sport-Logo-Dark.png" alt="Logo">
+								<img src="../assets/image/Progressive-Sport-Logo-Dark.webp" alt="Logo">
 							</a>
 						</div>
 						<!-- Primary Navbar items -->
