@@ -8,6 +8,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 import { Timestamp } from 'firebase/firestore';
 import heroImage from "../components/hero-image";
 import heroGame from "../components/hero-game";
+import Toastify from 'toastify-js'
 
 
 const detailGamePage = {
@@ -139,6 +140,18 @@ const detailGamePage = {
 
         btnSubmit.addEventListener('click', (event) => {
             event.preventDefault();
+            Toastify({
+              text: "successfully added a comment",
+              duration: 3000,
+              destination: "#/favorite-page",
+              gravity: "top", // `top` or `bottom`
+              position: "center", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+              },
+              onClick: function(){} // Callback after click
+            }).showToast();
 
             // validation, discuss input can't be empty
             if (nameInput.value === '' || discussInput.value === '') {
