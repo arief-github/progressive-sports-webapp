@@ -45,6 +45,7 @@ const header = {
 				<ul class="absolute bg-white w-full focus:outline-none focus:ring focus:ring-green-500">
 					<li><a href="#/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 bg-green-500 text-white">Home</a></li>
 					<li><a href="#/favorite-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Favorite Teams</a></li>
+					<li><a href="#/news-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">News</a></li>
 					<li><a href="#/game-page" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Game</a></li>
 					<li><a href="javascript:scrollingDown()" class="scrPy block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
 					<button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
