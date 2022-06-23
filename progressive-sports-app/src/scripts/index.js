@@ -1,3 +1,5 @@
+import 'regenerator-runtime';
+
 import App from './views/app';
 import '../styles/main.css';
 import 'lazysizes';

@@ -10,7 +10,12 @@ module.exports = {
         filename: "[name].bundle.js",
     },
     module: {
-        rules: [{
+        rules: [
+          {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            type: "asset",
+          },
+          {
                 test: /\.css$/i,
                 use: [
                   {
@@ -23,22 +28,7 @@ module.exports = {
                     loader: 'postcss-loader',
                   }
                 ],
-            },
-            {
-              test: /\.(png|svg|jpg|jpeg|gif)$/,
-              use: {
-                loader: 'file-loader',
-                options: {
-                  outputPath: './assets/img',
-                  quality: 50,
-                  progressive: true,
-                },
-              },
-            },
-            {
-              test: /\.html$/i,
-              loader: 'html-loader',
-            },
+            },          
         ]
     },
     plugins: [
@@ -46,14 +36,6 @@ module.exports = {
             template: path.resolve(__dirname, "src/templates/index.html"),
             favicon: path.resolve(__dirname, 'src/public/icons/favicon.ico'),
             filename: "index.html",
-        }),
-        new CopyWebpackPlugin({
-          patterns: [
-            {
-              from: path.resolve(__dirname, 'src/public/'),
-              to: path.resolve(__dirname, 'dist/')
-            },
-          ],
         }),
         new webpack.ProvidePlugin({
           $: "jquery",

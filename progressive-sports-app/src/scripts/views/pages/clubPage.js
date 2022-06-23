@@ -227,7 +227,6 @@ const clubPage = {
                         gravity: "top", // `top` or `bottom`
                         position: "center", // `left`, `center` or `right`
                         stopOnFocus: true, // Prevents dismissing of toast on hover
-                        offset: { x: 30, y: 30 },
                         style: {
                           background: "linear-gradient(to right, #00b09b, #96c93d)",
                         },
@@ -248,7 +247,6 @@ const clubPage = {
                         gravity: "top", // `top` or `bottom`
                         position: "center", // `left`, `center` or `right`
                         stopOnFocus: true, // Prevents dismissing of toast on hover
-                        offset: { x: 30, y: 30 },
                         style: {
                           background: "linear-gradient(to right, #00b09b, #96c93d)",
                         },
