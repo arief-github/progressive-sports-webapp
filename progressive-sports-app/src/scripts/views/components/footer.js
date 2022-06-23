@@ -1,17 +1,8 @@
+import Toastify from 'toastify-js';
 const footer = {
-     init() {
+    init() {
         return `
-	        <div id="alert-3" class=" hidden alert-success flex p-4 m-auto w-96  bg-green-100 rounded-lg dark:bg-green-200" role="alert">
-			  <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-			  <div class="ml-3 text-sm font-medium text-green-700 dark:text-green-800">
-			    Thank You! 👍 Your message has been accepted.
-			  </div>
-			  <button type="button" class="alert-del ml-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-green-200 dark:text-green-600 dark:hover:bg-green-300" data-dismiss-target="#alert-3" aria-label="Close">
-			    <span class="sr-only">Close</span>
-			    <svg class=" w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-			  </button>
-			</div>
-		<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('./images/footer.jpg');">
+    	<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed backdrop-filter backdrop-blur-sm" style="background-image:url('./images/footer.jpg');">
   			<div class="footer-col mt-3 sm:mb-4">
         		<ul class="list-none inline">
 					<li>
@@ -49,7 +40,7 @@ const footer = {
 				    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
 				<textarea id=z"message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-green-500" placeholder="Leave a comment..."></textarea>
 				  </div>
-				  <button type="submit" class="btn-send text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-80 sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark: focus:ring focus:ring-green-500">Submit</button>
+				  <button type="submit" class="btn-send text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-500 dark: focus:ring focus:ring-green-500">Submit</button>
 				<button disabled type="button" class="hidden btn-loading text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-green-600 focus:outline-none focus:ring focus:ring-green-500 inline-flex items-center">
 				    <svg role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
 				    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -67,11 +58,11 @@ const footer = {
 		</footer>
 		`;
     },
-     formSubmitting() {
+    formSubmitting() {
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzj4aHimj0V43dxno8mmTvb-0lMgb7C58GNlpt65BBFusAmt0iT6zPjm-mTvM5TIqV7tA/exec';
         const form = document.forms['kotak-informasi'];
         const btnSend = document.querySelector('.btn-send');
-        const btnLoading =  document.querySelector('.btn-loading');
+        const btnLoading = document.querySelector('.btn-loading');
         const closeAlert = document.querySelector('.alert-del');
 
         form.addEventListener('submit', (event) => {
@@ -81,39 +72,65 @@ const footer = {
             btnLoading.classList.toggle('hidden');
             btnSend.classList.toggle('hidden');
 
-            $(form).find('button.btn-send').prop('disabled',true);
+            $(form).find('button.btn-send').prop('disabled', true);
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
                     console.log('Success!', response);
 
                     btnLoading.classList.toggle('hidden');
-            		btnSend.classList.toggle('hidden');
+                    btnSend.classList.toggle('hidden');
 
-                    // success alert
-                    $('.alert-success').toggleClass('hidden');
-                    $('.alert-success')
-                    	.find('button.alert-del')
-                    		.on('click',()=>{
-                    			$('.alert-success').addClass('hidden')
-                    		}
-                    	);
+                    let message = ` Thank You! 👍 Your message has been accepted.`;
+
+                    Toastify({
+                        text: message ,
+                        duration: 3000,
+                        destination: "#/",
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "center", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                        onClick: function() {} // Callback after click
+                    }).showToast();
+
+                    this.showNotification(message);
 
                     form.reset();
-		            $(form).find('button.btn-send').prop('disabled',false);
+                    $(form).find('button.btn-send').prop('disabled', false);
                 })
                 .catch((error) => console.log('Error!', error.message))
         });
     },
-    scrollingTop(){
-    	$('button.scrollTop').click(function(){
-    		$('html,body').animate({ scrollTop:0 }, "slow");
-    		return false;
-    	})
+    scrollingTop() {
+        $('button.scrollTop').click(function() {
+            $('html,body').animate({ scrollTop: 0 }, "slow");
+            return false;
+        })
     },
-     afterRender(){
-		this.formSubmitting();
-		this.scrollingTop();
-	},    
+    showNotification(message) {
+        const title = "Progressive Web Apps";
+
+        const options = {
+            body: message,
+            icon: "./icons/icon.png",
+            badge: "./icons/icon.png",
+        }
+
+        if (Notification.permission === 'granted') {
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.showNotification(title, options);
+            })
+        } else {
+            console.error("Feature Notification Not Allowed")
+        }
+    },
+    afterRender() {
+        this.formSubmitting();
+        this.scrollingTop();
+    },
 }
 
 export default footer;
