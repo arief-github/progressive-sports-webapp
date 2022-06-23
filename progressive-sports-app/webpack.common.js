@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require("webpack");
 
 module.exports = {
@@ -8,16 +7,23 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
+        assetModuleFilename: 'assets/[name].[ext]',
+        
     },
     module: {
+      
         rules: [
+          
           {
             test: /\.(jpe?g|png|gif|svg)$/i,
             type: "asset",
           },
           {
-                test: /\.css$/i,
+               test: /\.css$/i,
+                  exclude: '/node_modules/',
+
                 use: [
+      
                   {
                     loader: 'style-loader',
                   },
