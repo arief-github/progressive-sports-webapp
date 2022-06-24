@@ -85,20 +85,21 @@ module.exports = merge(common, {
           purpose: 'any',
         },
       ],
-      
+
     }),
     new InjectManifest({
       swSrc: './src/scripts/sw.js',
       swDest: 'sw.js',
-     
-      
     }),
+
   ],
-  
+
   optimization: {
     minimizer: [
+
       new ImageMinimizerPlugin({
         minimizer: {
+
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
             plugins: [
@@ -108,26 +109,6 @@ module.exports = merge(common, {
         },
       }),
     ],
-    // splitChunks: {
-    //   chunks: 'all',
-    //   minSize: 20000,
-    //   maxSize: 20000,
-    //   minChunks: 1,
-    //   maxAsyncRequests: 30,
-    //   maxInitialRequests: 30,
-    //   automaticNameDelimiter: '~',
-    //   enforceSizeThreshold: 50000,
-    //   cacheGroups: {
-    //     defaultVendors: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       priority: -10,
-    //     },
-    //     default: {
-    //       minChunks: 2,
-    //       priority: -20,
-    //       reuseExistingChunk: true,
-    //     },
-    //   },
-    // },
+
   },
 });
