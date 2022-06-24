@@ -1,8 +1,9 @@
+import footerImageWebp from '../../../public/images/footer.jpg?format=webp';
 import Toastify from 'toastify-js';
 const footer = {
     init() {
         return `
-    	<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed backdrop-filter backdrop-blur-sm" style="background-image:url('./images/footer.jpg');">
+    	<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('../assets/img/footer.webp');">
   			<div class="footer-col mt-3 sm:mb-4">
         		<ul class="list-none inline">
 					<li>
@@ -50,7 +51,7 @@ const footer = {
 				</button>
 			</form>
 			</div>
-			<div class="absolute right-5 bottom-5 text-green-700">
+			<div class="absolute left-5 bottom-5 text-green-700">
 				<button class="scrollTop">
 					<svg class="w-14 h-14 dark:text-white" fill="text-green-700" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path></svg>
 				</button>		

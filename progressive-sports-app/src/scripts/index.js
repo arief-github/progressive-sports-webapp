@@ -5,6 +5,7 @@ import '../styles/main.css';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import './views/components/custom-loading'
+import './views/components/fab-darkmode'
 import './views/components/message-error'
 import './views/components/message-null'
 import swRegister from './utils/sw-register';
