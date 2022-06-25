@@ -10,7 +10,7 @@ const homePage = {
     async init() {
         return `
         <a href="#league" class="skip-link translate-y-[-100%] top-0 w-full left-1/3 md:w-fit mb-4 md:mr-5 py-5 px-7 text-sm text-black font-bold uppercase border-2 border-transparent rounded hover:text-green-400 transition duration-200 focus:outline-none focus:ring focus:ring-green-500 focus:translate-y-[5%]" tabindex="1">Skip to main content &rarr;</a>
-		<div id="hero-image"></div>
+        <div id="hero-image"></div>
         <div class="flex dark:bg-gray-800">
             <div class="w-2/4 ml-6">
                 <h1 class="text-xl font-bold  md:text-2xl md:font-semibold ">LEAGUES</h1>
@@ -26,11 +26,11 @@ const homePage = {
                 </div>
             </div>
         </div>
-		<div id="league" class="league-container dark:bg-gray-800 w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div id="league" class="league-container dark:bg-gray-800 w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             <custom-loading class="col-span-full"></custom-loading>
-		</div>
-		
-		`;
+        </div>
+        
+        `;
     },
     async afterRender() {
         document.getElementById('hero-image').innerHTML = heroImage;
@@ -58,10 +58,10 @@ const homePage = {
                         currentSeasonEndDate: item.currentSeason.endDate,
                     })
                 })
-            }).catch((e)=>{
-                if(e.status == 0){
+            }).catch((e) => {
+                if (e.status == 0) {
                     leaguesCardContainer.innerHTML = `<message-error message="Limit Request waiting 1 minute" class="col-span-full"></message-error>`;
-                }else{
+                } else {
                     leaguesCardContainer.innerHTML = `<message-error message="${e.statusText}"></message-error>`;
                 }
             })
@@ -75,11 +75,11 @@ const homePage = {
                 if (listCards.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
                     item.classList.add('inline');
                     item.classList.remove('hidden');
-                    
+
                 } else {
                     item.classList.add('hidden');
                     item.classList.remove('inline');
-                    
+
                 }
             })
         })

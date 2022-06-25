@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,12 +15,12 @@
     <link rel="icon" href="favicon.png">
     <link rel="manifest" href="manifest.json">
     <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-        src="https://cdn.jsdelivr.net/npm/toastify-js"
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+    src = "https://cdn.jsdelivr.net/npm/toastify-js"
     </script>
     <title>Progressive Sports</title>
 </head>
@@ -30,6 +31,7 @@
         <custom-loading></custom-loading>
     </main>
     <footer></footer>
+    <fab-darkmode></fab-darkmode> 
 </body>
 
 </html>

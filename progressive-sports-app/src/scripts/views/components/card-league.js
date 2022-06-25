@@ -1,6 +1,6 @@
-const cardsLeague = ({idLeague, emblemUrl, leagueName, leagueAreaName, currentSeasonStartDate, currentSeasonEndDate}) => {
-	const render = () => {
-		return `
+const cardsLeague = ({ idLeague, emblemUrl, leagueName, leagueAreaName, currentSeasonStartDate, currentSeasonEndDate }) => {
+    const render = () => {
+        return `
 		   <div id="${idLeague}" class="card-league dark:bg-gray-800 dark:text-white w-full h-[400px] flex flex-col bg-[#f2f2f2] rounded-[8%] shadow-lg m-auto">
 				  <div class="side-top w-full h-3/6 flex items-center bg-white p-4">
 				    <img class="lazyload fade-in mx-auto w-full h-full" data-src="${emblemUrl}" alt="picture team">
@@ -20,9 +20,9 @@ const cardsLeague = ({idLeague, emblemUrl, leagueName, leagueAreaName, currentSe
 		  	</div>
 
 		`;
-	}
+    }
 
-	return render();
+    return render();
 }
 
 export default cardsLeague;

@@ -3,6 +3,7 @@ import App from './views/app';
 import '../styles/main.css';
 import 'lazysizes';
 import './views/components/custom-loading'
+import './views/components/fab-darkmode';
 import './views/components/message-error'
 import './views/components/message-null'
 import swRegister from './utils/sw-register';

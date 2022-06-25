@@ -2,6 +2,7 @@ import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
 import footer from './components/footer'
 import header from './components/header'
+
 class App {
   constructor({ header, main, footer }){
     this.header = header;
