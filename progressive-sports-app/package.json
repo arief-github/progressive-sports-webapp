@@ -4,7 +4,7 @@
   "description": "web app for capstone final project",
   "main": "index.js",
   "scripts": {
-    "start-dev": "webpack serve --config webpack.dev.js",
+    "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start-prod": "node server.js",
     "lint": "eslint ./src",

@@ -30,34 +30,43 @@ module.exports = {
                   {
                         loader: 'postcss-loader',
                   }
+
+                ],
+            },
+            {
+              test: /\.(png|svg|jpg|jpeg|gif)$/,
+              use: [
+                'file-loader',
               ],
-        },
-      ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "src/templates/index.html"),
-        favicon: path.resolve(__dirname, 'src/public/icons/favicon.ico'),
-        filename: "index.html",
-    }),
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      options: {
-        limit: 10 * 1024,
-        noquotes: true
-      }
-    }),
-    new CompressionPlugin({
-      test: /\.(js|css|html|svg)$/,
-      filename: "[path][base].gz",
-      algorithm: "gzip",
-      compressionOptions: { level: 9, chunkSize: 32 * 1024 },
-      minRatio: 0.8,
-      threshold: 10240,
-      minRatio: 0.8,
-      deleteOriginalAssets: true,
-    }),
-],
-
-
+            },
+        ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "src/templates/index.html"),
+            filename: "index.html",
+        }),
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: path.resolve(__dirname, 'src/public/'),
+              to: path.resolve(__dirname, 'dist/')
+            },
+          ],
+        }),
+        new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+        }),
+        new CompressionPlugin({
+        test: /\.(js|css|html|svg)$/,
+        filename: "[path][base].gz",
+        algorithm: "gzip",
+        compressionOptions: { level: 9, chunkSize: 32 * 1024 },
+        minRatio: 0.8,
+        threshold: 10240,
+        minRatio: 0.8,
+        deleteOriginalAssets: true,
+        }),
+    ],
 };
