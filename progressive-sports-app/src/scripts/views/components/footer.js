@@ -1,5 +1,5 @@
-import footerImageWebp from '../../../public/images/footer.jpg?format=webp';
-import Toastify from 'toastify-js';
+import footerWebp from '../../../public/images/footer.jpg?format=webp';
+
 const footer = {
     init() {
         return `
@@ -84,7 +84,7 @@ const footer = {
                     let message = ` Thank You! 👍 Your message has been accepted.`;
 
                     Toastify({
-                        text: message ,
+                        text: message,
                         duration: 3000,
                         destination: "#/",
                         close: true,
