@@ -9,11 +9,11 @@ app.get('/', (request, response) => {
 response.sendFile(path.resolve(__dirname, 'dist/index.html'));
 });
 
-const expressStaticGzip = require ('express-static-gzip');
-app.use(expressStaticGzip('dist',{
-    enableGzip:true,
-})    
-    )
+// const expressStaticGzip = require ('express-static-gzip');
+// app.use(expressStaticGzip('dist',{
+//     enableGzip:true,
+// })    
+//     )
 
 
 const listener = app.listen(PORT, () => {

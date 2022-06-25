@@ -260,8 +260,8 @@ const clubPage = {
         const title = "Progressive Web Apps";
         const options = {
             body: message,
-            icon: "./icons/icon.png",
-            badge: "./icons/icon.png",
+            icon: "favicon.png",
+            badge: "favicon.png",
         }
 
         if (Notification.permission === 'granted') {

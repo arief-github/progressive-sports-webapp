@@ -181,8 +181,8 @@ const favoritePage = {
         const title = "Progressive Web Apps";
         const options = {
             body: message,
-            icon: "icon.png",
-            badge: "icon.png",
+            icon: "favicon.png",
+            badge: "favicon.png",
         }
 
         if (Notification.permission === 'granted') {

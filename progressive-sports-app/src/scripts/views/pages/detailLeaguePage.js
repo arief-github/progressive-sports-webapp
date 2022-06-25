@@ -346,7 +346,7 @@ const detailLeaguePage = {
                     .then(() => {
                         let message = `${data.name} sucessfuly deleted from favorite`;
                     Toastify({
-                        text: `${data.name} sucessfuly deleted from favorite`,
+                        text: message,
                         duration: 3000,
                         destination: "#/favorite-page",
                         close: true,
@@ -392,8 +392,8 @@ const detailLeaguePage = {
         const title = "Progressive Web Apps";
         const options = {
             body: message,
-            icon: "./icons/icon.png",
-            badge: "./icons/icon.png",
+            icon: "favicon.png",
+            badge: "favicon.png",
         }
 
         if (Notification.permission === 'granted') {
