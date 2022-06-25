@@ -9,8 +9,6 @@ module.exports = {
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: "[name].bundle.js",
-      assetModuleFilename: 'assets/[name].[ext]',
-      clean:true,
   },
     module: {
       rules: [

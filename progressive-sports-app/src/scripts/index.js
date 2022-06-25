@@ -9,7 +9,6 @@ import './views/components/message-null'
 import swRegister from './utils/sw-register';
 import WebSocketInitiator from './utils/websocket-initiator';
 import CONFIG from './utils/config';
-import 'regenerator-runtime';
 import Toastify from 'toastify-js'
 
 const app = new App({
@@ -26,6 +25,6 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     app.renderPage();
     navigator.serviceWorker.register('/sw.js');
-    // WebSocketInitiator.init(CONFIG.WEB_SOCKET_SERVER);
+    WebSocketInitiator.init(CONFIG.WEB_SOCKET_SERVER);
   });
 }

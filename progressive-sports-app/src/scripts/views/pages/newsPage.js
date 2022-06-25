@@ -42,7 +42,7 @@
       async fetchRequest({ id }) {
           const response = await fetch(id);
           const data = await response.json();
-          console.log(data);
+         
 
           try {
               data.articles.forEach((item) => {
@@ -61,7 +61,7 @@
 						  `
               });
           } catch(error) {
-          	console.error(error);
+          	
           }
 
       }
