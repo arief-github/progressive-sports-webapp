@@ -1,18 +1,21 @@
+import logoWebpDark from '../../../public/images/Progressive-Sport-Logo-Dark.png?format=webp';
+import logoWebpLight from '../../../public/images/Progressive-Sport-Logo-Light.png?format=webp';
 const header = {
     init() {
-        return ` 
+        return `
 			<nav class="bg-white dark:bg-gray-700">
 			<div class="max-w-6xl mx-auto px-4">
 					<div class="flex justify-between space-x-7">
 						<div>
 							<!-- Website Logo -->
-							<a href="#" class="flex items-center dark:text-white py-4 px-2 focus:outline-none focus:ring focus:ring-green-500">
-								<img src="./images/Progressive-Sport-Logo-Dark.png" alt="Logo">
+							<a href="#" class="flex items-center dark:text-white py-4 px-2 w-full h-full focus:outline-none focus:ring focus:ring-green-500">
+								<img src="../assets/image/Progressive-Sport-Logo-Dark.webp" alt="Logo">
 							</a>
 						</div>
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-2 desktop-navbar focus:outline-none focus:ring focus:ring-green-500">
 							<a href="#/" class="py-4 px-2 font-semibold border-b-4 border-green-500 dark:text-white text-green-500 ">Home</a>
+							<a href="#/news-page" class="py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300">News</a>
 							<a href="#/favorite-page" class="py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300">Favorite Teams</a>
 							<a href="#/game-page" class="py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300 ">Game</a>
 							<a href="javascript:scrollingDown()" class="scrPy py-4 px-2 dark:text-white text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
@@ -36,7 +39,7 @@ const header = {
 							<path d="M4 6h16M4 12h16M4 18h16"></path>
 						</svg>
 					</button>
-					</div>	
+					</div>
 					</div>
 			</div>
 			<!-- mobile menu -->

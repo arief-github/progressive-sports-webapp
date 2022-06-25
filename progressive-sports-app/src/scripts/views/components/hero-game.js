@@ -13,7 +13,7 @@ const heroGame =  `
 								web sport app in your hand
 							</p>
 							<a class="inline-block w-full md:w-auto mb-4 md:mr-6 py-5 px-8 text-sm font-bold uppercase border-2 border-transparent bg-gray-200 rounded hover:bg-gray-100 text-gray-800 transition duration-200 focus:outline-none focus:ring focus:ring-green-500"
-								href="#league">start explore</a>
+								href="#/game-page">Game Scheduled</a>
 							</div>
 						</div>
 					</div>

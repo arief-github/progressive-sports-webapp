@@ -1,28 +1,36 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/scripts/index.js'),
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].bundle.js",
-    },
+      path: path.resolve(__dirname, "dist"),
+      filename: "[name].bundle.js",
+      assetModuleFilename: 'assets/[name].[ext]',
+      clean:true,
+  },
     module: {
-        rules: [{
-                test: /\.css$/i,
-                use: [
+      rules: [
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          type: "asset",
+        },
+        {
+          test: /\.css$/i,
+          exclude: '/node_modules/',
+          use: [
                   {
-                    loader: 'style-loader',
+                        loader: 'style-loader',
                   },
                   {
-                    loader: 'css-loader',
+                        loader: 'css-loader',
                   },
                   {
-                    loader: 'postcss-loader',
+                        loader: 'postcss-loader',
                   }
+
                 ],
             },
             {
@@ -49,6 +57,16 @@ module.exports = {
         new webpack.ProvidePlugin({
           $: "jquery",
           jQuery: "jquery"
+        }),
+        new CompressionPlugin({
+        test: /\.(js|css|html|svg)$/,
+        filename: "[path][base].gz",
+        algorithm: "gzip",
+        compressionOptions: { level: 9, chunkSize: 32 * 1024 },
+        minRatio: 0.8,
+        threshold: 10240,
+        minRatio: 0.8,
+        deleteOriginalAssets: true,
         }),
     ],
 };

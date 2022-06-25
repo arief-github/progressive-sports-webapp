@@ -3,6 +3,7 @@ import cardItemFavorite from '../components/card-item-favorite'
 import FootballDataApi from '../../data/footballDataApi'
 import idCompetitions from '../../data/idCompetitions'
 import FavoriteTeamIDB from '../../data/favoriteTeamIDB';
+import Toastify from 'toastify-js';
 
 const favoritePage = {
     async init() {
@@ -30,7 +31,7 @@ const favoritePage = {
 					</div>
 				</div>
 				<custom-loading></custom-loading>
-				
+
 				<div id="list-teams" class="list-teams w-full h-auto p-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 				</div>
 			</div>`;
@@ -82,7 +83,7 @@ const favoritePage = {
         		document.querySelector('.list-teams').innerHTML = "";
 		    	$("custom-loading").remove()
 		    	if(value.length == 0){
-					document.querySelector('.favorite-page').innerHTML += "<message-null></message-null>";	    		
+					document.querySelector('.favorite-page').innerHTML += "<message-null></message-null>";
 		    	}else{
 		    		value.forEach((e)=>{
 		    			let spitClubColors = e.clubColors.split(" / ");
@@ -106,11 +107,11 @@ const favoritePage = {
        			try{
 	       			const id = obj.attributes[1].value;
 	       			const data = this.allTeams.find((value)=> value.id == id);
-					if(!!await FavoriteTeamIDB.getTeam(data.id)){						
+					if(!!await FavoriteTeamIDB.getTeam(data.id)){
 							obj.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["afterAdd"];
 					}else{
-							obj.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["beforeAdd"];			
-					}       				
+							obj.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["beforeAdd"];
+					}
        			}catch(e){
        			}
        		})
@@ -126,13 +127,27 @@ const favoritePage = {
 					})
 					.then(() => {
 						let message = `${data.name} sucessfuly deleted from favorite`;
+						Toastify({
+							text: `${data.name} sucessfuly deleted from favorite`,
+							duration: 3000,
+							destination: "#/",
+							close: true,
+							gravity: "top", // `top` or `bottom`
+							position: "center", // `left`, `center` or `right`
+							stopOnFocus: true, // Prevents dismissing of toast on hover
+							style: {
+							  background: "linear-gradient(to right, #00b09b, #96c93d)",
+							},
+							onClick: function(){} // Callback after click
+						  }).showToast();
+
 						this.showNotification(message);
 					})
 				}else{
 					await FavoriteTeamIDB.putTeam(data).then(()=>{
-						let target = e.currentTarget;						
+						let target = e.currentTarget;
 						target.innerHTML = this.allButton(this.addColorsTeams(data.clubColors.split(" / ")))["afterAdd"];
-					})						
+					})
 				}
 			})
 		}
@@ -166,8 +181,8 @@ const favoritePage = {
         const title = "Progressive Web Apps";
         const options = {
             body: message,
-            icon: "./icons/icon.png",
-            badge: "./icons/icon.png",
+            icon: "icon.png",
+            badge: "icon.png",
         }
 
         if (Notification.permission === 'granted') {

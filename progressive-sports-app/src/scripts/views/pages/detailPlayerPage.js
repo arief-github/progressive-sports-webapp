@@ -14,9 +14,13 @@ const detailPlayerPage = {
             <div class="player container min-h-[400px] w-auto p-8 flex flex-wrap justify-center">
             
             </div>
-            <table class="list-history w-full px-8 m-auto hidden" >
+            <div class="flex flex-col h-full">
+                <div class="flex-grow">
+                      <table class="list-history w-80 px-8 m-auto relative sm:w-full hidden" >
 
-            </table>
+                      </table>
+                </div>
+            </div>
         `
     },
     async processBtn() {
@@ -35,14 +39,13 @@ const detailPlayerPage = {
             this.renderInfoPlayer();
         });
 
-        historyMatch.addEventListener('click', () => {            
+        historyMatch.addEventListener('click', () => {
             $('.player').addClass("hidden");
             $('.list-history').removeClass("hidden");
             this.renderMatchHistory();
         })
         await this.processBtn();
         this.renderInfoPlayer();
-
     },
     getId() {
         const url = UrlParser.parseActiveUrlWithoutCombiner();
@@ -84,8 +87,9 @@ const detailPlayerPage = {
                 }
             })
     },
-    showingHeadTable() {
+    showingHeadTable({ title }) {
         return ` 
+            <caption class = "text-center text-green-600">MATCH HISTORY WITH ${title}</caption>
             <thead>
              <tr class="bg-green-400">
                 <th class="p-2">Competition</th>
@@ -101,17 +105,18 @@ const detailPlayerPage = {
         $(".player").children().toggleClass('hidden');
         $(".player .list-history").removeClass('hidden');
         let colorList = false;
-        document.querySelector('.list-history').innerHTML = this.showingHeadTable();
+        await this.footballDataApi.getDetailPlayersAndMatch({ id: this.id })
+            .then((value) => {
+                value.matches.forEach((item) => {
+                    document.querySelector('.list-history').innerHTML = this.showingHeadTable({ title: item.homeTeam.name });
+                })
+            })
 
         await this.footballDataApi.getDetailPlayersAndMatch({ id: this.id })
             .then((value) => {
                 value.matches.forEach((item) => {
                     let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
                     console.log(item);
-                    document.querySelector('.player').innerHTML = `
-                        <h1 class = "text-center text-green-600">MATCH HISTORY WITH ${item.homeTeam.name}</h1>
-
-                    `
                     document.querySelector('.list-history').innerHTML +=
                         `  
                            <tbody>
@@ -136,7 +141,7 @@ const detailPlayerPage = {
                     document.querySelector('.player').innerHTML = `<message-error message="${e.statusText}" class="col-span-full"></message-error>`;
                 }
             })
-    }
+    },
 }
 
 export default detailPlayerPage;

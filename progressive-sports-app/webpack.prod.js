@@ -7,14 +7,19 @@ const {InjectManifest} = require('workbox-webpack-plugin');
 const path = require('path');
 const common = require('./webpack.common');
 
+//analyzer
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+
+//optimization
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = merge(common, {
+
   mode: 'production',
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: '/node_modules/',
         use: [
           {
             loader: 'babel-loader',
@@ -25,64 +30,53 @@ module.exports = merge(common, {
           },
         ],
       },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
+        {
+          test: /\.(png|jpg|jpeg)$/i,
+          exclude: '/node_modules/',
+          use: {
+            loader: 'responsive-loader',
             options: {
-              publicPath: '../../',
+              name: '[name].[ext]',
+              adapter: require('responsive-loader/sharp'),
+              outputPath: './assets/image',
+              quality: 40,
+              progressive: true,
             },
           },
-          'css-loader',
-        ],
-      },
+        },
+        {
+          test: /\.html$/i,
+          loader: 'html-loader',
+          exclude: '/node_modules',
+        },
     ],
   },
   plugins: [
+
     new MiniCssExtractPlugin({filename: 'assets/css/[hash].css'}),
+    new BundleAnalyzerPlugin(),
     new InjectManifest({
       swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
       swDest: path.resolve(__dirname, 'dist/sw.js'),
     }),
+
   ],
-  
+
   optimization: {
     minimizer: [
-      '...',
-      new CssMinimizerPlugin({
-        minify: [
-          CssMinimizerPlugin.cssnanoMinify,
-          CssMinimizerPlugin.cssoMinify,
-          CssMinimizerPlugin.cleanCssMinify,
-        ],
-        minimizerOptions: {
-          preset: [
-            'advanced',
-          ],
+
+      new ImageMinimizerPlugin({
+        minimizer: {
+
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              ["optipng", { optimizationLevel: 5 }]
+            ],
+          },
         },
       }),
     ],
-    splitChunks: {
-      chunks: 'all',
-      minSize: 20000,
-      maxSize: 70000,
-      minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      automaticNameDelimiter: '~',
-      enforceSizeThreshold: 50000,
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    },
+
   },
 });
