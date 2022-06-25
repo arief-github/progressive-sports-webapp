@@ -1,15 +1,15 @@
 import 'regenerator-runtime';
-
 import App from './views/app';
 import '../styles/main.css';
 import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import './views/components/custom-loading'
 import './views/components/message-error'
 import './views/components/message-null'
 import swRegister from './utils/sw-register';
 import WebSocketInitiator from './utils/websocket-initiator';
 import CONFIG from './utils/config';
+import 'regenerator-runtime';
+import Toastify from 'toastify-js'
 
 const app = new App({
   header: document.querySelector('header'),
@@ -21,8 +21,10 @@ window.addEventListener('hashchange', () => {
   app.renderPage();
 });
 
-window.addEventListener('load', () => {
-  app.renderPage();
-  swRegister();
-  WebSocketInitiator.init(CONFIG.WEB_SOCKET_SERVER);
-});
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    app.renderPage();
+    navigator.serviceWorker.register('/sw.js');
+    // WebSocketInitiator.init(CONFIG.WEB_SOCKET_SERVER);
+  });
+}
