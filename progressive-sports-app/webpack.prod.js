@@ -6,10 +6,6 @@ const {InjectManifest} = require('workbox-webpack-plugin');
 
 const path = require('path');
 const common = require('./webpack.common');
-
-//analyzer
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-
 //optimization
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
@@ -29,32 +25,13 @@ module.exports = merge(common, {
             },
           },
         ],
-      },
-        {
-          test: /\.(png|jpg|jpeg)$/i,
-          exclude: '/node_modules/',
-          use: {
-            loader: 'responsive-loader',
-            options: {
-              name: '[name].[ext]',
-              adapter: require('responsive-loader/sharp'),
-              outputPath: './assets/image',
-              quality: 40,
-              progressive: true,
-            },
-          },
-        },
-        {
-          test: /\.html$/i,
-          loader: 'html-loader',
-          exclude: '/node_modules',
-        },
+      }
     ],
   },
   plugins: [
 
     new MiniCssExtractPlugin({filename: 'assets/css/[hash].css'}),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new InjectManifest({
       swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
       swDest: path.resolve(__dirname, 'dist/sw.js'),

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
+const CopyWebpackPlugin =require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
@@ -58,15 +59,15 @@ module.exports = {
           $: "jquery",
           jQuery: "jquery"
         }),
-        new CompressionPlugin({
-        test: /\.(js|css|html|svg)$/,
-        filename: "[path][base].gz",
-        algorithm: "gzip",
-        compressionOptions: { level: 9, chunkSize: 32 * 1024 },
-        minRatio: 0.8,
-        threshold: 10240,
-        minRatio: 0.8,
-        deleteOriginalAssets: true,
-        }),
+        // new CompressionPlugin({
+        // test: /\.(js|css|html|svg)$/,
+        // filename: "[path][base].gz",
+        // algorithm: "gzip",
+        // compressionOptions: { level: 9, chunkSize: 32 * 1024 },
+        // minRatio: 0.8,
+        // threshold: 10240,
+        // minRatio: 0.8,
+        // deleteOriginalAssets: true,
+        // }),
     ],
 };
