@@ -2,7 +2,6 @@ class FloatingBtn extends HTMLElement {
     async connectedCallback() {
         this.render();
     }
-
     settingDarkMode() {
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
