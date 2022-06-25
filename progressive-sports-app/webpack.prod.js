@@ -1,27 +1,44 @@
 const {merge} = require('webpack-merge');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const {InjectManifest} = require('workbox-webpack-plugin');
 const path = require('path');
 const common = require('./webpack.common');
 
+//analyzer
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+
+//optimization
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = merge(common, {
+
   mode: 'production',
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              generatorOpts: { compact: false },
+              exclude: '/node_modules/',
+            },
+          },
+        ],
+      },
         {
           test: /\.(png|jpg|jpeg)$/i,
+          exclude: '/node_modules/',
           use: {
             loader: 'responsive-loader',
             options: {
               name: '[name].[ext]',
               adapter: require('responsive-loader/sharp'),
-              outputPath: './assets/img',
-              quality: 50,
+              outputPath: './assets/image',
+              quality: 40,
               progressive: true,
             },
           },
@@ -29,41 +46,17 @@ module.exports = merge(common, {
         {
           test: /\.html$/i,
           loader: 'html-loader',
+          exclude: '/node_modules',
         },
-      {
-        test: /\.js$/,
-        exclude: '/node_modules/',
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              generatorOpts: { compact: false },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../../',
-            },
-          },
-          'css-loader',
-        ],
-      },
     ],
   },
   plugins: [
-    
-    new MiniCssExtractPlugin({filename: 'assets/css/[hash].css'}),
+    new BundleAnalyzerPlugin(),
     new HtmlWebpackInjectPreload({
       files: [
         {
           match: /.*\.css$/,
+          exclude: '/node_modules',
           attributes: {as: 'style', type: 'text/css'},
         },
       ],
@@ -77,7 +70,7 @@ module.exports = merge(common, {
       theme_color: '#252A34',
       display: 'standalone',
       orientation: 'any',
-      publicPath: './',
+      publicPath: '../../',
       filename: 'manifest.json',
       ios: true,
       icons: [
@@ -92,49 +85,30 @@ module.exports = merge(common, {
           purpose: 'any',
         },
       ],
+
     }),
     new InjectManifest({
       swSrc: './src/scripts/sw.js',
       swDest: 'sw.js',
     }),
+
   ],
-  
+
   optimization: {
     minimizer: [
-      '...',
-      new CssMinimizerPlugin({
-        minify: [
-          CssMinimizerPlugin.cssnanoMinify,
-          CssMinimizerPlugin.cssoMinify,
-          CssMinimizerPlugin.cleanCssMinify,
-        ],
-        minimizerOptions: {
-          preset: [
-            'advanced',
-          ],
+
+      new ImageMinimizerPlugin({
+        minimizer: {
+
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              ["optipng", { optimizationLevel: 5 }]
+            ],
+          },
         },
       }),
     ],
-    // splitChunks: {
-    //   chunks: 'all',
-    //   minSize: 20000,
-    //   maxSize: 20000,
-    //   minChunks: 1,
-    //   maxAsyncRequests: 30,
-    //   maxInitialRequests: 30,
-    //   automaticNameDelimiter: '~',
-    //   enforceSizeThreshold: 50000,
-    //   cacheGroups: {
-    //     defaultVendors: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       priority: -10,
-    //     },
-    //     default: {
-    //       minChunks: 2,
-    //       priority: -20,
-    //       reuseExistingChunk: true,
-    //     },
-    //   },
-    // },
+
   },
 });

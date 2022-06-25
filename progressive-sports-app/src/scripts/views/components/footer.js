@@ -1,3 +1,5 @@
+import footerWebp from '../../../public/images/footer.jpg?format=webp';
+
 const footer = {
      init() {
         return `
@@ -11,7 +13,7 @@ const footer = {
 			    <svg class=" w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 			  </button>
 			</div>
-		<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('./images/footer.jpg');">
+		<footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('../assets/image/footer.webp');">
   			<div class="footer-col mt-3 sm:mb-4">
         		<ul class="list-none inline">
 					<li>
