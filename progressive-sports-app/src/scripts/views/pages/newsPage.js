@@ -54,7 +54,7 @@
 	                    <img class="lazyload fade-in lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6" data-src="${item.images[0].url}" alt="Image Size 720x400">				
 					      	<h3 class="tracking-widest text-green-500 text-xs font-medium title-font">${item.published}</h3>
 					        <a href="${item.links.web.href}" target="_blank" class="hover:text-green-500"> <h2 class="text-lg dark:text-white text-gray-900 font-medium title-font mb-4">${item.headline}</h2></a>		           
-					        <p class="leading-relaxed text-base dark:text-white mb-6">${item.description}</p>
+					        <p class="leading-relaxed hidden md:block text-base dark:text-white mb-6">${item.description}</p>
 
 	                    </div>
 	            </div>
