@@ -24,10 +24,10 @@ const detailLeaguePage = {
                 </div>
             </div>
             <div class="buttonSelect w-full shadow-md bg-green-200 flex justify-center p-2">
-                <button id="selectTeams" class="bg-white w-1/6 shadow-inner p-2 mx-4 bg-green-400 shadow-md font-semibold text-white text-sm md:text-base">Teams</button>
-                <button id="selectStandings" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Standings</button>
-                <button id="selectSchedules" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Schedules</button>
-                <button id="selectTopScorers" class="w-1/6 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Top Scorers</button>
+                <button id="selectTeams" class="bg-white shadow-inner p-2 bg-green-400 shadow-md font-semibold text-white text-sm md:text-base">Teams</button>
+                <button id="selectStandings" class="bg-white shadow-inner p-2 text-sm md:text-base">Standings</button>
+                <button id="selectSchedules" class="bg-white shadow-inner p-2 text-sm md:text-base">Schedules</button>
+                <button id="selectTopScorers" class="bg-white shadow-inner p-2 text-sm md:text-base">Top Scorers</button>
             </div>
             <div class="frame-select flex flex-col">
                 
