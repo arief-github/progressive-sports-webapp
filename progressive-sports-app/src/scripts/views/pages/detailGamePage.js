@@ -66,7 +66,7 @@ const detailGamePage = {
         
         await footballDataApi.getMatchById({ id: this.getId() })
             .then((value) => {
-                console.log(value);
+                
                 $("custom-loading").remove()
                 let match = value.match;
                 document.querySelector('.detail-games').innerHTML += detailGame({
@@ -99,26 +99,30 @@ const detailGamePage = {
       const footballDataApi = new FootballDataApi();
       await footballDataApi.getMatchById({ id: this.getId() })
           .then((value) => {
-              console.log(value);
+              
               $("custom-loading").remove()
+              try{
               let match = value.match;
-              document.querySelector('.item-list').innerHTML += detailStat({
-                  nameLeague: match.competition.name,
-                  teamOne: value.head2head.awayTeam.name,
-                  teamTwo: value.head2head.homeTeam.name,
-                  pathImage: match.competition.area.ensignUrl,
-                  ScoreFullAway: match.score.fullTime.awayTeam,
-                  ScoreFullHome: match.score.fullTime.homeTeam,
-                  ScoreHalfAway: match.score.halfTime.awayTeam,
-                  ScoreHalfHome: match.score.halfTime.homeTeam,
-                  DrawAway : value.head2head.awayTeam.draws,
-                  WonAway : value.head2head.awayTeam.wins,
-                  LoseAway : value.head2head.awayTeam.losses,
-                  DrawHome : value.head2head.homeTeam.draws,
-                  WonHome : value.head2head.homeTeam.wins,
-                  LoseHome : value.head2head.homeTeam.losses
+                  document.querySelector('.item-list').innerHTML += detailStat({
+                      nameLeague: match.competition.name,
+                      teamOne: match.homeTeam.name,
+                      teamTwo: match.awayTeam.name,
+                      pathImage: match.competition.area.ensignUrl,
+                      ScoreFullAway: match.score.fullTime.awayTeam,
+                      ScoreFullHome: match.score.fullTime.homeTeam,
+                      ScoreHalfAway: match.score.halfTime.awayTeam,
+                      ScoreHalfHome: match.score.halfTime.homeTeam,
+                      DrawAway : value.head2head.awayTeam.draws || '?',
+                      WonAway : value.head2head.awayTeam.wins || '?',
+                      LoseAway : value.head2head.awayTeam.losses || '?',
+                      DrawHome : value.head2head.homeTeam.draws || '?',
+                      WonHome : value.head2head.homeTeam.wins || '?',
+                      LoseHome : value.head2head.homeTeam.losses || '?'
 
-              });
+                  });
+              }catch(e){
+                console.log(e)
+              }
           })
           .catch((e)=>{
               $("custom-loading").remove()

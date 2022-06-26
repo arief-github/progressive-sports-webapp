@@ -41,24 +41,24 @@ const clubPage = {
 							<h3 class="mt-auto text-md">${value.name || '?'}</h3>
 						</div>
 						<div class="flex ml-8 my-4">
-							<h2 class="w-1/4 mr-auto font-semibold text-lg">Stadion</h2>
-							<h2 class="w-3/4 mt-auto  font-semibold text-lg">${value.venue || '?'}</h2>
+							<h2 class="w-1/4 mr-4 font-semibold text-lg">Stadion</h2>
+							<h2 class="mt-auto  font-semibold text-xs md:text-md">${value.venue || '?'}</h2>
 						</div>
 						<div class="flex ml-8 my-4">
-							<h2 class="w-1/4 mr-auto font-semibold text-lg">Email</h2>
-							<h2 class="w-3/4 mt-auto  font-semibold text-lg">${value.email || '?'}</h2>
+							<h2 class="w-1/4 mr-4 font-semibold text-xs md:text-md">Email</h2>
+							<h2 class="mt-auto  font-semibold text-xs md:text-md">${value.email || '?'}</h2>
 						</div>
 						<div class="flex ml-8 my-4">
-							<h2 class="w-1/4 mr-auto font-semibold text-lg">Address</h2>
-							<h2 class="w-3/4 mt-auto  font-semibold text-lg">${value.address || '?'}</h2>
+							<h2 class="w-1/4 mr-4 font-semibold text-xs md:text-md">Address</h2>
+							<h2 class="mt-auto  font-semibold text-xs md:text-md">${value.address || '?'}</h2>
 						</div>
 						<div class="flex ml-8 my-4">
-							<h2 class="w-1/4 mr-auto font-semibold text-lg">Phone</h2>
-							<h2 class="w-3/4 mt-auto  font-semibold text-lg">${value.phone || '?'}</h2>
+							<h2 class="w-1/4 mr-4 font-semibold text-xs md:text-md">Phone</h2>
+							<h2 class="mt-auto  font-semibold text-xs md:text-md">${value.phone || '?'}</h2>
 						</div>
 						<div class="flex ml-8 my-4">
-							<h2 class="w-1/4 mr-auto font-semibold text-lg">Active Competitions</h2>
-							<h2 class="w-3/4 mt-auto  font-semibold text-lg">${activeComptData || '?'}</h2>
+							<h2 class="w-1/4 mr-4 font-semibold text-xs md:text-md">Active Competitions</h2>
+							<h2 class="mt-auto  font-semibold text-xs md:text-md">${activeComptData || '?'}</h2>
 						</div>
 					</div>
 					<div class="allButton w-full md:w-1/6 flex">

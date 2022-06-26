@@ -150,8 +150,8 @@ const detailLeaguePage = {
         $(".frame-select .list-scorers").removeClass('hidden');
         const headTable = () => {
             return `
-                <div class="list-scorers w-full h-auto px-8 mt-4" >
-                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
+                <div class="list-scorers w-full h-auto sm:px-8 mt-4" >
+                    <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7 bg-green-400 text-white">
                         <div class="w-full ">Player Name</div>
                         <div class="w-full col-span-2 truncate">Team Name</div>
                         <div class="w-full hidden sm:inline">Nationality</div>
@@ -172,7 +172,7 @@ const detailLeaguePage = {
                     let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
                     let startDate = new Date(e.player.lastUpdated);
                     document.querySelector('.list-scorers').innerHTML += `
-                    <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-4 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7">
+                    <div class="item-list m-auto w-full h-full py-[1px] grid gap-2 grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7">
                     <div class="w-full ${tampClass} md:inline"> <a href="#/players/${e.player.id}">${e.player.name}</a></div>
                     <div class="w-full ${tampClass} col-span-2 truncate">${e.team.name}</div>
                     <div class="w-full ${tampClass} hidden sm:inline">${(e.player.nationality != null) ? e.player.nationality : "N/A"}</div>
@@ -197,7 +197,7 @@ const detailLeaguePage = {
         };
         const headTable = () => {
             return `
-                <div class="list-standings w-full h-auto px-8 mt-4" >
+                <div class="list-standings w-full h-auto sm:px-8 mt-4" >
                     <div class="item-title w-full h-auto py-2 grid gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 xl:grid-cols-11 2xl:grid-cols-11 bg-green-400 text-white">
                         <div class="w-full">Position</div>
                         <div class="w-full col-span-2 truncate">Clubs</div>
