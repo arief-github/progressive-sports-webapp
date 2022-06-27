@@ -1,7 +1,7 @@
 const identityPlayer = ({ name, firstName, lastName, dateOfBirth, nationality, position, shirtNumber }) => {
 	const render = () => {
-		return ` 
-			  <table class="table-auto">
+		return `
+			  <table class="table-auto ">
 				  <thead>
 				    <tr>
 				    </tr>
@@ -13,27 +13,27 @@ const identityPlayer = ({ name, firstName, lastName, dateOfBirth, nationality, p
 				    </tr>
 				    <tr>
 				      <td>First Name</td>
-				      <td>${firstName}</td>   
+				      <td>${firstName}</td>
 				    </tr>
 				    <tr>
 				      <td>Last Name</td>
-				      <td>${lastName}</td> 
+				      <td>${lastName}</td>
 				    </tr>
 				    <tr>
 				      <td>Date of Birth</td>
-				      <td>${dateOfBirth}</td> 
+				      <td>${dateOfBirth}</td>
 				    </tr>
 				    <tr>
 				      <td>Nationality</td>
-				      <td>${nationality}</td> 
+				      <td>${nationality}</td>
 				    </tr>
 				    <tr>
 				      <td>Position</td>
-				      <td>${position}</td> 
+				      <td>${position}</td>
 				    </tr>
 				    <tr>
 				      <td>Shirt Number</td>
-				      <td>${shirtNumber}</td> 
+				      <td>${shirtNumber}</td>
 				    </tr>
 				  </tbody>
 				</table>`;

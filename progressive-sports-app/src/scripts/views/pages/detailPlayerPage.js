@@ -6,13 +6,13 @@ const detailPlayerPage = {
     async init() {
         this.footballDataApi = new FootballDataApi();
         this.id = this.getId();
-        return ` 
+        return `
             <div class="buttonSelect w-full shadow-md bg-green-200 flex justify-center p-2">
                 <button id="playerBiodata" class="bg-white w-1/6 shadow-inner p-2 mx-4 bg-green-400 shadow-md font-semibold dark:text-gray-800 text-white text-sm md:text-base">Biodata</button>
                 <button id="matchesHistory" class="w-1/6 dark:text-gray-800 bg-white shadow-inner p-2 mx-4 text-sm md:text-base">Match History</button>
             </div>
             <div class="player container min-h-[400px] w-auto p-8 flex flex-wrap justify-center">
-            
+
             </div>
             <div class="flex flex-col h-full">
                 <div class="flex-grow">
@@ -53,8 +53,6 @@ const detailPlayerPage = {
     },
     info() {
         return `
-              <div class="info">
-              </div>
               <div class="info info-player dark:bg-gray-800"></div>
         `;
     },
@@ -71,11 +69,11 @@ const detailPlayerPage = {
                 infoPlayerContainer.innerHTML += identityPlayer({
                     name: value.name,
                     firstName: value.firstName,
-                    lastName: value.lastName,
+                    lastName: value.lastName != null ? value.shirtNumber : "N/A",
                     dateOfBirth: value.dateOfBirth,
                     nationality: value.nationality,
                     position: value.position,
-                    shirtNumber: value.shirtNumber,
+                    shirtNumber: value.shirtNumber != null ? value.shirtNumber : "N/A",
                 });
             })
             .catch((e) => {
@@ -88,17 +86,17 @@ const detailPlayerPage = {
             })
     },
     showingHeadTable({ title }) {
-        return ` 
+        return `
             <caption class = "text-center text-green-600">MATCH HISTORY WITH ${title}</caption>
-            <thead>
-             <tr class="bg-green-400">
-                <th class="p-2">Competition</th>
-                <th class="w-1/2 p-2 text-center">Home Team</th>
-                <th class="p-2 text-center">Scores</th>
-                <th class="w-1/2 p-2 text-center">Away Team</th>
-                <th class="p-2 text-center">Group</th>
-             </tr>
-            </thead>
+            <div class="list-matches w-full h-auto mt-4" >
+            <div class="item-title m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
+                <div class="w-full col-span-3 truncate text-base md:text-lg">Competition</div>
+                <div class="w-full truncate text-base md:text-lg">Home Team</div>
+                <div class="w-full truncate text-base md:text-lg">scores</div>
+                <div class="w-full col-span-2 truncate text-base md:text-lg">Away Team</div>
+                <div class="w-full col-span-2 hidden md:inline truncate text-base md:text-lg">Group</div>
+            </div>
+        </div>
         `
     },
     async renderMatchHistory() {
@@ -118,16 +116,14 @@ const detailPlayerPage = {
                     let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
                     console.log(item);
                     document.querySelector('.list-history').innerHTML +=
-                        `  
-                           <tbody>
-                                <tr>
-                                  <td class="${tampClass} p-2 text-center">${item.competition.name}</td>
-                                  <td class="${tampClass} p-2 text-center">${item.homeTeam.name} </td>
-                                  <td class="${tampClass} p-2 text-center text-slate-900"> ${item.score.fullTime.homeTeam} : ${item.score.fullTime.awayTeam}</td>
-                                  <td class="${tampClass} p-2 text-center">${item.awayTeam.name} </td>
-                                  <td class="${tampClass} p-2 text-center"><span class="incident text-red-500">${item.group ? item.group.split('_') : '-'}</td>
-                                </tr>
-                              </tbody> 
+                        `
+                                <div class="item-list m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
+                                <div class="w-full ${tampClass} col-span-3 truncate text-sm md:text-base">${item.competition.name}</div>
+                                <div class="w-full ${tampClass} truncate text-sm md:text-base">${item.homeTeam.name}</div>
+                                <div class="w-full ${tampClass} md:col-span-1 truncate text-sm md:text-base">$${item.score.fullTime.homeTeam} : ${item.score.fullTime.awayTeam}</div>
+                                <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${item.awayTeam.name}</div>
+                                <div class="w-full ${tampClass} col-span-2 hidden md:inline truncate text-sm md:text-base">${item.group ? item.group.split('_') : '-'}</div>
+                              </div>
                     `
                     colorList = (colorList) ? false : true;
                 })

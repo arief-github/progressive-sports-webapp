@@ -7,7 +7,7 @@ import Toastify from 'toastify-js'
 
 
 const detailLeaguePage = {
-    async init() {    
+    async init() {
         this.footballDataApi = new FootballDataApi();
         this.id = this.getId();
 
@@ -30,7 +30,7 @@ const detailLeaguePage = {
                 <button id="selectTopScorers" class="bg-white shadow-inner p-2 text-sm md:text-base">Top Scorers</button>
             </div>
             <div class="frame-select flex flex-col">
-                
+
             </div>
         </div>
         `;
@@ -132,7 +132,7 @@ const detailLeaguePage = {
                     colorList = (colorList) ? false : true;
                     })
             }).catch((error)=>{
-                
+
             })
         }
 
@@ -184,7 +184,7 @@ const detailLeaguePage = {
                     colorList = (colorList) ? false : true;
                 })
             }).catch((error)=>{
-                
+
             })
 
     },
@@ -251,7 +251,7 @@ const detailLeaguePage = {
                 })
             })
             .catch((error)=>{
-            
+
             })
     },
 
@@ -380,7 +380,7 @@ const detailLeaguePage = {
                         },
                         onClick: function(){} // Callback after click
                       }).showToast();
-                        this.showNotification(message);       
+                        this.showNotification(message);
                     })
                 }
             })

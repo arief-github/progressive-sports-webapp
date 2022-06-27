@@ -1,6 +1,6 @@
-const heroGame =  ` 
+const heroGame =  `
 			<header class="mb-6 dark:bg-gray-800">
-			
+
 			<div class="w-full bg-center bg-cover bg-fixed"
 				style="background-image: url('./images/hero1.jpg');">
 				<div class="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50 py-12">
@@ -12,8 +12,7 @@ const heroGame =  `
 							<p class="max-w-3xl mx-auto mb-10 text-lg text-gray-300">
 								web sport app in your hand
 							</p>
-							<a class="inline-block w-full md:w-auto mb-4 md:mr-6 py-5 px-8 text-sm font-bold uppercase border-2 border-transparent bg-gray-200 rounded hover:bg-gray-100 text-gray-800 transition duration-200 focus:outline-none focus:ring focus:ring-green-500"
-								href="#/game-page">Game Scheduled</a>
+
 							</div>
 						</div>
 					</div>
