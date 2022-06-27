@@ -120,7 +120,7 @@ const detailPlayerPage = {
                                 <div class="item-list m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
                                 <div class="w-full ${tampClass} col-span-3 truncate text-sm md:text-base">${item.competition.name}</div>
                                 <div class="w-full ${tampClass} truncate text-sm md:text-base">${item.homeTeam.name}</div>
-                                <div class="w-full ${tampClass} md:col-span-1 truncate text-sm md:text-base">$${item.score.fullTime.homeTeam} : ${item.score.fullTime.awayTeam}</div>
+                                <div class="w-full ${tampClass} md:col-span-1 truncate text-sm md:text-base text-black">${item.score.fullTime.homeTeam} : ${item.score.fullTime.awayTeam}</div>
                                 <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${item.awayTeam.name}</div>
                                 <div class="w-full ${tampClass} col-span-2 hidden md:inline truncate text-sm md:text-base">${item.group ? item.group.split('_') : '-'}</div>
                               </div>
