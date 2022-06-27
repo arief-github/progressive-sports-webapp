@@ -88,12 +88,12 @@ const detailPlayerPage = {
     showingHeadTable({ title }) {
         return `
             <caption class = "text-center text-green-600">MATCH HISTORY WITH ${title}</caption>
-            <div class="list-matches w-auto h-auto mt-4" >
-            <div class="item-title m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
-                <div class="w-full col-span-3 truncate text-base md:text-lg">Competition</div>
-                <div class="w-full truncate text-base md:text-lg">Home Team</div>
+            <div class="w-auto h-auto mt-4" >
+            <div class="m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-5 sm:grid-cols-5 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
+                <div class="w-full col-span-2 hidden md:inline truncate text-sm md:text-base">Competition</div>
+                <div class="w-full col-span-2 lg:col-span-2 sm:col-span-2 md:col-span-2 2xl:col-span-2 xl:col-span-2 truncate text-base md:text-lg">Home Team</div>
                 <div class="w-full truncate text-base md:text-lg">scores</div>
-                <div class="w-full col-span-2 truncate text-base md:text-lg">Away Team</div>
+                <div class="w-full lg:col-span-2 sm:col-span-2 truncate text-base md:text-lg text-center">Away Team</div>
                 <div class="w-full col-span-2 hidden md:inline truncate text-base md:text-lg">Group</div>
             </div>
         </div>
@@ -114,12 +114,11 @@ const detailPlayerPage = {
             .then((value) => {
                 value.matches.forEach((item) => {
                     let tampClass = (colorList) ? "bg-green-300" : "bg-green-200";
-                    console.log(item);
                     document.querySelector('.list-history').innerHTML +=
                         `
-                                <div class="item-list m-auto w-auto h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
-                                <div class="w-full ${tampClass} col-span-3 truncate text-sm md:text-base">${item.competition.name}</div>
-                                <div class="w-full ${tampClass} truncate text-sm md:text-base">${item.homeTeam.name}</div>
+                                <div class="item-list m-auto w-auto h-full py-[1px] text-center grid gap-2 grid-cols-5 sm:grid-cols-5 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
+                                <div class="w-full ${tampClass} md:col-span-2 lg:col-span-2 lg:col-span-1 col-span-3 hidden md:inline truncate text-sm md:text-base">${item.competition.name}</div>
+                                <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${item.homeTeam.name}</div>
                                 <div class="w-full ${tampClass} md:col-span-1 truncate text-sm md:text-base text-black">${item.score.fullTime.homeTeam} : ${item.score.fullTime.awayTeam}</div>
                                 <div class="w-full ${tampClass} col-span-2 truncate text-sm md:text-base">${item.awayTeam.name}</div>
                                 <div class="w-full ${tampClass} col-span-2 hidden md:inline truncate text-sm md:text-base">${item.group ? item.group.split('_') : '-'}</div>
