@@ -13,7 +13,7 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.(jpe?g|png|gif|svg)$/i,
+          test: /\.(jpe?g|png|gif|svg|webp)$/i,
           type: "asset",
         },
         {
@@ -33,7 +33,7 @@ module.exports = {
                 ],
             },
             {
-              test: /\.(png|svg|jpg|jpeg|gif)$/,
+              test: /\.(png|svg|jpg|jpeg|gif|webp)$/,
               use: [
                 'file-loader',
               ],

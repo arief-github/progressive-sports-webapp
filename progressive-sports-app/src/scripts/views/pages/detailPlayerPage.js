@@ -88,7 +88,7 @@ const detailPlayerPage = {
     showingHeadTable({ title }) {
         return `
             <caption class = "text-center text-green-600">MATCH HISTORY WITH ${title}</caption>
-            <div class="list-matches w-full h-auto mt-4" >
+            <div class="list-matches w-auto h-auto mt-4" >
             <div class="item-title m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9 bg-green-400 text-white">
                 <div class="w-full col-span-3 truncate text-base md:text-lg">Competition</div>
                 <div class="w-full truncate text-base md:text-lg">Home Team</div>
@@ -117,7 +117,7 @@ const detailPlayerPage = {
                     console.log(item);
                     document.querySelector('.list-history').innerHTML +=
                         `
-                                <div class="item-list m-auto w-full h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
+                                <div class="item-list m-auto w-auto h-full py-[1px] text-center grid gap-2 grid-cols-7 md:grid-cols-9 lg:grid-cols-9 xl:grid-cols-9 2xl:grid-cols-9">
                                 <div class="w-full ${tampClass} col-span-3 truncate text-sm md:text-base">${item.competition.name}</div>
                                 <div class="w-full ${tampClass} truncate text-sm md:text-base">${item.homeTeam.name}</div>
                                 <div class="w-full ${tampClass} md:col-span-1 truncate text-sm md:text-base text-black">${item.score.fullTime.homeTeam} : ${item.score.fullTime.awayTeam}</div>

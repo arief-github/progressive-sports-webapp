@@ -8,7 +8,7 @@ const header = {
 							<!-- Website Logo -->
 
 							<a href="#" class="flex items-center dark:text-white py-4 px-2 focus:outline-none focus:ring focus:ring-green-500">
-								<img src="./images/Progressive-Sport-Logo.png" alt="Logo">
+								<img src="./images/Progressive-Sport-Logo.webp" alt="Logo">
 						</div>
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-2 desktop-navbar focus:outline-none focus:ring focus:ring-green-500">
