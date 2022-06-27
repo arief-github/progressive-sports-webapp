@@ -3,7 +3,7 @@ import Toastify from 'toastify-js';
 const footer = {
     init() {
         return `
-        <footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('./images/footer.jpg');">
+        <footer class="flex relative justify-around flex-wrap md:w-full bg-full bg-cover bg-fixed" style="background-image:url('./images/footer.webp');">
             <div class="footer-col mt-3 sm:mb-4">
                 <ul class="list-none inline">
                     <li>
