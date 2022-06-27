@@ -126,7 +126,7 @@ const detailLeaguePage = {
                         <div class="w-full ${tampClass} truncate text-sm md:text-base">${startDate.toLocaleTimeString("en-US")}</div>
                         <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base">${(e.score.winner != null) ? e.score.winner.split("_")[0] + " TEAM" : "Sedang Berlangsung"}</div>
                         <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base">${e.stage.replace("_"," ")}</div>
-                        <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base"> <a href="#/matches/${e.id}">${e.status}</a></div>
+                        <div class="w-full ${tampClass} hidden md:inline truncate text-sm md:text-base hover:text-green-500"><a href="#/matches/${e.id}">${e.status}</a></div>
                         </div>
                     `
                     colorList = (colorList) ? false : true;
